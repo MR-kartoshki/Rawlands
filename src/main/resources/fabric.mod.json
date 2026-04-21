@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "rawlands",
+	"version": "${version}",
+	"name": "Rawlands",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/rawlands/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"mrkartoshki.rawlands.Rawlands"
+		],
+		"client": [
+			"mrkartoshki.rawlands.client.RawlandsClient"
+		],
+		"fabric-datagen": [
+			"mrkartoshki.rawlands.client.RawlandsDataGenerator"
+		]
+	},
+	"mixins": [
+		"rawlands.mixins.json",
+		{
+			"config": "rawlands.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
