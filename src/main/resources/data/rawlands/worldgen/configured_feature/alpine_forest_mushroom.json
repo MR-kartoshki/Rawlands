@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 3,
+          "data": { "Name": "minecraft:brown_mushroom" }
+        },
+        {
+          "weight": 1,
+          "data": { "Name": "minecraft:red_mushroom" }
+        }
+      ]
+    }
+  }
+}

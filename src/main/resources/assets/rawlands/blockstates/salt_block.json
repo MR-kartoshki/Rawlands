@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "rawlands:block/salt_block" },
+    "axis=z": { "model": "rawlands:block/salt_block", "x": 90 },
+    "axis=x": { "model": "rawlands:block/salt_block", "x": 90, "y": 90 }
+  }
+}
