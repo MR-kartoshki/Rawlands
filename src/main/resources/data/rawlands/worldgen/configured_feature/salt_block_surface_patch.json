@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 8,
+    "targets": [
+      {
+        "state": {
+          "Name": "rawlands:coarse_salt"
+        },
+        "target": {
+          "block": "rawlands:fine_salt",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "rawlands:coarse_salt"
+        },
+        "target": {
+          "block": "rawlands:salt_block",
+          "predicate_type": "minecraft:block_match"
+        }
+      }
+    ]
+  }
+}

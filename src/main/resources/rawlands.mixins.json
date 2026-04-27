@@ -3,7 +3,9 @@
 	"package": "mrkartoshki.rawlands.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"ExampleMixin"
+		"FastFallingBlockEntityMixin",
+		"OreFeatureAxisMixin",
+		"RootedAzaleaTreeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

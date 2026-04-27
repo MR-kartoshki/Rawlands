@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "half=lower": { "model": "rawlands:block/tall_cattail_bottom" },
+    "half=upper": { "model": "rawlands:block/tall_cattail_top" }
+  }
+}

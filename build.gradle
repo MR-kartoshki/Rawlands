@@ -7,11 +7,10 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	maven {
+		name = 'Forge Maven'
+		url = 'https://maven.minecraftforge.net/'
+	}
 }
 
 loom {
@@ -40,7 +39,12 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	
+	// Also expose Fabric API to the client source set compile classpath (splitEnvironmentSourceSets).
+	clientImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// TerraBlender — replace the version suffix once the correct artifact for MC 26.1.2 is confirmed
+	// Check: https://maven.minecraftforge.net/com/github/glitchfiend/TerraBlender-fabric/
+	implementation 'com.github.glitchfiend:TerraBlender-fabric:26.1.2-26.1.2.0.1'
 }
 
 processResources {

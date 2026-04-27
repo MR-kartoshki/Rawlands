@@ -1,0 +1,17 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "0": "rawlands:block/delta_lily",
+    "particle": "rawlands:block/delta_lily"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "down"}
+      }
+    }
+  ]
+}

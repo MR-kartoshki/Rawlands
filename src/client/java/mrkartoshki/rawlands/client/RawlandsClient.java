@@ -1,10 +1,17 @@
 package mrkartoshki.rawlands.client;
 
+import java.util.List;
+import mrkartoshki.rawlands.block.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
+import net.minecraft.client.color.block.BlockTintSources;
 
 public class RawlandsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+		BlockColorRegistry.register(
+			List.of(BlockTintSources.foliage()),
+			ModBlocks.OLIVE_LEAVES
+		);
 	}
 }
