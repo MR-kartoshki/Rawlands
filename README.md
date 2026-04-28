@@ -8,7 +8,7 @@ A Fabric mod for Minecraft 26.1.x.
  
 Rawlands adds a collection of biome-focused worldgen and decorative content:
 
-- **New biomes:** Salt Flat, Shrubland, Subalpine Meadow, Mediterranean Scrubland, Flooded Delta, and more!.
+- **New biomes:** Salt Flat, Shrubland, Subalpine Meadow, Mediterranean Scrubland, Flooded Delta, and more!
 - **Salt-flat terrain:** salt block surfaces, coarse salt, fine salt.
 - **Dryland vegetation:** dry scrub, shrub trees, olive trees, broadleaf lupines, nightshade, cattails, and wildflowers.
 - **Wetland content:** mangroves, delta lilies, seagrass, clay patches, shallow water puddles, and tall/short cattails.
@@ -25,7 +25,7 @@ Rawlands adds a collection of biome-focused worldgen and decorative content:
 | Fabric API | 0.146.1+ |
 | TerraBlender | any |
 
-## Building
+## Building from Source
 
 ```bash
 ./gradlew build
