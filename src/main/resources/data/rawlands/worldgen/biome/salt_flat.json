@@ -8,11 +8,7 @@
     "grass_color": "#e8e8e1",
     "water_color": "#84a6ff"
   },
-  "carvers": [
-    "minecraft:cave",
-    "minecraft:cave_extra_underground",
-    "minecraft:canyon"
-  ],
+  "carvers": [],
   "features": [
     [],
     [

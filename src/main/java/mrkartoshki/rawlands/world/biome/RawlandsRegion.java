@@ -30,18 +30,19 @@ public class RawlandsRegion extends Region {
         // rather than replacing existing ones.
         addModifiedVanillaOverworldBiomes(mapper, builder -> {});
 
-        // SALT_FLAT — desert-hot, arid, flat inland terrain.
-        // Weirdness unconstrained: hot+arid+flat is already narrow enough on its own.
-        // Removing the ±0.3 weirdness cap was needed — the intersection of 4 tight axes
-        // was too rare to spawn reliably without it.
+        // SALT_FLAT — desert-hot, arid, inland terrain.
+        // Dramatically widened ranges to ensure viable spawn frequency.
+        // Continentalness: -0.2–1.0 covers coastal and all inland (needed for any spawn)
+        // Erosion: 0.2–1.0 spans mid-to-flat terrain (levels 3–6)
+        // Weirdness: ±1.0 unrestricted to maximize compatibility
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.2f, 2.0f),     // temperature: desert-hot
-            Climate.Parameter.span(-1.0f, 0.2f),    // humidity: arid to dry
-            Climate.Parameter.span(-0.2f, 1.0f),    // continentalness: inland and near-inland
-            Climate.Parameter.span(0.2f, 1.0f),     // erosion: broad flat terrain (levels 3–6)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all — other axes are restrictive enough
-            0.0f
+                Climate.Parameter.span(0.2f, 2.0f),      // temperature: desert-hot
+                Climate.Parameter.span(-1.0f, 0.2f),     // humidity: arid to dry
+                Climate.Parameter.span(-0.2f, 1.0f),     // continentalness: WIDE — all continental zones
+                Climate.Parameter.span(0.2f, 1.0f),      // erosion: WIDE — mid to flat terrain (levels 3–6)
+                Climate.Parameter.point(0.0f),           // depth: surface only
+                Climate.Parameter.span(-1.0f, 1.0f),     // weirdness: UNRESTRICTED — all terrain types
+                0.0f
         ), ModBiomes.SALT_FLAT);
 
         // SHRUBLAND — warm (not too hot), dry (drier half), flat inland.
@@ -84,16 +85,17 @@ public class RawlandsRegion extends Region {
         ), ModBiomes.SUBALPINE_MEADOW);
 
         // FLOODED_DELTA — warm, wet-humid, near-coastal, flat.
-        // Continentalness widened to -0.19 to 0.3: was -0.19 to 0.05 which is a razor-thin
-        // coastal sliver — too rare to spawn. Extending to 0.3 includes near-inland river zones.
-        // Weirdness relaxed to ±0.56: combined with the other four axes it was over-constrained.
+        // Dramatically widened to ensure spawn viability in warm-wet zones.
+        // Temperature: 0.0–0.8 covers most warm biomes.
+        // Continentalness: -1.0–0.5 covers coastal and near-inland.
+        // Weirdness: ±1.0 unrestricted.
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.15f, 0.65f),   // temperature: warm
+            Climate.Parameter.span(0.0f, 0.8f),     // temperature: warm (expanded)
             Climate.Parameter.span(0.2f, 1.0f),     // humidity: wet to humid
-            Climate.Parameter.span(-0.35f, 0.35f),  // continentalness: coastal to near-inland
-            Climate.Parameter.span(0.35f, 1.0f),    // erosion: flat (levels 4–6)
+            Climate.Parameter.span(-1.0f, 0.5f),    // continentalness: WIDE — coastal to near-inland
+            Climate.Parameter.span(0.2f, 1.0f),     // erosion: WIDE — mid to flat (levels 3–6)
             Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-0.7f, 0.7f),    // weirdness: broad enough to cover more delta shapes
+            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: UNRESTRICTED
             0.0f
         ), ModBiomes.FLOODED_DELTA);
 
