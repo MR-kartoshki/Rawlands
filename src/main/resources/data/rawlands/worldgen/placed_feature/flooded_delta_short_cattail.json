@@ -1,9 +1,8 @@
 {
   "feature": "rawlands:short_cattail",
   "placement": [
-    { "type": "minecraft:count", "count": 10 },
+    { "type": "minecraft:count", "count": 15 },
     { "type": "minecraft:in_square" },
-    { "type": "minecraft:surface_water_depth_filter", "max_water_depth": 1 },
     { "type": "minecraft:heightmap", "heightmap": "OCEAN_FLOOR_WG" },
     { "type": "minecraft:biome" }
   ]
