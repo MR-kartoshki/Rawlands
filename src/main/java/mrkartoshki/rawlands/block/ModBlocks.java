@@ -135,6 +135,9 @@ public final class ModBlocks {
 			)
 	);
 
+	public static final Block OLIVE_SAPLING = register("olive_sapling",new OliveSaplingBlock(OliveSaplingBlock.OLIVE_TREE,
+			properties("olive_sapling").mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.GRASS)));
+
 	private ModBlocks() {
 	}
 
@@ -147,6 +150,7 @@ public final class ModBlocks {
 		);
 
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register(output -> {
+			output.accept(OLIVE_SAPLING);
 			output.accept(SALT_BLOCK);
 			output.accept(COARSE_SALT);
 			output.accept(FINE_SALT);
