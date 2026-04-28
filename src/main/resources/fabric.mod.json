@@ -3,7 +3,7 @@
 	"id": "rawlands",
 	"version": "${version}",
 	"name": "Rawlands",
-	"description": "Rawlands is a Fabric mod for Minecraft.",
+	"description": "Rawlands is a Fabric mod for Minecraft that adds several new biomes to the game.",
 	"authors": [
 		"MR-Kartoshki"
 	],
