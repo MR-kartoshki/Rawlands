@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "rawlands:block/delta_lily"
+    "layer0": "rawlands:item/delta_lily"
   }
 }
