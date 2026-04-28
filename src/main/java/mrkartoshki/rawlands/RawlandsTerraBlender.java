@@ -59,6 +59,18 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
                         ),
+                        // GRAVEL_FLATS — gravel surface, coarse dirt subsurface, stone deep under
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(ModBiomes.GRAVEL_FLATS),
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.GRAVEL.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.COARSE_DIRT.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState()))
+                                )
+                        ),
                         // TEMPERATE_RAINFOREST — podzol surface with dirt beneath (natural forest floor)
                         SurfaceRules.ifTrue(
                                 SurfaceRules.isBiome(ModBiomes.TEMPERATE_RAINFOREST),

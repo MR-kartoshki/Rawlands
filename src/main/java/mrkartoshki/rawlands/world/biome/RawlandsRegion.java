@@ -124,6 +124,19 @@ public class RawlandsRegion extends Region {
             0.0f
         ), ModBiomes.TEMPERATE_RAINFOREST);
 
+        // GRAVEL_FLATS — cold-to-normal, dry, flat inland terrain (plains climate zone)
+        // Vanilla plains lives at MIDDLE_BIOMES[cold][arid/dry] and [normal][dry] — temperature
+        // -0.45 to 0.1 targets exactly those bands. Capped at 0.1 to avoid shrubland's 0.15–0.55.
+        addBiome(mapper, Climate.parameters(
+            Climate.Parameter.span(-0.45f, 0.1f),   // temperature: cold to lower-normal (plains zone)
+            Climate.Parameter.span(-0.35f, -0.1f),  // humidity: dry band (vanilla plains' home)
+            Climate.Parameter.span(-0.11f, 1.0f),   // continentalness: near-inland to far-inland
+            Climate.Parameter.span(0.45f, 1.0f),    // erosion: flat (levels 5–6, same as plains)
+            Climate.Parameter.point(0.0f),           // depth: surface only
+            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all
+            0.0f
+        ), ModBiomes.GRAVEL_FLATS);
+
         // ALPINE_FOREST — cold, moderate humidity, mountain+hilly terrain.
         // Dead forest occupies humidity -0.35 to -0.15 (dry). Alpine forest starts at -0.1, no overlap.
         addBiome(mapper, Climate.parameters(
