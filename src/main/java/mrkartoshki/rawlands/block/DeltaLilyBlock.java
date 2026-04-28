@@ -20,7 +20,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DeltaLilyBlock extends Block {
     // Use a very flat collision like the vanilla lily pad (1 pixel high = 1.0D)
-    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+
+    // changed to be consistent with the vanilla lily pad (1 pixel margin on each side)
+    private static final VoxelShape SHAPE = Block.box(1D, 0.0D, 1D, 15D, 1.0D, 15D);
 
     public DeltaLilyBlock(Properties properties) {
         super(properties);
