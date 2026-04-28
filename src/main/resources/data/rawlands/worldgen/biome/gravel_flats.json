@@ -21,8 +21,17 @@
     ],
     [
       "minecraft:amethyst_geode",
+      "rawlands:rocky_fields_boulder",
+      "rawlands:rocky_fields_boulder_stone",
+      "rawlands:rocky_fields_boulder_granite",
+      "rawlands:rocky_fields_boulder_andesite",
+      "rawlands:rocky_fields_boulder_diorite",
+      "rawlands:rocky_fields_boulder_tuff",
       "rawlands:gravel_flats_stone_outcrop",
-      "rawlands:gravel_flats_coarse_dirt_patch"
+      "rawlands:gravel_flats_coarse_dirt_patch",
+      "rawlands:gravel_flats_andesite_patch",
+      "rawlands:gravel_flats_tuff_patch",
+      "rawlands:gravel_flats_cobble_boulder"
     ],
     [
       "minecraft:monster_room",
@@ -69,7 +78,8 @@
     [
       "minecraft:glow_lichen",
       "rawlands:gravel_flats_dead_bush",
-      "rawlands:gravel_flats_dry_scrub"
+      "rawlands:gravel_flats_dry_scrub",
+      "rawlands:gravel_flats_short_dry_grass"
     ],
     [
       "minecraft:freeze_top_layer"

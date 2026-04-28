@@ -13,8 +13,8 @@ import java.util.function.Consumer;
 
 public class RawlandsRegion extends Region {
 
-    // Vanilla overworld region uses weight 8.
-    private static final int WEIGHT = 8;
+    // Vanilla overworld region uses weight 8. Rawlands region uses weight 6, just to be safe. 
+    private static final int WEIGHT = 6;
 
     public RawlandsRegion(Identifier name) {
         super(name, RegionType.OVERWORLD, WEIGHT);
@@ -24,11 +24,24 @@ public class RawlandsRegion extends Region {
     public void addBiomes(Registry<Biome> registry,
                           Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
 
-        // Preserve all vanilla biomes within this region's share of the world.
-        // An empty builder means no vanilla biome is replaced — all vanilla points
-        // pass through unchanged. addBiome() below INSERTS new points alongside them
-        // rather than replacing existing ones.
-        addModifiedVanillaOverworldBiomes(mapper, builder -> {});
+        addModifiedVanillaOverworldBiomes(mapper, builder -> {
+            builder.replaceBiome(
+                    net.minecraft.world.level.biome.Biomes.PLAINS,
+                    ModBiomes.ROCKY_FIELDS
+            );
+            builder.replaceBiome(
+                    net.minecraft.world.level.biome.Biomes.SUNFLOWER_PLAINS,
+                    ModBiomes.GRAVEL_FLATS
+            );
+            builder.replaceBiome(
+                    net.minecraft.world.level.biome.Biomes.DESERT,
+                    ModBiomes.SALT_FLAT
+            );
+            builder.replaceBiome(
+                    net.minecraft.world.level.biome.Biomes.MANGROVE_SWAMP,
+                    ModBiomes.FLOODED_DELTA
+            );
+        });
 
         // SALT_FLAT — desert-hot, arid, inland terrain.
         // Dramatically widened ranges to ensure viable spawn frequency.
@@ -41,7 +54,7 @@ public class RawlandsRegion extends Region {
                 Climate.Parameter.span(-0.2f, 1.0f),     // continentalness: WIDE — all continental zones
                 Climate.Parameter.span(0.2f, 1.0f),      // erosion: WIDE — mid to flat terrain (levels 3–6)
                 Climate.Parameter.point(0.0f),           // depth: surface only
-                Climate.Parameter.span(-1.0f, 1.0f),     // weirdness: UNRESTRICTED — all terrain types
+                Climate.Parameter.span(-0.2f, 0.2f),     // weirdness: calm terrain only
                 0.0f
         ), ModBiomes.SALT_FLAT);
 
@@ -95,7 +108,7 @@ public class RawlandsRegion extends Region {
             Climate.Parameter.span(-1.0f, 0.5f),    // continentalness: WIDE — coastal to near-inland
             Climate.Parameter.span(0.2f, 1.0f),     // erosion: WIDE — mid to flat (levels 3–6)
             Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: UNRESTRICTED
+            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: UNRESTRICTED because I like how it looks hehe
             0.0f
         ), ModBiomes.FLOODED_DELTA);
 
@@ -136,6 +149,16 @@ public class RawlandsRegion extends Region {
             Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all
             0.0f
         ), ModBiomes.GRAVEL_FLATS);
+
+        addBiome(mapper, Climate.parameters(
+                Climate.Parameter.span(-0.45f, 0.1f),   // temperature: cold to lower-normal (plains zone)
+                Climate.Parameter.span(-0.35f, -0.1f),  // humidity: dry band (vanilla plains' home)
+                Climate.Parameter.span(-0.11f, 1.0f),   // continentalness: near-inland to far-inland
+                Climate.Parameter.span(0.45f, 1.0f),    // erosion: flat (levels 5–6, same as plains)
+                Climate.Parameter.point(0.0f),      // depth: surface only
+                Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all
+                0.0f
+        ), ModBiomes.ROCKY_FIELDS);
 
         // ALPINE_FOREST — cold, moderate humidity, mountain+hilly terrain.
         // Dead forest occupies humidity -0.35 to -0.15 (dry). Alpine forest starts at -0.1, no overlap.
