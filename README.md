@@ -4,8 +4,9 @@
 
 A Fabric mod for Minecraft 26.1.x.
 
-## Features
- 
+<details>
+<summary><h2>Features</h2></summary>
+
 Rawlands adds a collection of biome-focused worldgen and decorative content:
 
 - **New biomes:** Salt Flat, Shrubland, Subalpine Meadow, Mediterranean Scrubland, Flooded Delta, and more!
@@ -15,7 +16,10 @@ Rawlands adds a collection of biome-focused worldgen and decorative content:
 - **New items:** olive as a food item
 - **Gameplay touches:** coarse salt falls faster, and nightshade/broadleaf lupine can be used to craft purple dye.
 
-## Requirements
+</details>
+
+<details>
+<summary><h2>Requirements</h2></summary>
 
 | Dependency | Version |
 |---|---|
@@ -25,7 +29,10 @@ Rawlands adds a collection of biome-focused worldgen and decorative content:
 | Fabric API | 0.146.1+ |
 | TerraBlender | any |
 
-## Building from Source
+</details>
+
+<details>
+<summary><h2>Building from Source</h2></summary>
 
 ```bash
 ./gradlew build
@@ -33,14 +40,23 @@ Rawlands adds a collection of biome-focused worldgen and decorative content:
 
 The output JAR will be in `build/libs/`.
 
-## License
+</details>
+
+<details>
+<summary><h2>License</h2></summary>
 
 [AGPL-3.0-only](LICENSE)
 
-## Credits
+</details>
 
-**Owner:** MR-Kartoshki  
+<details>
+<summary><h2>Credits</h2></summary>
 
-**Contributors:**  
+**Owner:** MR-Kartoshki
+
+**Contributors:**
 - thecreeper3326
 - Carrothroge Republic
+
+</details>
+
