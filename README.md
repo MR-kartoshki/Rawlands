@@ -2,7 +2,7 @@
 
 # Rawlands
 
-A Fabric mod for Minecraft 26.1.x.
+A Fabric mod for Minecraft 26.1.x. This mod adds several new biomes to the game along with new blocks and flowers.
 
 <details>
 <summary><h2>Features</h2></summary>
