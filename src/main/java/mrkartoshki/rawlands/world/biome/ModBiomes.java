@@ -8,9 +8,9 @@ import net.minecraft.world.level.biome.Biome;
 
 public final class ModBiomes {
 
-    public static final ResourceKey<Biome> SALT_FLAT             = key("salt_flat");
-    public static final ResourceKey<Biome> SHRUBLAND             = key("shrubland");
-    public static final ResourceKey<Biome> SUBALPINE_MEADOW      = key("subalpine_meadow");
+    public static final ResourceKey<Biome> SALT_FLAT               = key("salt_flat");
+    public static final ResourceKey<Biome> SHRUBLAND               = key("shrubland");
+    public static final ResourceKey<Biome> SUBALPINE_MEADOW        = key("subalpine_meadow");
     public static final ResourceKey<Biome> MEDITERRANEAN_SCRUBLAND = key("mediterranean_scrubland");
     public static final ResourceKey<Biome> FLOODED_DELTA           = key("flooded_delta");
     public static final ResourceKey<Biome> DEAD_FOREST             = key("dead_forest");
