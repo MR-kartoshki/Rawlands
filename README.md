@@ -1,5 +1,3 @@
-![Lines](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/MR-kartoshki/rawlands/badge?style=flat&logoColor=white&color=c78aff&style=for-the-badge)
-
 ![Rawlands](https://cdn.modrinth.com/data/cached_images/8a4489a6dd09adc11fe1c78b6c16e7e1570b9568.png)
 
 
