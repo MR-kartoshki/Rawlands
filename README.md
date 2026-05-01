@@ -1,11 +1,11 @@
 ![Lines](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/MR-kartoshki/rawlands/badge?style=flat&logoColor=white&color=c78aff&style=for-the-badge)
 
-# Rawlands
+![Rawlands](https://cdn.modrinth.com/data/cached_images/8a4489a6dd09adc11fe1c78b6c16e7e1570b9568.png)
 
-A Fabric mod for Minecraft 26.1.x. This mod adds several new biomes to the game along with new blocks and flowers.
 
-<details>
-<summary><h2>Features</h2></summary>
+This mod adds several new biomes to the game along with new blocks and flowers.
+
+## Features
 
 Rawlands adds a collection of biome-focused worldgen and decorative content:
 
@@ -16,10 +16,9 @@ Rawlands adds a collection of biome-focused worldgen and decorative content:
 - **New items:** olive as a food item
 - **Gameplay touches:** coarse salt falls faster, and nightshade/broadleaf lupine can be used to craft purple dye.
 
-</details>
 
 <details>
-<summary><h2>Requirements</h2></summary>
+<summary><b>Requirements</b></summary>
 
 | Dependency | Version |
 |---|---|
@@ -32,25 +31,24 @@ Rawlands adds a collection of biome-focused worldgen and decorative content:
 </details>
 
 <details>
-<summary><h2>Building from Source</h2></summary>
+<summary><b>Building from Source</b></summary>
 
 ```bash
 ./gradlew build
 ```
-
 The output JAR will be in `build/libs/`.
 
 </details>
 
 <details>
-<summary><h2>License</h2></summary>
+<summary><b>License</b></summary>
 
 [AGPL-3.0-only](LICENSE)
 
 </details>
 
 <details>
-<summary><h2>Credits</h2></summary>
+<summary><b>Credits</b></summary>
 
 **Owner:** MR-Kartoshki
 
@@ -59,4 +57,3 @@ The output JAR will be in `build/libs/`.
 - Carrothroge Republic
 
 </details>
-
