@@ -1,0 +1,9 @@
+{
+  "music.dead_forest": {
+    "replace": true,
+    "category": "music",
+    "sounds": [
+      {"name": "rawlands:mus_dead_forest", "stream": true,"weight": 1}
+    ]
+  }
+}

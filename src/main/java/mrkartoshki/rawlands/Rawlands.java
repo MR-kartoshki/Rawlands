@@ -2,6 +2,7 @@ package mrkartoshki.rawlands;
 
 import mrkartoshki.rawlands.block.ModBlocks;
 import mrkartoshki.rawlands.item.ModItems;
+import mrkartoshki.rawlands.sound.ModMusic;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ public class Rawlands implements ModInitializer {
 	public void onInitialize() {
 		ModBlocks.initialize();
 		ModItems.initialize();
+		ModMusic.init();
 		LOGGER.info("Rawlands initializing.");
 	}
 }
