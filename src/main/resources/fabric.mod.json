@@ -11,7 +11,8 @@
 		"thecreeper3326"
 	],
 	"contact": {
-		"sources": "https://github.com/MR-Kartoshki/rawlands"
+		"sources": "https://github.com/MR-Kartoshki/rawlands",
+		"issues": "https://github.com/MR-kartoshki/Rawlands/issues"
 	},
 	"license": "AGPL-3.0-only",
 	"icon": "assets/rawlands/icon.png",
@@ -39,5 +40,12 @@
 		"java": ">=25",
 		"fabric-api": "*",
 		"terrablender": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/rawlands"
+			}
+		}
 	}
 }
