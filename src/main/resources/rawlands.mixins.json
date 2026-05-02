@@ -3,6 +3,7 @@
 	"package": "mrkartoshki.rawlands.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
+		"BoatEntityMixin",
 		"FastFallingBlockEntityMixin",
 		"OreFeatureAxisMixin",
 		"RootedAzaleaTreeMixin"

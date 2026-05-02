@@ -63,6 +63,21 @@ public class TallCattailBlock extends DoublePlantBlock implements SimpleWaterlog
         return level.getFluidState(pos).is(FluidTags.WATER);
     }
 
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean moved) {
+        super.onPlace(state, level, pos, oldState, moved);
+        // When the lower half is placed (e.g. from worldgen), ensure the upper half is created
+        if (!level.isClientSide() && state.getValue(HALF) == DoubleBlockHalf.LOWER) {
+            BlockPos upperPos = pos.above();
+            BlockState upperState = level.getBlockState(upperPos);
+            if (!upperState.is(this)) {
+                boolean waterAbove = level.getFluidState(upperPos).is(FluidTags.WATER);
+                BlockState newUpper = this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER).setValue(WATERLOGGED, waterAbove);
+                level.setBlock(upperPos, newUpper, 3);
+            }
+        }
+    }
+
     // Harvesting with shears drops the cattail and removes both halves.
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
@@ -77,6 +92,7 @@ public class TallCattailBlock extends DoublePlantBlock implements SimpleWaterlog
                 level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
                 // Drop one item from the lower-half position.
                 Block.popResource(level, lowerPos, new ItemStack(this));
+                mrkartoshki.rawlands.Rawlands.LOGGER.info("Tall cattail sheared at {}: dropped item", lowerPos);
                 // Remove upper half first so removing lower doesn't trigger a cascade update
                 // that could attempt another drop via updateShape.
                 BlockState upperState = level.getBlockState(upperPos);

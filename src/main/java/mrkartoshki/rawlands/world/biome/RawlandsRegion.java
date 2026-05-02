@@ -30,10 +30,6 @@ public class RawlandsRegion extends Region {
                     ModBiomes.ROCKY_FIELDS
             );
             builder.replaceBiome(
-                    net.minecraft.world.level.biome.Biomes.SUNFLOWER_PLAINS,
-                    ModBiomes.GRAVEL_FLATS
-            );
-            builder.replaceBiome(
                     net.minecraft.world.level.biome.Biomes.DESERT,
                     ModBiomes.SALT_FLAT
             );
@@ -141,12 +137,12 @@ public class RawlandsRegion extends Region {
         // Vanilla plains lives at MIDDLE_BIOMES[cold][arid/dry] and [normal][dry] — temperature
         // -0.45 to 0.1 targets exactly those bands. Capped at 0.1 to avoid shrubland's 0.15–0.55.
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.45f, 0.1f),   // temperature: cold to lower-normal (plains zone)
-            Climate.Parameter.span(-0.35f, -0.1f),  // humidity: dry band (vanilla plains' home)
-            Climate.Parameter.span(-0.11f, 1.0f),   // continentalness: near-inland to far-inland
-            Climate.Parameter.span(0.45f, 1.0f),    // erosion: flat (levels 5–6, same as plains)
+            Climate.Parameter.span(-0.3f, 0.1f),   // temperature: cold to lower-normal (plains zone)
+            Climate.Parameter.span(-0.3f, -0.1f),  // humidity: dry band (vanilla plains' home)
+            Climate.Parameter.span(0f, 1.0f),   // continentalness: near-inland to far-inland
+            Climate.Parameter.span(0.65f, 1.0f),    // erosion: flat (levels 5–6, same as plains)
             Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all
+            Climate.Parameter.span(-0.2f, 0.2f),    // weirdness: all
             0.0f
         ), ModBiomes.GRAVEL_FLATS);
 

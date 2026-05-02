@@ -29,8 +29,8 @@ public final class RawlandsBlockLootProvider extends FabricBlockLootSubProvider 
 								.apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F))))));
 		add(ModBlocks.OLIVE_LEAVES, createShearsOnlyDrop(ModBlocks.OLIVE_LEAVES));
 		add(ModBlocks.BROADLEAF_LUPINE, block -> createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
-		add(ModBlocks.SHORT_CATTAIL, createShearsOnlyDrop(ModBlocks.SHORT_CATTAIL));
-		add(ModBlocks.TALL_CATTAIL,  block -> createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
-		add(ModBlocks.DELTA_LILY, createShearsOnlyDrop(ModBlocks.DELTA_LILY));
+		dropSelf(ModBlocks.SHORT_CATTAIL);
+		dropSelf(ModBlocks.TALL_CATTAIL);
+		dropSelf(ModBlocks.DELTA_LILY);
 	}
 }

@@ -53,6 +53,7 @@ public class DeltaLilyBlock extends Block {
             if (!level.isClientSide()) {
                 level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
                 Block.popResource(level, pos, new ItemStack(this));
+                mrkartoshki.rawlands.Rawlands.LOGGER.info("Delta lily sheared at {}: dropped item", pos);
                 level.removeBlock(pos, false);
                 stack.hurtAndBreak(1, player,
                         hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
@@ -61,4 +62,6 @@ public class DeltaLilyBlock extends Block {
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hit);
     }
+
+    // rely on loot tables for normal drops; shears handling above still spawns an item
 }

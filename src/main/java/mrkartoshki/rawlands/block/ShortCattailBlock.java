@@ -76,6 +76,7 @@ public class ShortCattailBlock extends BushBlock implements SimpleWaterloggedBlo
             if (!level.isClientSide()) {
                 level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
                 Block.popResource(level, pos, new ItemStack(this));
+                mrkartoshki.rawlands.Rawlands.LOGGER.info("Short cattail sheared at {}: dropped item", pos);
                 level.removeBlock(pos, false);
                 stack.hurtAndBreak(1, player,
                         hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
