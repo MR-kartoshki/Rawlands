@@ -1,14 +1,5 @@
 {
-  "attributes": {
-    "minecraft:audio/background_music": {
-      "default": {
-        "sound": "rawlands:music.dead_forest",
-        "min_delay": 20,
-        "max_delay": 500,
-        "replace_current_music": true
-      }
-    }
-  },
+
   "temperature": 0.5,
   "downfall": 0.2,
   "has_precipitation": true,
