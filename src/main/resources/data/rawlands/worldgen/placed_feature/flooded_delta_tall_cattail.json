@@ -4,6 +4,19 @@
     { "type": "minecraft:count", "count": 20 },
     { "type": "minecraft:in_square" },
     { "type": "minecraft:heightmap", "heightmap": "OCEAN_FLOOR_WG" },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "rawlands:tall_cattail",
+          "Properties": {
+            "half": "lower",
+            "waterlogged": "true"
+          }
+        }
+      }
+    },
     { "type": "minecraft:biome" }
   ]
 }

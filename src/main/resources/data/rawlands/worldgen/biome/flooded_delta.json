@@ -72,7 +72,8 @@
       "rawlands:flooded_delta_large_fern",
       "rawlands:flooded_delta_seagrass",
       "rawlands:flooded_delta_surface_clay",
-      "rawlands:flooded_delta_delta_lily"
+      "rawlands:flooded_delta_delta_lily",
+      "rawlands:flooded_delta_sand_patch"
     ],
     [
       "minecraft:freeze_top_layer"
