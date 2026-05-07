@@ -3,9 +3,8 @@
     "minecraft:audio/background_music": {
       "default": {
         "sound": "rawlands:music.dead_forest",
-        "min_delay": 20,
-        "max_delay": 500,
-        "replace_current_music": true
+        "min_delay": 100,
+        "max_delay": 200
       }
     }
   },
