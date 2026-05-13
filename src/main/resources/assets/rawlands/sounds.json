@@ -3,7 +3,9 @@
     "replace": true,
     "category": "music",
     "sounds": [
-      {"name": "rawlands:mus_dead_forest", "stream": true,"weight": 1}
+      {"name": "rawlands:mus_dead_forest_1", "stream": true,"weight": 1},
+      {"name": "rawlands:mus_dead_forest_2", "stream": true,"weight": 3},
+      {"name": "rawlands:mus_dead_forest_3", "stream": true,"weight": 2}
     ]
   }
 }

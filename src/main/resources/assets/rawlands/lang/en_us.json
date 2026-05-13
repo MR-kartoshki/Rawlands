@@ -28,5 +28,7 @@
   "item.rawlands.short_cattail": "Short Cattail",
   "item.rawlands.tall_cattail": "Tall Cattail",
   "block.rawlands.olive_sapling": "Olive Sapling",
-  "rawlands.mus_dead_forest": "TheCreeper3326 - Dead Trees"
+  "rawlands.mus_dead_forest_1": "TheCreeper3326 - Object",
+  "rawlands.mus_dead_forest_2": "TheCreeper3326 - Incomplete",
+  "rawlands.mus_dead_forest_3": "TheCreeper3326 - Foreshadowing"
 }
