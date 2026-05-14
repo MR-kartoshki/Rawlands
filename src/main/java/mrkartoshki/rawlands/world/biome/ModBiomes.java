@@ -18,6 +18,7 @@ public final class ModBiomes {
     public static final ResourceKey<Biome> ALPINE_FOREST           = key("alpine_forest");
     public static final ResourceKey<Biome> GRAVEL_FLATS            = key("gravel_flats");
     public static final ResourceKey<Biome> ROCKY_FIELDS            = key("rocky_fields");
+    public static final ResourceKey<Biome> CORAL_FOREST            = key("coral_forest");
 
     private ModBiomes() {}
 

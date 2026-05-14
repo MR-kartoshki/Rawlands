@@ -12,7 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
-@Mixin(targets = "net.minecraft.world.entity.vehicle.Boat")
+// AbstractBoat moved to the boat subpackage in MC 26.1.x
+@Mixin(targets = "net.minecraft.world.entity.vehicle.boat.AbstractBoat")
 abstract class BoatEntityMixin {
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void rawlands$breakDeltaLilies(CallbackInfo ci) {
@@ -23,17 +24,13 @@ abstract class BoatEntityMixin {
 		}
 
 		AABB box = self.getBoundingBox().inflate(0.02D);
-		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-		for (int x = BlockPos.containing(box.minX, box.minY, box.minZ).getX(); x <= BlockPos.containing(box.maxX, box.maxY, box.maxZ).getX(); x++) {
-			for (int y = BlockPos.containing(box.minX, box.minY, box.minZ).getY(); y <= BlockPos.containing(box.maxX, box.maxY, box.maxZ).getY(); y++) {
-				for (int z = BlockPos.containing(box.minX, box.minY, box.minZ).getZ(); z <= BlockPos.containing(box.maxX, box.maxY, box.maxZ).getZ(); z++) {
-					pos.set(x, y, z);
-					BlockState state = level.getBlockState(pos);
-					if (state.is(ModBlocks.DELTA_LILY)) {
-						mrkartoshki.rawlands.Rawlands.LOGGER.info("Boat hit delta lily at {}: destroying block", pos);
-						level.destroyBlock(pos, true);
-					}
-				}
+		BlockPos min = BlockPos.containing(box.minX, box.minY, box.minZ);
+		BlockPos max = BlockPos.containing(box.maxX, box.maxY, box.maxZ);
+		for (BlockPos pos : BlockPos.betweenClosed(min, max)) {
+			BlockState state = level.getBlockState(pos);
+			if (state.is(ModBlocks.DELTA_LILY)) {
+				mrkartoshki.rawlands.Rawlands.LOGGER.debug("Boat hit delta lily at {}: destroying block", pos);
+				level.destroyBlock(pos.immutable(), true);
 			}
 		}
 	}

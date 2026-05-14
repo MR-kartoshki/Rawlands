@@ -37,6 +37,10 @@ public class RawlandsRegion extends Region {
                     net.minecraft.world.level.biome.Biomes.MANGROVE_SWAMP,
                     ModBiomes.FLOODED_DELTA
             );
+            builder.replaceBiome(
+                    net.minecraft.world.level.biome.Biomes.WARM_OCEAN,
+                    ModBiomes.CORAL_FOREST
+            );
         });
 
         // SALT_FLAT — desert-hot, arid, inland terrain.
@@ -58,8 +62,8 @@ public class RawlandsRegion extends Region {
         // Continentalness capped at 0.7: excludes deep far-inland zones to reduce overall footprint.
         // Was 0.03–1.0 before, which spanned nearly all inland terrain and made it too common.
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.15f, 0.55f),   // temperature: warm (capped below hot)
-            Climate.Parameter.span(-0.4f, -0.15f),  // humidity: dry — drier half only
+            Climate.Parameter.span(0.3f, 0.85f),   // temperature: warm-hot
+            Climate.Parameter.span(-0.8f, -0.3f),  // humidity: dry — drier half only
             Climate.Parameter.span(0.12f, 0.75f),   // continentalness: inland only (avoid coastal floodplains)
             Climate.Parameter.span(0.45f, 1.0f),    // erosion: flat plains (levels 5–6)
             Climate.Parameter.point(0.0f),           // depth: surface only
@@ -68,9 +72,6 @@ public class RawlandsRegion extends Region {
         ), ModBiomes.SHRUBLAND);
 
         // MEDITERRANEAN_SCRUBLAND — warm-hot, moderate humidity, hilly terrain.
-        // Temperature narrowed to 0.4–0.75: was 0.3–1.0 (70% of the hot range) which made it
-        // enormous. Now targets the warm-to-moderate-hot band only.
-        // Humidity and erosion constraints stay the same — they already separate it from shrubland.
         addBiome(mapper, Climate.parameters(
             Climate.Parameter.span(0.4f, 0.75f),    // temperature: warm-hot (narrowed from 0.3–1.0)
             Climate.Parameter.span(-0.1f, 0.3f),    // humidity: moderate — less dry than shrubland
@@ -99,8 +100,8 @@ public class RawlandsRegion extends Region {
         // Continentalness: -1.0–0.5 covers coastal and near-inland.
         // Weirdness: ±1.0 unrestricted.
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.0f, 0.8f),     // temperature: warm (expanded)
-            Climate.Parameter.span(0.2f, 1.0f),     // humidity: wet to humid
+            Climate.Parameter.span(0.0f, 0.6f),     // temperature: warm (expanded)
+            Climate.Parameter.span(0.4f, 1.0f),     // humidity: wet to humid
             Climate.Parameter.span(-1.0f, 0.5f),    // continentalness: WIDE — coastal to near-inland
             Climate.Parameter.span(0.2f, 1.0f),     // erosion: WIDE — mid to flat (levels 3–6)
             Climate.Parameter.point(0.0f),           // depth: surface only

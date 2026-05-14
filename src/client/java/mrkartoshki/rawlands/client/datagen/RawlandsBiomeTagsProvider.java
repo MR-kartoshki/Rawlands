@@ -24,7 +24,7 @@ public final class RawlandsBiomeTagsProvider implements DataProvider {
 	@Override
 	public CompletableFuture<?> run(CachedOutput output) {
 		return CompletableFuture.allOf(
-				DataProvider.saveStable(output, tagFile("rawlands:salt_flat", "rawlands:shrubland", "rawlands:subalpine_meadow", "rawlands:mediterranean_scrubland", "rawlands:flooded_delta", "rawlands:dead_forest"), isOverworldPath),
+				DataProvider.saveStable(output, tagFile("rawlands:salt_flat", "rawlands:shrubland", "rawlands:subalpine_meadow", "rawlands:mediterranean_scrubland", "rawlands:flooded_delta", "rawlands:dead_forest", "rawlands:coral_forest"), isOverworldPath),
 				DataProvider.saveStable(output, tagFile("rawlands:subalpine_meadow"), isMountainPath)
 		);
 	}

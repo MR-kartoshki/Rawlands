@@ -108,7 +108,7 @@ public final class RawlandsAssetsProvider implements DataProvider {
 	private static CompletableFuture<?> saveJson(CachedOutput output, Path path, JsonObject json) {
 		try {
 			byte[] bytes = GSON.toJson(json).getBytes(StandardCharsets.UTF_8);
-			output.writeIfNeeded(path, bytes, Hashing.sha1().hashBytes(bytes));
+			output.writeIfNeeded(path, bytes, Hashing.sha256().hashBytes(bytes));
 			return CompletableFuture.completedFuture(null);
 		} catch (IOException e) {
 			return CompletableFuture.failedFuture(e);
@@ -120,7 +120,7 @@ public final class RawlandsAssetsProvider implements DataProvider {
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			ImageIO.write(image, "png", stream);
 			byte[] bytes = stream.toByteArray();
-			output.writeIfNeeded(path, bytes, Hashing.sha1().hashBytes(bytes));
+			output.writeIfNeeded(path, bytes, Hashing.sha256().hashBytes(bytes));
 			return CompletableFuture.completedFuture(null);
 		} catch (IOException exception) {
 			return CompletableFuture.failedFuture(exception);

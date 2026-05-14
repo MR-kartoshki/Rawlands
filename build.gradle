@@ -16,20 +16,18 @@ repositories {
 		name = "Terraformers"
 		url = "https://maven.terraformersmc.com/releases"
 	}
-	gradlePluginPortal()
 
 }
 
 loom {
 	splitEnvironmentSourceSets()
-
-	mods {
-		"rawlands" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
+	sourceSets {
+		client {
+			resources {
+				srcDirs "src/client/resources"
+			}
 		}
 	}
-
 }
 
 fabricApi {

@@ -80,6 +80,18 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                         SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
+                        ),
+                        // CORAL_FOREST — sand seafloor over sandstone (ocean biome replacing Warm Ocean)
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(ModBiomes.CORAL_FOREST),
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.SAND.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.SAND.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState()))
+                                )
                         )
                 )
         );
