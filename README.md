@@ -1,6 +1,5 @@
 
-![Rawlands](https://cdn.modrinth.com/data/cached_images/8a4489a6dd09adc11fe1c78b6c16e7e1570b9568.png)
-![Download](https://modrinth.com/mod/rawlands)
+[![Rawlands](https://cdn.modrinth.com/data/cached_images/8a4489a6dd09adc11fe1c78b6c16e7e1570b9568.png)](https://modrinth.com/mod/rawlands)
 
 ## Features
 
