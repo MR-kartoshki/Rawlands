@@ -70,7 +70,8 @@
       "rawlands:coral_forest_coral_tree",
       "rawlands:coral_forest_coral_mushroom",
       "rawlands:coral_forest_coral_claw",
-      "rawlands:coral_forest_sea_pickle"
+      "rawlands:coral_forest_sea_pickle",
+      "rawlands:coral_forest_dead_coral_tree"
     ],
     [
       "minecraft:freeze_top_layer"

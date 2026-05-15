@@ -1,6 +1,7 @@
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = project.mod_version
@@ -81,6 +82,20 @@ jar {
 		rename { "${it}_${project.name}"}
 	}
 }
+
+modrinth {
+	token = project.findProperty("modrinth_token") ?: System.getenv("MODRINTH_TOKEN")
+	projectId = "41epYhDW"
+	versionType = "release"
+	uploadFile = jar
+	gameVersions = [project.minecraft_version]
+	changelog = ""
+	dependencies {
+		required.project "fabric-api"
+		required.project "terrablender"
+	}
+}
+
 
 // configure the maven publication
 publishing {

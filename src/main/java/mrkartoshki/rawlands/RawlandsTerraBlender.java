@@ -92,6 +92,18 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                         SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState()))
                                 )
+                        ),
+                        // ABYSSAL_TRENCHES — sand cave floor (seagrass-compatible), deepslate beneath
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(ModBiomes.ABYSSAL_TRENCHES),
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.SAND.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState()))
+                                )
                         )
                 )
         );

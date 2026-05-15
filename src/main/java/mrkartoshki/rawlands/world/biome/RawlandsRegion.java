@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class RawlandsRegion extends Region {
 
-    // Vanilla overworld region uses weight 8. Rawlands region uses weight 6, just to be safe. 
+    // Vanilla overworld region uses weight 8. Rawlands region uses weight 6, just to be safe.
     private static final int WEIGHT = 6;
 
     public RawlandsRegion(Identifier name) {
@@ -43,129 +43,124 @@ public class RawlandsRegion extends Region {
             );
         });
 
-        // SALT_FLAT — desert-hot, arid, inland terrain.
-        // Dramatically widened ranges to ensure viable spawn frequency.
-        // Continentalness: -0.2–1.0 covers coastal and all inland (needed for any spawn)
-        // Erosion: 0.2–1.0 spans mid-to-flat terrain (levels 3–6)
-        // Weirdness: ±1.0 unrestricted to maximize compatibility
+        // SALT_FLAT
         addBiome(mapper, Climate.parameters(
-                Climate.Parameter.span(0.2f, 2.0f),      // temperature: desert-hot
-                Climate.Parameter.span(-1.0f, 0.2f),     // humidity: arid to dry
-                Climate.Parameter.span(-0.2f, 1.0f),     // continentalness: WIDE — all continental zones
-                Climate.Parameter.span(0.2f, 1.0f),      // erosion: WIDE — mid to flat terrain (levels 3–6)
-                Climate.Parameter.point(0.0f),           // depth: surface only
-                Climate.Parameter.span(-0.2f, 0.2f),     // weirdness: calm terrain only
+                Climate.Parameter.span(0.2f, 2.0f),      // temperature
+                Climate.Parameter.span(-1.0f, 0.2f),     // humidity
+                Climate.Parameter.span(-0.2f, 1.0f),     // continentalness
+                Climate.Parameter.span(0.2f, 1.0f),      // erosion
+                Climate.Parameter.point(0.0f),      // depth
+                Climate.Parameter.span(-0.2f, 0.2f),     // weirdness
                 0.0f
         ), ModBiomes.SALT_FLAT);
 
-        // SHRUBLAND — warm (not too hot), dry (drier half), flat inland.
-        // Continentalness capped at 0.7: excludes deep far-inland zones to reduce overall footprint.
-        // Was 0.03–1.0 before, which spanned nearly all inland terrain and made it too common.
+        // SHRUBLAND
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.3f, 0.85f),   // temperature: warm-hot
-            Climate.Parameter.span(-0.8f, -0.3f),  // humidity: dry — drier half only
-            Climate.Parameter.span(0.12f, 0.75f),   // continentalness: inland only (avoid coastal floodplains)
-            Climate.Parameter.span(0.45f, 1.0f),    // erosion: flat plains (levels 5–6)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-0.2f, 0.2f),    // weirdness: calm terrain only
+            Climate.Parameter.span(0.2f, 0.85f),   // temperature
+            Climate.Parameter.span(-0.8f, -0.2f),  // humidity
+            Climate.Parameter.span(0.1f, 0.8f),   // continentalness
+            Climate.Parameter.span(0.45f, 1.0f),    // erosion
+            Climate.Parameter.point(0.0f),     // depth
+            Climate.Parameter.span(-0.2f, 0.2f),    // weirdness
             0.0f
         ), ModBiomes.SHRUBLAND);
 
-        // MEDITERRANEAN_SCRUBLAND — warm-hot, moderate humidity, hilly terrain.
+        // MEDITERRANEAN_SCRUBLAND
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.4f, 0.75f),    // temperature: warm-hot (narrowed from 0.3–1.0)
-            Climate.Parameter.span(-0.1f, 0.3f),    // humidity: moderate — less dry than shrubland
-            Climate.Parameter.span(0.03f, 1.0f),    // continentalness: inland
-            Climate.Parameter.span(-0.2225f, 0.45f),// erosion: hilly (levels 2–4)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all — erosion already constrains well
+            Climate.Parameter.span(0.4f, 0.75f),    // temperature
+            Climate.Parameter.span(-0.1f, 0.3f),    // humidity
+            Climate.Parameter.span(0.03f, 1.0f),    // continentalness
+            Climate.Parameter.span(-0.2225f, 0.45f),// erosion: hilly
+            Climate.Parameter.point(0.0f),     // depth
+            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness
             0.0f
         ), ModBiomes.MEDITERRANEAN_SCRUBLAND);
 
-        // SUBALPINE_MEADOW — cool-normal temperature, normal-wet humidity, high elevation.
-        // Erosion levels 1–2 lock placement to mountain/plateau terrain — no further tuning needed.
+        // SUBALPINE_MEADOW
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.15f, 0.2f),   // temperature: normal (cool edge)
-            Climate.Parameter.span(0.1f, 0.8f),     // humidity: normal to wet
-            Climate.Parameter.span(0.03f, 1.0f),    // continentalness: inland
-            Climate.Parameter.span(-0.78f, -0.2225f),// erosion: high plateau/mountain (levels 1–2)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all — erosion already constrains well
+            Climate.Parameter.span(-0.15f, 0.2f),   // temperature
+            Climate.Parameter.span(0.1f, 0.8f),     // humidity
+            Climate.Parameter.span(0.03f, 1.0f),    // continentalness
+            Climate.Parameter.span(-0.78f, -0.2225f),// erosion
+            Climate.Parameter.point(0.0f),      // depth
+            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness
             0.0f
         ), ModBiomes.SUBALPINE_MEADOW);
 
-        // FLOODED_DELTA — warm, wet-humid, near-coastal, flat.
-        // Dramatically widened to ensure spawn viability in warm-wet zones.
-        // Temperature: 0.0–0.8 covers most warm biomes.
-        // Continentalness: -1.0–0.5 covers coastal and near-inland.
-        // Weirdness: ±1.0 unrestricted.
+        // FLOODED_DELTA
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(0.0f, 0.6f),     // temperature: warm (expanded)
-            Climate.Parameter.span(0.4f, 1.0f),     // humidity: wet to humid
-            Climate.Parameter.span(-1.0f, 0.5f),    // continentalness: WIDE — coastal to near-inland
-            Climate.Parameter.span(0.2f, 1.0f),     // erosion: WIDE — mid to flat (levels 3–6)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: UNRESTRICTED because I like how it looks hehe
+            Climate.Parameter.span(0.0f, 0.6f),     // temperature
+            Climate.Parameter.span(0.4f, 1.0f),     // humidity
+            Climate.Parameter.span(-1.0f, 0.5f),    // continentalness
+            Climate.Parameter.span(0.2f, 1.0f),     // erosion
+            Climate.Parameter.point(0.0f),     // depth
+            Climate.Parameter.span(-1.0f, 1.0f),    // weirdness
             0.0f
         ), ModBiomes.FLOODED_DELTA);
 
-        // DEAD_FOREST — cold-normal temperature, strictly dry, hilly inland terrain.
-        // Humidity tightened to -0.35 to -0.15 to avoid overlap with normal cold forests.
+        // DEAD_FOREST
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.4f, 0.15f),   // temperature: cold to cool-normal
-            Climate.Parameter.span(-0.35f, -0.18f), // humidity: strictly dry
-            Climate.Parameter.span(0.15f, 1.0f),    // continentalness: inland
-            Climate.Parameter.span(-0.375f, 0.45f), // erosion: hilly (levels 2–4)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-0.3f, 0.3f),    // weirdness: moderate, avoids extreme terrain
+            Climate.Parameter.span(-0.4f, 0.15f),   // temperature
+            Climate.Parameter.span(-0.35f, -0.18f), // humidity
+            Climate.Parameter.span(0.15f, 1.0f),    // continentalness
+            Climate.Parameter.span(-0.375f, 0.45f), // erosion
+            Climate.Parameter.point(0.0f),     // depth
+            Climate.Parameter.span(-0.3f, 0.3f),    // weirdness
             0.0f
         ), ModBiomes.DEAD_FOREST);
 
-        // TEMPERATE_RAINFOREST — cool-normal, very wet, hilly terrain.
-        // Humidity starts at 0.5 (above subalpine's 0.1–0.8 for hilly erosion — those are mountains,
-        // this targets hilly erosion only). Prevents overlap with subalpine meadow (which uses mountain erosion).
+        // TEMPERATE_RAINFOREST
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.15f, 0.2f),    // temperature: cool-normal
-            Climate.Parameter.span(0.5f, 1.0f),      // humidity: very wet
-            Climate.Parameter.span(0.03f, 1.0f),     // continentalness: inland
-            Climate.Parameter.span(-0.2225f, 0.45f), // erosion: hilly (levels 2–4), NOT mountain
-            Climate.Parameter.point(0.0f),            // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),     // weirdness: all
+            Climate.Parameter.span(-0.15f, 0.2f),    // temperature
+            Climate.Parameter.span(0.5f, 1.0f),      // humidity
+            Climate.Parameter.span(0.03f, 1.0f),     // continentalness
+            Climate.Parameter.span(-0.2225f, 0.45f), // erosion
+            Climate.Parameter.point(0.0f),      // depth
+            Climate.Parameter.span(-1.0f, 1.0f),     // weirdness
             0.0f
         ), ModBiomes.TEMPERATE_RAINFOREST);
 
-        // GRAVEL_FLATS — cold-to-normal, dry, flat inland terrain (plains climate zone)
-        // Vanilla plains lives at MIDDLE_BIOMES[cold][arid/dry] and [normal][dry] — temperature
-        // -0.45 to 0.1 targets exactly those bands. Capped at 0.1 to avoid shrubland's 0.15–0.55.
+        // GRAVEL_FLATS
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.3f, 0.1f),   // temperature: cold to lower-normal (plains zone)
-            Climate.Parameter.span(-0.3f, -0.1f),  // humidity: dry band (vanilla plains' home)
-            Climate.Parameter.span(0f, 1.0f),   // continentalness: near-inland to far-inland
-            Climate.Parameter.span(0.65f, 1.0f),    // erosion: flat (levels 5–6, same as plains)
-            Climate.Parameter.point(0.0f),           // depth: surface only
-            Climate.Parameter.span(-0.2f, 0.2f),    // weirdness: all
+            Climate.Parameter.span(-0.3f, 0.1f),    // temperature
+            Climate.Parameter.span(-0.3f, 0.1f),    // humidity
+            Climate.Parameter.span(0f, 1.0f),       // continentalness
+            Climate.Parameter.span(0.65f, 1.0f),    // erosion
+            Climate.Parameter.point(0.0f),     // depth
+            Climate.Parameter.span(-0.2f, 0.2f),    // weirdness
             0.0f
         ), ModBiomes.GRAVEL_FLATS);
 
+        // ROCKY_FIELDS
         addBiome(mapper, Climate.parameters(
-                Climate.Parameter.span(-0.45f, 0.1f),   // temperature: cold to lower-normal (plains zone)
-                Climate.Parameter.span(-0.35f, -0.1f),  // humidity: dry band (vanilla plains' home)
-                Climate.Parameter.span(-0.11f, 1.0f),   // continentalness: near-inland to far-inland
-                Climate.Parameter.span(0.45f, 1.0f),    // erosion: flat (levels 5–6, same as plains)
-                Climate.Parameter.point(0.0f),      // depth: surface only
-                Climate.Parameter.span(-1.0f, 1.0f),    // weirdness: all
+                Climate.Parameter.span(-0.45f, 0.1f),   // temperature
+                Climate.Parameter.span(-0.35f, -0.1f),  // humidity
+                Climate.Parameter.span(-0.11f, 1.0f),   // continentalness
+                Climate.Parameter.span(0.45f, 1.0f),    // erosion
+                Climate.Parameter.point(0.0f),      // depth
+                Climate.Parameter.span(-1.0f, 1.0f),    // weirdness
                 0.0f
         ), ModBiomes.ROCKY_FIELDS);
 
-        // ALPINE_FOREST — cold, moderate humidity, mountain+hilly terrain.
-        // Dead forest occupies humidity -0.35 to -0.15 (dry). Alpine forest starts at -0.1, no overlap.
+        // ABYSSAL_TRENCHES
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span(-0.45f, -0.15f),  // temperature: cold
-            Climate.Parameter.span(-0.1f, 0.5f),     // humidity: dry-normal (moderate)
-            Climate.Parameter.span(0.03f, 1.0f),     // continentalness: inland
-            Climate.Parameter.span(-0.78f, 0.05f),   // erosion: mountain+hilly (levels 0–3)
-            Climate.Parameter.point(0.0f),            // depth: surface only
-            Climate.Parameter.span(-1.0f, 1.0f),     // weirdness: all
+                Climate.Parameter.span(-1.0f, 0.1f),    // temperature
+                Climate.Parameter.span(-1.0f, 1.0f),    // humidity
+                Climate.Parameter.span(-1.0f, -0.4f),   // continentalness
+                Climate.Parameter.span(-1.0f, 1.0f),    // erosion
+                Climate.Parameter.point(0.0f),     // depth
+                Climate.Parameter.span(-0.3f, 0.3f),    // weirdness
+                0.0f
+        ), ModBiomes.ABYSSAL_TRENCHES);
+
+        // ALPINE_FOREST
+        addBiome(mapper, Climate.parameters(
+            Climate.Parameter.span(-0.45f, -0.15f),  // temperature
+            Climate.Parameter.span(-0.1f, 0.5f),     // humidity
+            Climate.Parameter.span(0.03f, 1.0f),     // continentalness
+            Climate.Parameter.span(-0.78f, 0.05f),   // erosion
+            Climate.Parameter.point(0.0f),      // depth
+            Climate.Parameter.span(-1.0f, 1.0f),     // weirdness
             0.0f
         ), ModBiomes.ALPINE_FOREST);
     }

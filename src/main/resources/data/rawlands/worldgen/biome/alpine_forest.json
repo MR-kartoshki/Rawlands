@@ -16,7 +16,8 @@
     [],
     [
       "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
+      "minecraft:lake_lava_surface",
+      "rawlands:alpine_forest_ice_patch"
     ],
     [
       "minecraft:amethyst_geode",

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:lake",
+  "config": {
+    "barrier": {
+      "type": "minecraft:simple_state_provider",
+      "state": { "Name": "minecraft:packed_ice" }
+    },
+    "fluid": {
+      "type": "minecraft:simple_state_provider",
+      "state": { "Name": "minecraft:ice" }
+    }
+  }
+}

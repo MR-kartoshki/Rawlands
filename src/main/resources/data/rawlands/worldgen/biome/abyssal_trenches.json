@@ -1,0 +1,162 @@
+{
+  "temperature": 0.5,
+  "downfall": 1.0,
+  "has_precipitation": false,
+  "effects": {
+    "water_color": "#050a14",
+    "water_fog_color": "#000508",
+    "particle": {
+      "options": { "type": "rawlands:bioluminescent_algae" },
+      "probability": 0.05
+    }
+  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave",
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "minecraft:canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon",
+    "rawlands:abyssal_canyon"
+  ],
+  "features": [
+    [],
+    [
+      "minecraft:lake_lava_underground"
+    ],
+    [
+      "minecraft:iceberg_packed",
+      "minecraft:iceberg_blue",
+      "minecraft:amethyst_geode"
+    ],
+    [
+      "minecraft:monster_room_deep"
+    ],
+    [],
+    [],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_medium",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper",
+      "minecraft:underwater_magma",
+      "rawlands:abyssal_trenches_magma_seam"
+    ],
+    [],
+    [
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
+    ],
+    [
+      "minecraft:glow_lichen",
+      "rawlands:abyssal_trenches_seagrass",
+      "rawlands:abyssal_trenches_sea_pickle",
+      "rawlands:abyssal_trenches_dead_coral_block",
+      "rawlands:abyssal_trenches_living_coral",
+      "rawlands:abyssal_trenches_magma_vent",
+      "rawlands:abyssal_trenches_tuff_patch",
+      "rawlands:abyssal_trenches_deepslate_patch",
+      "rawlands:abyssal_trenches_dead_coral_tree"
+    ],
+    []
+  ],
+  "spawn_costs": {
+    "minecraft:elder_guardian": { "energy_budget": 0.12, "charge": 1.0 }
+  },
+  "spawners": {
+    "ambient": [],
+    "axolotls": [
+      { "type": "minecraft:axolotl", "maxCount": 4, "minCount": 2, "weight": 10 }
+    ],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      { "type": "minecraft:drowned",  "maxCount": 4, "minCount": 2, "weight": 100 },
+      { "type": "minecraft:zombie",   "maxCount": 4, "minCount": 4, "weight": 30  },
+      { "type": "minecraft:skeleton", "maxCount": 4, "minCount": 4, "weight": 20  },
+      { "type": "minecraft:creeper",  "maxCount": 4, "minCount": 4, "weight": 30  },
+      { "type": "minecraft:slime",    "maxCount": 4, "minCount": 4, "weight": 60  },
+      { "type": "minecraft:enderman", "maxCount": 2, "minCount": 1, "weight": 5   }
+    ],
+    "underground_water_creature": [
+      { "type": "minecraft:glow_squid", "maxCount": 6, "minCount": 4, "weight": 20 }
+    ],
+    "water_ambient": [
+      { "type": "minecraft:tropical_fish", "maxCount": 8, "minCount": 4, "weight": 15 }
+    ],
+    "water_creature": [
+      { "type": "minecraft:guardian",      "maxCount": 2, "minCount": 1, "weight": 5 },
+      { "type": "minecraft:nautilus",      "maxCount": 2, "minCount": 1, "weight": 8 },
+      { "type": "minecraft:elder_guardian", "maxCount": 1, "minCount": 1, "weight": 1 }
+    ]
+  }
+}

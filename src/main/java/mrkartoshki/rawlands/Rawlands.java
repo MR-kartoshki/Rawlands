@@ -2,7 +2,9 @@ package mrkartoshki.rawlands;
 
 import mrkartoshki.rawlands.block.ModBlocks;
 import mrkartoshki.rawlands.item.ModItems;
+import mrkartoshki.rawlands.particle.ModParticles;
 import mrkartoshki.rawlands.sound.ModMusic;
+import mrkartoshki.rawlands.world.feature.ModFeatures;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -18,6 +20,8 @@ public class Rawlands implements ModInitializer {
 		ModBlocks.initialize();
 		ModItems.initialize();
 		ModMusic.init();
+		ModParticles.register();
+		ModFeatures.register();
 		LOGGER.info("Rawlands initializing.");
 	}
 }

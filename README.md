@@ -16,6 +16,8 @@ This mod adds several new biomes to the game along with new blocks and flowers.
 - Gravel Flats
 - Alpine Forest
 - Rocky Fields
+- Coral Forest
+- Abyssal Trenches
 
 ### **Salt Flats:** 
 - Three new blocks:
@@ -46,13 +48,13 @@ This mod adds several new biomes to the game along with new blocks and flowers.
 <details>
 <summary><b>Requirements</b></summary>
 
-| Dependency | Version |
-|---|---|
-| Minecraft | 26.1.x |
-| Java | 25+ |
-| Fabric Loader | 0.19.2+ |
-| Fabric API | 0.146.1+ |
-| TerraBlender | any |
+| Dependency    | Version  |
+|---------------|----------|
+| Minecraft     | 26.1.x   |
+| Java          | 25+      |
+| Fabric Loader | 0.19.2+  |
+| Fabric API    | 0.149.0+ |
+| TerraBlender  | any      |
 
 </details>
 
