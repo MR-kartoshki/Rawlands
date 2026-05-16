@@ -1,11 +1,20 @@
 {
   "music.dead_forest": {
-    "replace": true,
     "category": "music",
     "sounds": [
       {"name": "rawlands:mus_dead_forest_1", "stream": true,"weight": 1},
       {"name": "rawlands:mus_dead_forest_2", "stream": true,"weight": 3},
       {"name": "rawlands:mus_dead_forest_3", "stream": true,"weight": 2}
+    ]
+  },
+  "ambient.abyssal": {
+    "catagory": "ambient",
+    "sounds":[
+      {"name": "rawlands:amb_abyssal_1","stream": true,"weight": 1},
+      {"name": "rawlands:amb_abyssal_2","stream": true,"weight": 1},
+      {"name": "rawlands:amb_abyssal_3","stream": true,"weight": 1},
+      {"name": "rawlands:amb_abyssal_4","stream": true,"weight": 1},
+      {"name": "rawlands:amb_abyssal_5","stream": true,"weight": 1}
     ]
   }
 }

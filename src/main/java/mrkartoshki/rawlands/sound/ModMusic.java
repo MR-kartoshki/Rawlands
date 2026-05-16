@@ -8,7 +8,8 @@ import net.minecraft.sounds.SoundEvent;
 public class ModMusic {
     private static final String namespace = "rawlands";
 
-    public static final SoundEvent DEAD_FOREST = registerSound(namespace, "music.dead_forest");
+    public static final SoundEvent MUSIC_DEAD_FOREST = registerSound(namespace, "music.dead_forest");
+    public static final SoundEvent AMBIENT_ABYSSAL_TRENCHES = registerSound(namespace, "ambient.abyssal");
 
     public static void init () {
         //ok ig nothing has to go here to make it work... thats interesting

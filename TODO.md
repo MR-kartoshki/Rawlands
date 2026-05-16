@@ -1,1 +1,3 @@
-TODO: Add music to the Abyssal Trenches biome.
+TODO: 
+- [ ] Add abyssal biome music
+- [x] Add abyssal biome ambience
