@@ -21,11 +21,6 @@ replay_*.log
 # Runtime
 run/
 
-# OS
-*.DS_Store
-Thumbs.db
-
-
 # Extracted/Generated files
 version.json
 pack.png
