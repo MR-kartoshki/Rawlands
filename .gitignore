@@ -27,10 +27,9 @@ run/
 *.DS_Store
 Thumbs.db
 
-# IDE/Editor temp
-.claude/
 
 # Extracted/Generated files
 version.json
 pack.png
 flightrecorder-config.jfc
+build-no-modrinth.gradle
