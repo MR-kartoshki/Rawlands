@@ -5,7 +5,7 @@
   "minecraft:audio/ambient_sounds": {
     "additions": {
       "sound": "rawlands:ambient.abyssal",
-      "tick_chance": 0.1
+      "tick_chance": 0.01
     }
   },
   "effects": {
@@ -13,7 +13,13 @@
     "water_fog_color": "#000508",
     "particle": {
       "options": { "type": "rawlands:bioluminescent_algae" },
-      "probability": 0.05
+      "probability": 0.03
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
     }
   },
   "carvers": [
@@ -42,21 +48,6 @@
     "minecraft:canyon",
     "minecraft:canyon",
     "minecraft:canyon",
-    "minecraft:canyon",
-    "minecraft:canyon",
-    "minecraft:canyon",
-    "minecraft:canyon",
-    "minecraft:canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
-    "rawlands:abyssal_canyon",
     "rawlands:abyssal_canyon",
     "rawlands:abyssal_canyon",
     "rawlands:abyssal_canyon",
@@ -77,11 +68,6 @@
     [],
     [
       "minecraft:lake_lava_underground"
-    ],
-    [
-      "minecraft:iceberg_packed",
-      "minecraft:iceberg_blue",
-      "minecraft:amethyst_geode"
     ],
     [
       "minecraft:monster_room_deep"
@@ -115,6 +101,8 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
+      "minecraft:disk_sand",
+      "minecraft:disk_clay",
       "rawlands:abyssal_trenches_magma_seam"
     ],
     [],
