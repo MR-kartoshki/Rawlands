@@ -1,5 +1,5 @@
 {
-  "temperature": 0.05,
+  "temperature": 0.1,
   "downfall": 0.4,
   "has_precipitation": true,
   "effects": {
@@ -16,7 +16,6 @@
     [],
     [
       "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface",
       "rawlands:alpine_forest_ice_patch"
     ],
     [
@@ -94,15 +93,14 @@
     ],
     "misc": [],
     "monster": [
-      { "type": "minecraft:spider",          "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:zombie",          "maxCount": 4, "minCount": 4, "weight": 95  },
-      { "type": "minecraft:zombie_villager", "maxCount": 1, "minCount": 1, "weight": 5   },
-      { "type": "minecraft:skeleton",        "maxCount": 4, "minCount": 4, "weight": 120 },
-      { "type": "minecraft:creeper",         "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:slime",           "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:enderman",        "maxCount": 4, "minCount": 1, "weight": 10  },
-      { "type": "minecraft:witch",           "maxCount": 1, "minCount": 1, "weight": 5   },
-      { "type": "minecraft:bogged",          "maxCount": 4, "minCount": 4, "weight": 40  }
+      { "type": "minecraft:spider",          "maxCount": 4, "minCount": 4, "weight": 60 },
+      { "type": "minecraft:zombie",          "maxCount": 4, "minCount": 4, "weight": 57 },
+      { "type": "minecraft:zombie_villager", "maxCount": 1, "minCount": 1, "weight": 3  },
+      { "type": "minecraft:skeleton",        "maxCount": 4, "minCount": 4, "weight": 72 },
+      { "type": "minecraft:creeper",         "maxCount": 4, "minCount": 4, "weight": 60 },
+      { "type": "minecraft:enderman",        "maxCount": 4, "minCount": 1, "weight": 6  },
+      { "type": "minecraft:witch",           "maxCount": 1, "minCount": 1, "weight": 3  },
+      { "type": "minecraft:bogged",          "maxCount": 4, "minCount": 4, "weight": 24 }
     ],
     "underground_water_creature": [
       { "type": "minecraft:glow_squid", "maxCount": 6, "minCount": 4, "weight": 10 }
