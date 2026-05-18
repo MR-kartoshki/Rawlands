@@ -40,7 +40,7 @@ This mod adds several new biomes to the game along with new blocks and flowers.
 <summary><b>Building from Source</b></summary>
 
 ```bash
-./gradlew build
+./gradlew.bat build
 ```
 The output JAR will be in `build/libs/`.
 
