@@ -9,7 +9,8 @@
   ],
   "downfall": 0.4,
   "effects": {
-    "water_color": "#3f76e4"
+    "water_color": "#4e7fd6",
+    "water_fog_color": "#1a3a7a"
   },
   "features": [
     [],

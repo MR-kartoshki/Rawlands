@@ -3,8 +3,8 @@
   "downfall": 0.8,
   "has_precipitation": true,
   "effects": {
-    "water_color": "#3dcfa0",
-    "water_fog_color": "#0c6a4f"
+    "water_color": "#28c890",
+    "water_fog_color": "#0a5838"
   },
   "carvers": [
     "minecraft:cave",

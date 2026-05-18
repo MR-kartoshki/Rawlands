@@ -5,7 +5,8 @@
   "effects": {
     "foliage_color": "#5d8a54",
     "grass_color": "#5a7a4f",
-    "water_color": "#5a9abc"
+    "water_color": "#4a8ab8",
+    "water_fog_color": "#183858"
   },
   "carvers": [
     "minecraft:cave",

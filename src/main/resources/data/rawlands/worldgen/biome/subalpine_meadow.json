@@ -6,7 +6,8 @@
     "dry_foliage_color": "#7d9d70",
     "foliage_color": "#86aa76",
     "grass_color": "#93b883",
-    "water_color": "#6ea8ff"
+    "water_color": "#58b4d8",
+    "water_fog_color": "#1a5878"
   },
   "carvers": [
     "minecraft:cave",
