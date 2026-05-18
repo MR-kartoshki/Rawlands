@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "rawlands:block/dry_scrub"
+    "layer0": "rawlands:item/dry_scrub"
   }
 }

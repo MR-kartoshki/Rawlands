@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:vegetation_patch",
+  "config": {
+    "depth": 2,
+    "extra_bottom_block_chance": 0.0,
+    "extra_edge_column_chance": 0.5,
+    "ground_state": {
+      "type": "minecraft:simple_state_provider",
+      "state": { "Name": "minecraft:moss_block" }
+    },
+    "replaceable": "#minecraft:moss_replaceable",
+    "surface": "floor",
+    "vegetation_chance": 0.7,
+    "vegetation_feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              { "data": { "Name": "minecraft:flowering_azalea" }, "weight": 4 },
+              { "data": { "Name": "minecraft:azalea" }, "weight": 7 },
+              { "data": { "Name": "minecraft:moss_carpet" }, "weight": 25 },
+              { "data": { "Name": "minecraft:short_grass" }, "weight": 40 },
+              { "data": { "Name": "minecraft:tall_grass", "Properties": { "half": "lower" } }, "weight": 8 }
+            ]
+          }
+        }
+      },
+      "placement": []
+    },
+    "vertical_range": 5,
+    "xz_radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 3
+    }
+  }
+}

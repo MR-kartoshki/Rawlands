@@ -18,32 +18,10 @@ This mod adds several new biomes to the game along with new blocks and flowers.
 - Rocky Fields
 - Coral Forest
 - Abyssal Trenches
-
-### **Salt Flats:** 
-- Three new blocks:
-  - Salt Block
-  - Coarse Salt
-  - Fine Salt
-
-### **Flooded Delta:** 
-- Three new blocks:
-  - Short Cattail
-  - Tall Cattail
-  - Delta Lily
-
-### **Meditteranean Scrubland:**
-- New tree:
-  - Olive Tree
-  - Olive Saplings
-  - Olive (Food item)
-
-### **Several Biomes:**
-- New block:
-  - Dry Scrub
-
-### **Gameplay touches:**
-- Coarse Salt falls faster
-
+- Mosswood Forest
+- Mist Coast
+- Rocky Shrubland
+- Azalea Forest
 
 <details>
 <summary><b>Requirements</b></summary>
@@ -78,11 +56,7 @@ The output JAR will be in `build/libs/`.
 <details>
 <summary><b>Credits</b></summary>
 
-**Owner:** MR-Kartoshki (lead developer)
-
-**Contributors:**
-- thecreeper3326 (main texture artist and assistant dev)
-- jacobxny (main music composer)
-- Carrothroge Republic (made delta lily texture)
+- MR-Kartoshki (Lead Developer, Biome Designer)
+- thecreeper3326 (Artist, Music Composer)
 
 </details>

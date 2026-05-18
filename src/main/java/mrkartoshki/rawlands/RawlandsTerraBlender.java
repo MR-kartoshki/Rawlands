@@ -104,6 +104,18 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                         SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState()))
                                 )
+                        ),
+                        // MIST_COAST — gravel shore over stone
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(ModBiomes.MIST_COAST),
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.GRAVEL.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState()))
+                                )
                         )
                 )
         );

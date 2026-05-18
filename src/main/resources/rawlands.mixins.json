@@ -5,8 +5,10 @@
 	"mixins": [
 		"BoatEntityMixin",
 		"FastFallingBlockEntityMixin",
-		"OreFeatureAxisMixin",
-		"RootedAzaleaTreeMixin"
+		"OreFeatureAxisMixin"
+	],
+	"client": [
+		"client.MistCoastFogMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
