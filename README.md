@@ -1,5 +1,5 @@
 
-[![Rawlands](https://cdn.modrinth.com/data/cached_images/ab3611991298d006386e9155d89cd99d30bad326.png)](https://modrinth.com/mod/rawlands)
+[![Rawlands]()](https://modrinth.com/mod/rawlands)
 
 ## Features
 
