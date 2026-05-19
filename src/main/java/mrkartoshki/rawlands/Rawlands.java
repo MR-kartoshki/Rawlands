@@ -2,8 +2,8 @@ package mrkartoshki.rawlands;
 
 import mrkartoshki.rawlands.block.ModBlocks;
 import mrkartoshki.rawlands.item.ModItems;
+import mrkartoshki.rawlands.sound.ModSounds;
 import mrkartoshki.rawlands.particle.ModParticles;
-import mrkartoshki.rawlands.sound.ModMusic;
 import mrkartoshki.rawlands.world.feature.ModFeatures;
 import net.fabricmc.api.ModInitializer;
 
@@ -19,7 +19,7 @@ public class Rawlands implements ModInitializer {
 	public void onInitialize() {
 		ModBlocks.initialize();
 		ModItems.initialize();
-		ModMusic.init();
+		ModSounds.init();
 		ModParticles.register();
 		ModFeatures.register();
 		LOGGER.info("Rawlands initializing.");
