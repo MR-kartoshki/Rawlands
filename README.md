@@ -22,6 +22,10 @@ This mod adds several new biomes to the game along with new blocks and flowers.
 - Mist Coast
 - Rocky Shrubland
 - Azalea Forest
+- Prairie
+- Monsoon Forest
+- Amber Steppe
+- Glacial Flats
 
 <details>
 <summary><b>Requirements</b></summary>

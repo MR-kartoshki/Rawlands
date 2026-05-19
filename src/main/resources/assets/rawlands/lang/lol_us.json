@@ -8,6 +8,17 @@
   "biome.rawlands.subalpine_meadow": "Coold Medow",
   "biome.rawlands.temperate_rainforest": "Raini Florest",
   "biome.rawlands.alpine_forest": "Snowy Florest",
+  "biome.rawlands.dead_forest": "Ded Spooky Florest",
+  "biome.rawlands.gravel_flats": "Gravelz n Rockz Flatz",
+  "biome.rawlands.rocky_fields": "Rok Fieldz (so many!)",
+  "biome.rawlands.mosswood_forest": "Mossy Wooded Florest",
+  "biome.rawlands.rocky_shrubland": "Rok Shrubz n Stuff",
+  "biome.rawlands.mist_coast": "Foggy Coast (spooky!)",
+  "biome.rawlands.azalea_forest": "Pretteh Flowa Florest",
+  "biome.rawlands.glacial_flats": "Brrr Cold Ice Flatz",
+  "biome.rawlands.amber_steppe": "Yellowy Grasstepz",
+  "biome.rawlands.monsoon_forest": "Very Rainy Florest",
+  "biome.rawlands.prairie": "Big Open Grasstep",
   "block.rawlands.broadleaf_lupine": "Big Leef Flowa",
   "block.rawlands.coarse_salt": "Chunky Saltz",
   "block.rawlands.delta_lily": "Puddle Lily",
@@ -30,7 +41,7 @@
   "item.rawlands.short_cattail": "Smol Kitteh Tail",
   "item.rawlands.tall_cattail": "Tall Kitteh Tail",
   "block.rawlands.olive_sapling": "Teeny Olivy Tree",
-  "rawlands.mus_dead_forest_1": "TheCreeper3326 - Skawy thingy",
-  "rawlands.mus_dead_forest_2": "TheCreeper3326 - Incompetent",
-  "rawlands.mus_dead_forest_3": "TheCreeper3326 - Why so short??"
+  "rawlands.mus_dead_forest_1": "TheCreeper3326 - Object",
+  "rawlands.mus_dead_forest_2": "TheCreeper3326 - Incomplete",
+  "rawlands.mus_dead_forest_3": "TheCreeper3326 - Foreshadowing"
 }

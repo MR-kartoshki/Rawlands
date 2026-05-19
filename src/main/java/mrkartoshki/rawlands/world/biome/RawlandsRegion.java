@@ -32,29 +32,29 @@ public class RawlandsRegion extends Region {
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.STONY_SHORE,   ModBiomes.MIST_COAST);
         });
 
-        // ── Continentalness bands (non-overlapping) ───────────────────────────────
+        // Continentalness
         final Climate.Parameter oceanBand     = Climate.Parameter.span(-1.0f, -0.55f); // ocean
         final Climate.Parameter coastalBand   = Climate.Parameter.span(-0.55f, -0.15f);// coastal
         final Climate.Parameter lowlandBand   = Climate.Parameter.span(-0.15f,  0.25f);// lowland
         final Climate.Parameter temperateBand = Climate.Parameter.span( 0.25f,  0.65f);// temperate
         final Climate.Parameter highBand      = Climate.Parameter.span( 0.65f,  1.0f); // high
 
-        // ── Temperature bands (non-overlapping) ───────────────────────────────────
-        final Climate.Parameter coldTemp     = Climate.Parameter.span(-1.0f, -0.3f);  // arctic/alpine
-        final Climate.Parameter coolTemp     = Climate.Parameter.span(-0.3f,  0.0f);  // cool temperate
+        // Temperature
+        final Climate.Parameter coldTemp     = Climate.Parameter.span(-1.0f, -0.5f);  // arctic/alpine
+        final Climate.Parameter coolTemp     = Climate.Parameter.span(-0.5f,  0.0f);  // cool temperate
         final Climate.Parameter mildTemp     = Climate.Parameter.span( 0.0f,  0.25f); // mild
         final Climate.Parameter warmTemp     = Climate.Parameter.span( 0.25f,  0.55f);// warm
         final Climate.Parameter hotTemp      = Climate.Parameter.span( 0.55f,  0.8f); // hot
         final Climate.Parameter scaldingTemp = Climate.Parameter.span( 0.8f,  1.0f);  // scorching
 
-        // ── Humidity bands (non-overlapping) ──────────────────────────────────────
+        // Humidity
         final Climate.Parameter aridHumid    = Climate.Parameter.span(-1.0f, -0.35f); // bone dry
         final Climate.Parameter dryHumid     = Climate.Parameter.span(-0.35f, -0.05f);// dry
         final Climate.Parameter moderateHumid= Climate.Parameter.span(-0.05f,  0.3f); // moderate
         final Climate.Parameter wetHumid     = Climate.Parameter.span( 0.3f,   0.6f); // wet
         final Climate.Parameter soakingHumid = Climate.Parameter.span( 0.6f,   1.0f); // soaking
 
-        // ── Erosion bands (non-overlapping) ───────────────────────────────────────
+        // Erosion
         final Climate.Parameter peakErosion  = Climate.Parameter.span(-1.0f, -0.5f);  // mountain peaks
         final Climate.Parameter hillErosion  = Climate.Parameter.span(-0.5f, -0.15f); // hilly
         final Climate.Parameter slopeErosion = Climate.Parameter.span(-0.15f,  0.2f); // gentle slopes
@@ -62,13 +62,14 @@ public class RawlandsRegion extends Region {
         final Climate.Parameter plainsErosion= Climate.Parameter.span( 0.5f,   0.75f);// flat plains
         final Climate.Parameter flatErosion  = Climate.Parameter.span( 0.75f,  1.0f); // very flat
 
-        // ── Weirdness bands ───────────────────────────────────────────────────────
+        // Weirdness
         final Climate.Parameter fullWeird   = Climate.Parameter.span(-1.0f, 1.0f);    // full range
         final Climate.Parameter normalWeird = Climate.Parameter.span(-0.3f, 0.3f);    // makes biome rarer
 
-        // ── Depth constants ───────────────────────────────────────────────────────
+        // Depth
         final Climate.Parameter surface    = Climate.Parameter.point(0.0f);      // surface
         final Climate.Parameter underground= Climate.Parameter.span(0.2f, 0.9f);      // underground
+
 
         // ABYSSAL_TRENCHES
         addBiome(mapper, Climate.parameters(
@@ -149,5 +150,25 @@ public class RawlandsRegion extends Region {
         addBiome(mapper, Climate.parameters(
             hotTemp, wetHumid, temperateBand, hillErosion, underground, fullWeird, 0.0f
         ), net.minecraft.world.level.biome.Biomes.LUSH_CAVES);
+
+        // GLACIAL_FLATS
+        addBiome(mapper, Climate.parameters(
+            coldTemp, dryHumid, lowlandBand, flatErosion, surface, fullWeird, 0.0f
+        ), ModBiomes.GLACIAL_FLATS);
+
+        // AMBER_STEPPE
+        addBiome(mapper, Climate.parameters(
+            hotTemp, aridHumid, temperateBand, rollErosion, surface, fullWeird, 0.0f
+        ), ModBiomes.AMBER_STEPPE);
+
+        // MONSOON_FOREST
+        addBiome(mapper, Climate.parameters(
+            hotTemp, soakingHumid, coastalBand, hillErosion, surface, fullWeird, 0.0f
+        ), ModBiomes.MONSOON_FOREST);
+
+        // PRAIRIE
+        addBiome(mapper, Climate.parameters(
+            mildTemp, dryHumid, lowlandBand, plainsErosion, surface, fullWeird, 0.0f
+        ), ModBiomes.PRAIRIE);
     }
 }

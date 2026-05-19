@@ -116,6 +116,31 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                         SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )
+                        ),
+                        // GLACIAL_FLATS — snow surface with packed ice beneath, stone deep under
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(ModBiomes.GLACIAL_FLATS),
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.SNOW_BLOCK.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.PACKED_ICE.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState()))
+                                )
+                        ),
+                        // MONSOON_FOREST — mud only where flooded (at/below water level); above water gets vanilla grass
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.isBiome(ModBiomes.MONSOON_FOREST),
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0),
+                                                        SurfaceRules.state(Blocks.MUD.defaultBlockState()))),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.MUD.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
+                                )
                         )
                 )
         );

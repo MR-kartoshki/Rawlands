@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MistCoastFogMixin {
 
     private static float smoothFraction = 0.0f;
+    private static float smoothHeightFade = 1.0f;
     private static float cachedTarget = 0.0f;
     private static int tickCounter = 0;
 
@@ -58,9 +59,10 @@ public class MistCoastFogMixin {
         smoothFraction = Mth.lerp(0.05f, smoothFraction, cachedTarget);
         if (smoothFraction < 0.001f) return;
 
-        float heightFade = Mth.clamp((110.0f - (float) entity.getY()) / 40.0f, 0.0f, 1.0f);
+        float targetHeightFade = Mth.clamp((110.0f - (float) entity.getY()) / 40.0f, 0.0f, 1.0f);
+        smoothHeightFade = Mth.lerp(0.05f, smoothHeightFade, targetHeightFade);
 
-        float strength = smoothFraction * heightFade;
+        float strength = smoothFraction * smoothHeightFade;
         if (level.isThundering()) strength = Math.min(strength * 1.5f, 1.0f);
         else if (level.isRaining()) strength = Math.min(strength * 1.25f, 1.0f);
 

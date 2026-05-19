@@ -24,6 +24,10 @@ public final class ModBiomes {
     public static final ResourceKey<Biome> ROCKY_SHRUBLAND         = key("rocky_shrubland");
     public static final ResourceKey<Biome> MIST_COAST              = key("mist_coast");
     public static final ResourceKey<Biome> AZALEA_FOREST           = key("azalea_forest");
+    public static final ResourceKey<Biome> GLACIAL_FLATS           = key("glacial_flats");
+    public static final ResourceKey<Biome> AMBER_STEPPE            = key("amber_steppe");
+    public static final ResourceKey<Biome> MONSOON_FOREST          = key("monsoon_forest");
+    public static final ResourceKey<Biome> PRAIRIE                 = key("prairie");
 
     private ModBiomes() {}
 
