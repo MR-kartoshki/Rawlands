@@ -5,7 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 
-public class ModMusic {
+public class ModSounds {
     private static final String namespace = "rawlands";
 
     public static final SoundEvent MUSIC_DEAD_FOREST = registerSound(namespace, "music.dead_forest");
