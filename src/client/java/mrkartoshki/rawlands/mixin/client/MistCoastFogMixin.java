@@ -22,6 +22,7 @@ public class MistCoastFogMixin {
     private static float smoothHeightFade = 1.0f;
     private static float cachedTarget = 0.0f;
     private static int tickCounter = 0;
+    private static ClientLevel lastLevel = null;
 
     private static final float FOG_START = 3.0f;
     private static final float FOG_END   = 14.0f;
@@ -39,6 +40,14 @@ public class MistCoastFogMixin {
 
         Entity entity = camera.entity();
         if (entity == null) return;
+
+        if (level != lastLevel) {
+            lastLevel = level;
+            smoothFraction = 0.0f;
+            smoothHeightFade = 1.0f;
+            cachedTarget = 0.0f;
+            tickCounter = 0;
+        }
 
         if (++tickCounter >= 5) {
             tickCounter = 0;

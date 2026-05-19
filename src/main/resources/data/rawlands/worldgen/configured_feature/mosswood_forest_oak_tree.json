@@ -22,7 +22,7 @@
     "decorators": [
       {
         "type": "minecraft:leave_vine",
-        "probability": 0.1
+        "probability": 0.05
       }
     ],
     "foliage_placer": {

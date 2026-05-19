@@ -17,7 +17,8 @@
       "minecraft:lake_lava_underground"
     ],
     [
-      "minecraft:amethyst_geode"
+      "minecraft:amethyst_geode",
+      "rawlands:mosswood_forest_puddle"
     ],
     [
       "minecraft:monster_room",
@@ -68,7 +69,6 @@
       "rawlands:temperate_rainforest_podzol_patch",
       "rawlands:mosswood_forest_moss_patch",
       "rawlands:mosswood_forest_moss_ground",
-      "rawlands:mosswood_forest_puddle",
       "rawlands:mosswood_forest_firefly_bush",
       "rawlands:mosswood_forest_sugar_cane",
       "rawlands:mosswood_forest_waterlily",

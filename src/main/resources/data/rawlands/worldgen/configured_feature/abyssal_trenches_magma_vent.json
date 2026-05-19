@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:block_blob",
+  "type": "rawlands:larger_block_blob",
   "config": {
     "state": { "Name": "minecraft:magma_block" },
     "can_place_on": {
