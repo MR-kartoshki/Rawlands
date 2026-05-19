@@ -23,6 +23,7 @@
 
   "ambient.abyssal_trenches": {
     "replace": true,
+    "subtitle": "subtitles.ambient.cave",
     "category": "ambient",
     "sounds": [
       {
