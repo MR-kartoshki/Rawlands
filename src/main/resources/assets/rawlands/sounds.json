@@ -21,7 +21,7 @@
     ]
   },
 
-  "ambient.abyssal": {
+  "ambient.abyssal_trenches": {
     "replace": true,
     "category": "ambient",
     "sounds": [
