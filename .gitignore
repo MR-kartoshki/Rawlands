@@ -26,3 +26,4 @@ version.json
 pack.png
 flightrecorder-config.jfc
 /NO_MODRINTH
+/build-no-modrinth.gradle
