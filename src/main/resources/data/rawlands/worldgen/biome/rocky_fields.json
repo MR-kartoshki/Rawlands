@@ -10,7 +10,19 @@
   "downfall": 0.4,
   "effects": {
     "water_color": "#4e7fd6",
-    "water_fog_color": "#1a3a7a"
+    "water_fog_color": "#1a3a7a",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "music": {
+      "sound": "minecraft:music.overworld.stony_peaks",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
   },
   "features": [
     [],

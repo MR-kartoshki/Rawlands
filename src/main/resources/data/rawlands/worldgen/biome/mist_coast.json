@@ -10,7 +10,19 @@
     "foliage_color": "#5a7a5a",
     "grass_color": "#547060",
     "water_color": "#284858",
-    "water_fog_color": "#141e28"
+    "water_fog_color": "#141e28",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "music": {
+      "sound": "minecraft:music.game",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
   },
   "carvers": [
     "minecraft:cave",
@@ -73,7 +85,6 @@
       "rawlands:mist_coast_stone_outcrop",
       "rawlands:mist_coast_seagrass",
       "rawlands:mist_coast_waterlily",
-      "rawlands:mist_coast_sugar_cane",
       "minecraft:patch_grass_plain",
       "rawlands:mist_coast_tall_grass",
       "rawlands:mist_coast_large_fern",

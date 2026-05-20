@@ -7,7 +7,19 @@
     "foliage_color": "#ddddd6",
     "grass_color": "#e8e8e1",
     "water_color": "#b0d0e8",
-    "water_fog_color": "#507090"
+    "water_fog_color": "#507090",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "music": {
+      "sound": "minecraft:music.overworld.desert",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
   },
   "carvers": [],
   "features": [

@@ -7,7 +7,19 @@
   },
   "effects": {
     "water_color": "#3a6a9a",
-    "water_fog_color": "#0a2a4a"
+    "water_fog_color": "#0a2a4a",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "music": {
+      "sound": "minecraft:music.overworld.frozen_peaks",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
   },
   "carvers": [
     "minecraft:cave",

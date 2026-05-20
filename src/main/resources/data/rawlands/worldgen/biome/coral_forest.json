@@ -6,7 +6,24 @@
     "foliage_color": "#6ab34a",
     "grass_color": "#5ea03c",
     "water_color": "#01b9d1",
-    "water_fog_color": "#005f79"
+    "water_fog_color": "#005f79",
+    "ambient_sound": "minecraft:ambient.underwater.loop",
+    "additions_sound": {
+      "sound": "minecraft:ambient.underwater.loop.additions",
+      "tick_chance": 0.0111
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "music": {
+      "sound": "minecraft:music.under_water",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
   },
   "carvers": [
     "minecraft:cave",

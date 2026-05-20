@@ -16,7 +16,13 @@
     "foliage_color": "#5a5a3a",
     "grass_color": "#636344",
     "water_color": "#4a4535",
-    "water_fog_color": "#1e1c15"
+    "water_fog_color": "#1e1c15",
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
   },
   "carvers": [
     "minecraft:cave",
