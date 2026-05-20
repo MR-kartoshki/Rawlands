@@ -25,5 +25,12 @@ run/
 version.json
 pack.png
 flightrecorder-config.jfc
+
+# Misc Files that developers made for themselves
 /NO_MODRINTH
 /build-no-modrinth.gradle
+
+# Made by me because my dumbahh brain can't remember how to add new stuff for shit lmfao
+# its basically just a documentation/collection of tutorial I wrote for myself
+# if anyone wants them just message me (MR-Kartoshki)
+/dev-docs
