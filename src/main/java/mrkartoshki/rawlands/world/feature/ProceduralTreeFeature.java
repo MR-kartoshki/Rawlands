@@ -107,9 +107,7 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
             || state.is(Blocks.COARSE_DIRT)
             || state.is(Blocks.MYCELIUM)
             || state.is(Blocks.MOSS_BLOCK)
-            || state.is(Blocks.ROOTED_DIRT)
-            || state.is(Blocks.MUD)
-            || state.is(Blocks.FARMLAND);
+            || state.is(Blocks.MUD);
     }
 
     private void placeFoliage(WorldGenLevel level, RandomSource random, BlockPos center) {
