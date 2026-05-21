@@ -70,6 +70,9 @@ public class ModFeatures {
             4, 2, 0.3, 3, 3, 0.1, 0.0
         );
 
+    public static final Feature<NoneFeatureConfiguration> TALL_AZALEA_TREE =
+        new TallAzaleaTreeFeature(NoneFeatureConfiguration.CODEC);
+
     public static void register() {
         Registry.register(
             BuiltInRegistries.FEATURE,
@@ -130,6 +133,11 @@ public class ModFeatures {
             BuiltInRegistries.FEATURE,
             Identifier.fromNamespaceAndPath(Rawlands.MOD_ID, "azalea_tree"),
             AZALEA_TREE
+        );
+        Registry.register(
+            BuiltInRegistries.FEATURE,
+            Identifier.fromNamespaceAndPath(Rawlands.MOD_ID, "tall_azalea_tree"),
+            TALL_AZALEA_TREE
         );
     }
 }

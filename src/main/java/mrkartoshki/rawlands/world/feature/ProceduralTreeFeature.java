@@ -15,6 +15,9 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.tags.BlockTags;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
 
     private final BlockState logState;
@@ -111,6 +114,14 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private void placeFoliage(WorldGenLevel level, RandomSource random, BlockPos center) {
+        // Vine sites are collected during the leaf pass and placed afterward.
+        // Placing vines inline causes floating segments: canReplace() returns true
+        // for vines, so a vine placed at leafPos.relative(dir) gets overwritten when
+        // the loop later reaches that same position and places a leaf there, leaving
+        // any segments below the first one unsupported.
+        record VineSite(BlockPos leaf, Direction dir) {}
+        List<VineSite> vineSites = vineChance > 0.0 ? new ArrayList<>() : null;
+
         for (int dy = -(foliageHeight - 1); dy <= 1; dy++) {
             int layerRadius = foliageRadius;
             if (dy >= 1 || dy <= -(foliageHeight - 1)) {
@@ -130,11 +141,20 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
                         ? secondLeafState : leafState;
                     level.setBlock(leafPos, chosen, 3);
 
-                    if (vineChance > 0.0 && random.nextDouble() < vineChance) {
+                    if (vineSites != null && random.nextDouble() < vineChance) {
                         Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-                        placeHangingVine(level, random, leafPos.relative(dir), dir.getOpposite());
+                        vineSites.add(new VineSite(leafPos, dir));
                     }
                 }
+            }
+        }
+
+        if (vineSites != null) {
+            for (VineSite site : vineSites) {
+                // Re-check the leaf still exists — another tree's foliage could have
+                // overwritten it with a non-leaf block between collection and placement.
+                if (!level.getBlockState(site.leaf()).is(BlockTags.LEAVES)) continue;
+                placeHangingVine(level, random, site.leaf().relative(site.dir()), site.dir().getOpposite());
             }
         }
     }

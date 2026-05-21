@@ -1,11 +1,13 @@
 
 [![Rawlands](https://raw.githubusercontent.com/MR-kartoshki/Rawlands/refs/heads/main/banner.png)](https://modrinth.com/mod/rawlands)
 
+---
+
 ## Features
+This mod adds several new biomes to the game along with new blocks and features.
+<details>
+<summary><b>Biomes</b></summary>
 
-This mod adds several new biomes to the game along with new blocks and flowers.
-
-### **New biomes:** 
 - Salt Flat
 - Shrubland
 - Subalpine Meadow
@@ -27,6 +29,39 @@ This mod adds several new biomes to the game along with new blocks and flowers.
 - Amber Steppe
 - Glacial Flats
 
+</details>
+
+<details>
+<summary><b>Blocks</b></summary>
+
+| Block | Generates in |
+|-------|--------------|
+| Salt Block | Salt Flat |
+| Coarse Salt | Salt Flat |
+| Fine Salt | Salt Flat |
+| Dry Scrub | Dead Forest, Shrubland, Mediterranean Scrubland, Gravel Flats, Amber Steppe |
+| Olive Leaves | Mediterranean Scrubland |
+| Olive Sapling | Mediterranean Scrubland |
+| Broadleaf Lupine | Subalpine Meadow |
+| Nightshade | Alpine Forest, Temperate Rainforest |
+| Short Cattail | Flooded Delta |
+| Tall Cattail | Flooded Delta |
+| Delta Lily | Flooded Delta, Mosswood Forest |
+
+</details>
+
+<details>
+<summary><b>Misc</b></summary>
+
+- **Coarse salt** falls faster than sand or gravel
+- **Dead Forest** has custom background music
+- **Abyssal Trenches** has custom ambient sounds
+- **Azalea Trees** have a 10% chance to get replaced by the mod's new **Large Azalea Tree**
+
+</details>
+
+---
+## Other Stuff
 <details>
 <summary><b>Requirements</b></summary>
 

@@ -129,6 +129,188 @@ public class TreeBranchHelper {
         return Math.max(min, Math.min(max, val));
     }
 
+    // -----------------------------------------------------------------------
+    // Shared structural helpers used by dead-tree and tall-azalea features
+    // -----------------------------------------------------------------------
+
+    /** Cardinal base flare for a 1×1 trunk. */
+    public static void generateBaseFlare(WorldGenLevel level, RandomSource random, BlockState logState, BlockPos origin) {
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            if (random.nextFloat() < 0.6f) {
+                BlockPos flarePos = origin.relative(dir);
+                if (level.getBlockState(flarePos).is(BlockTags.DIRT) || canReplace(level, flarePos)) {
+                    placeLog(level, flarePos, logState, Direction.Axis.Y);
+                }
+            }
+        }
+        if (random.nextFloat() < 0.3f) {
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                if (random.nextFloat() < 0.4f) {
+                    BlockPos flarePos = origin.above().relative(dir);
+                    if (canReplace(level, flarePos)) {
+                        placeLog(level, flarePos, logState, Direction.Axis.Y);
+                    }
+                }
+            }
+        }
+    }
+
+    /** 12-position base flare for a 2×2 trunk. */
+    public static void generateThickBaseFlare(WorldGenLevel level, RandomSource random, BlockState logState, BlockPos origin) {
+        int[][] flareOffsets = {
+            {-1, 0}, {-1, 1}, {2, 0}, {2, 1},
+            {0, -1}, {1, -1}, {0, 2}, {1, 2},
+            {-1, -1}, {-1, 2}, {2, -1}, {2, 2}
+        };
+        for (int[] off : flareOffsets) {
+            if (random.nextFloat() < 0.55f) {
+                BlockPos flarePos = origin.offset(off[0], 0, off[1]);
+                if (level.getBlockState(flarePos).is(BlockTags.DIRT) || canReplace(level, flarePos)) {
+                    placeLog(level, flarePos, logState, Direction.Axis.Y);
+                }
+            }
+        }
+        if (random.nextFloat() < 0.4f) {
+            for (int[] off : flareOffsets) {
+                if (random.nextFloat() < 0.3f) {
+                    BlockPos flarePos = origin.offset(off[0], 1, off[1]);
+                    if (canReplace(level, flarePos)) {
+                        placeLog(level, flarePos, logState, Direction.Axis.Y);
+                    }
+                }
+            }
+        }
+    }
+
+    /** Diverging single-trunk fork arm. Used by 1×1 dead-tree features. */
+    public static void generateFork(
+        WorldGenLevel level, RandomSource random, BlockState logState,
+        BlockPos base, double dx, double dz, int height
+    ) {
+        double px = base.getX() + 0.5;
+        double py = base.getY() + 0.5;
+        double pz = base.getZ() + 0.5;
+
+        for (int i = 0; i < height; i++) {
+            BlockPos pos = BlockPos.containing(px, py, pz);
+            placeLog(level, pos, logState, Direction.Axis.Y);
+
+            if (i >= 2 && random.nextFloat() < 0.45f) {
+                double bx = (random.nextDouble() - 0.5) * 2.0;
+                double by = 0.3 + random.nextDouble() * 0.4;
+                double bz = (random.nextDouble() - 0.5) * 2.0;
+                int branchLen = 2 + random.nextInt(4);
+                generateBranch(level, random, logState, pos, bx, by, bz, branchLen, 1);
+            }
+
+            if (i == height - 1) {
+                int topBranches = 1 + random.nextInt(3);
+                for (int b = 0; b < topBranches; b++) {
+                    double bx = (random.nextDouble() - 0.5) * 1.5;
+                    double by = 0.5 + random.nextDouble() * 0.5;
+                    double bz2 = (random.nextDouble() - 0.5) * 1.5;
+                    int branchLen = 1 + random.nextInt(3);
+                    generateBranch(level, random, logState, pos, bx, by, bz2, branchLen, 2);
+                }
+            }
+
+            px += dx;
+            py += 1.0;
+            pz += dz;
+
+            dx += (random.nextDouble() - 0.5) * 0.15;
+            dz += (random.nextDouble() - 0.5) * 0.15;
+        }
+    }
+
+    /** Diverging fork arm sized for a 2×2 trunk (denser branching). */
+    public static void generateThickFork(
+        WorldGenLevel level, RandomSource random, BlockState logState,
+        BlockPos base, double dx, double dz, int height
+    ) {
+        double px = base.getX() + 0.5;
+        double py = base.getY() + 0.5;
+        double pz = base.getZ() + 0.5;
+
+        for (int i = 0; i < height; i++) {
+            BlockPos pos = BlockPos.containing(px, py, pz);
+            placeLog(level, pos, logState, Direction.Axis.Y);
+
+            if (i >= 2 && random.nextFloat() < 0.5f) {
+                double bx = (random.nextDouble() - 0.5) * 2.0;
+                double by = 0.3 + random.nextDouble() * 0.4;
+                double bz = (random.nextDouble() - 0.5) * 2.0;
+                int branchLen = 3 + random.nextInt(5);
+                generateBranch(level, random, logState, pos, bx, by, bz, branchLen, 1);
+            }
+
+            if (i == height - 1) {
+                int topBranches = 2 + random.nextInt(3);
+                for (int b = 0; b < topBranches; b++) {
+                    double bx = (random.nextDouble() - 0.5) * 1.5;
+                    double by = 0.5 + random.nextDouble() * 0.5;
+                    double bz2 = (random.nextDouble() - 0.5) * 1.5;
+                    int branchLen = 2 + random.nextInt(3);
+                    generateBranch(level, random, logState, pos, bx, by, bz2, branchLen, 2);
+                }
+            }
+
+            px += dx;
+            py += 1.0;
+            pz += dz;
+
+            dx += (random.nextDouble() - 0.5) * 0.15;
+            dz += (random.nextDouble() - 0.5) * 0.15;
+        }
+    }
+
+    /** Surface-exposed roots for a 1×1 trunk (2–4 roots, 1–3 segments each). */
+    public static void generateExposedRoots(WorldGenLevel level, RandomSource random, BlockState logState, BlockPos base) {
+        int rootCount = 2 + random.nextInt(3);
+        for (int r = 0; r < rootCount; r++) {
+            Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+            BlockPos rootStart = base.below().relative(dir);
+
+            for (int seg = 0; seg < 1 + random.nextInt(3); seg++) {
+                if (level.getBlockState(rootStart).is(BlockTags.DIRT)) {
+                    placeLog(level, rootStart, logState, dir.getAxis());
+                    rootStart = rootStart.relative(dir);
+                    if (random.nextFloat() < 0.3f) {
+                        rootStart = rootStart.below();
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    /** Surface-exposed roots for a 2×2 trunk (3–6 roots, offset from trunk edge). */
+    public static void generateThickExposedRoots(WorldGenLevel level, RandomSource random, BlockState logState, BlockPos base) {
+        int rootCount = 3 + random.nextInt(4);
+        for (int r = 0; r < rootCount; r++) {
+            Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+            int startOffset = random.nextInt(2);
+            BlockPos rootStart = base.offset(
+                dir.getAxis() == Direction.Axis.X ? (dir.getStepX() > 0 ? 2 : -1) : startOffset,
+                -1,
+                dir.getAxis() == Direction.Axis.Z ? (dir.getStepZ() > 0 ? 2 : -1) : startOffset
+            );
+
+            for (int seg = 0; seg < 2 + random.nextInt(3); seg++) {
+                if (level.getBlockState(rootStart).is(BlockTags.DIRT)) {
+                    placeLog(level, rootStart, logState, dir.getAxis());
+                    rootStart = rootStart.relative(dir);
+                    if (random.nextFloat() < 0.3f) {
+                        rootStart = rootStart.below();
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
     @FunctionalInterface
     public interface TrunkCallback {
         void onTrunkBlock(BlockPos pos, int y, int totalHeight);

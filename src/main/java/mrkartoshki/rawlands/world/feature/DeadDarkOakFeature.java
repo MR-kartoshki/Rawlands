@@ -2,7 +2,6 @@ package mrkartoshki.rawlands.world.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -42,7 +41,7 @@ public class DeadDarkOakFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        generateBaseFlare(level, random, origin);
+        TreeBranchHelper.generateBaseFlare(level, random, DARK_OAK_LOG, origin);
 
         TreeBranchHelper.generateTrunk(level, random, DARK_OAK_LOG, origin, mainHeight, 0.35, (pos, y, totalHeight) -> {
             if (splitTrunk) return;
@@ -82,96 +81,16 @@ public class DeadDarkOakFeature extends Feature<NoneFeatureConfiguration> {
                 double dx = Math.cos(angle) * 0.6;
                 double dz = Math.sin(angle) * 0.6;
                 int forkHeight = (height - mainHeight) / 2 + random.nextInt(3);
-
-                generateFork(level, random, splitBase, dx, dz, forkHeight);
+                TreeBranchHelper.generateFork(level, random, DARK_OAK_LOG, splitBase, dx, dz, forkHeight);
             }
         }
 
         if (isAncient) {
-            generateExposedRoots(level, random, origin);
+            TreeBranchHelper.generateExposedRoots(level, random, DARK_OAK_LOG, origin);
         } else if (random.nextFloat() < 0.35) {
-            generateExposedRoots(level, random, origin);
+            TreeBranchHelper.generateExposedRoots(level, random, DARK_OAK_LOG, origin);
         }
 
         return true;
-    }
-
-    private void generateBaseFlare(WorldGenLevel level, RandomSource random, BlockPos origin) {
-        for (Direction dir : Direction.Plane.HORIZONTAL) {
-            if (random.nextFloat() < 0.6) {
-                BlockPos flarePos = origin.relative(dir);
-                if (level.getBlockState(flarePos).is(BlockTags.DIRT) || TreeBranchHelper.canReplace(level, flarePos)) {
-                    TreeBranchHelper.placeLog(level, flarePos, DARK_OAK_LOG, Direction.Axis.Y);
-                }
-            }
-        }
-
-        if (random.nextFloat() < 0.3) {
-            for (Direction dir : Direction.Plane.HORIZONTAL) {
-                if (random.nextFloat() < 0.4) {
-                    BlockPos flarePos = origin.above().relative(dir);
-                    if (TreeBranchHelper.canReplace(level, flarePos)) {
-                        TreeBranchHelper.placeLog(level, flarePos, DARK_OAK_LOG, Direction.Axis.Y);
-                    }
-                }
-            }
-        }
-    }
-
-    private void generateFork(WorldGenLevel level, RandomSource random, BlockPos base, double dx, double dz, int height) {
-        double px = base.getX() + 0.5;
-        double py = base.getY() + 0.5;
-        double pz = base.getZ() + 0.5;
-
-        for (int i = 0; i < height; i++) {
-            BlockPos pos = BlockPos.containing(px, py, pz);
-            TreeBranchHelper.placeLog(level, pos, DARK_OAK_LOG, Direction.Axis.Y);
-
-            if (i >= 2 && random.nextFloat() < 0.45) {
-                double bx = (random.nextDouble() - 0.5) * 2.0;
-                double by = 0.3 + random.nextDouble() * 0.4;
-                double bz = (random.nextDouble() - 0.5) * 2.0;
-                int branchLen = 2 + random.nextInt(4);
-                TreeBranchHelper.generateBranch(level, random, DARK_OAK_LOG, pos, bx, by, bz, branchLen, 1);
-            }
-
-            if (i == height - 1) {
-                int topBranches = 1 + random.nextInt(3);
-                for (int b = 0; b < topBranches; b++) {
-                    double bx = (random.nextDouble() - 0.5) * 1.5;
-                    double by = 0.5 + random.nextDouble() * 0.5;
-                    double bz2 = (random.nextDouble() - 0.5) * 1.5;
-                    int branchLen = 1 + random.nextInt(3);
-                    TreeBranchHelper.generateBranch(level, random, DARK_OAK_LOG, pos, bx, by, bz2, branchLen, 2);
-                }
-            }
-
-            px += dx;
-            py += 1.0;
-            pz += dz;
-
-            dx += (random.nextDouble() - 0.5) * 0.15;
-            dz += (random.nextDouble() - 0.5) * 0.15;
-        }
-    }
-
-    private void generateExposedRoots(WorldGenLevel level, RandomSource random, BlockPos base) {
-        int rootCount = 2 + random.nextInt(3);
-        for (int r = 0; r < rootCount; r++) {
-            Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-            BlockPos rootStart = base.below().relative(dir);
-
-            for (int seg = 0; seg < 1 + random.nextInt(3); seg++) {
-                if (level.getBlockState(rootStart).is(BlockTags.DIRT)) {
-                    TreeBranchHelper.placeLog(level, rootStart, DARK_OAK_LOG, dir.getAxis());
-                    rootStart = rootStart.relative(dir);
-                    if (random.nextFloat() < 0.3) {
-                        rootStart = rootStart.below();
-                    }
-                } else {
-                    break;
-                }
-            }
-        }
     }
 }

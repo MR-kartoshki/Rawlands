@@ -5,7 +5,8 @@
 	"mixins": [
 		"BoatEntityMixin",
 		"FastFallingBlockEntityMixin",
-		"OreFeatureAxisMixin"
+		"OreFeatureAxisMixin",
+		"RootSystemAzaleaTreeMixin"
 	],
 	"client": [
 		"client.MistCoastFogMixin"
