@@ -86,7 +86,8 @@
       "rawlands:amber_steppe_tall_dry_grass",
       "rawlands:amber_steppe_coarse_dirt_patch",
       "rawlands:amber_steppe_dirt_mound"
-    ]
+    ],
+    []
   ],
   "spawn_costs": {},
   "spawners": {

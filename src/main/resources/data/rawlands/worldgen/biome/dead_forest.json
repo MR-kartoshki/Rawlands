@@ -35,8 +35,7 @@
       "minecraft:lake_lava_underground"
     ],
     [
-      "minecraft:amethyst_geode",
-      "rawlands:dead_forest_podzol_patch"
+      "minecraft:amethyst_geode"
     ],
     [
       "minecraft:monster_room",
@@ -82,6 +81,7 @@
     ],
     [
       "minecraft:glow_lichen",
+      "rawlands:dead_forest_podzol_patch",
       "rawlands:dead_forest_oak_tree",
       "rawlands:dead_forest_dark_oak_tree",
       "rawlands:dead_forest_thick_dark_oak_tree",
@@ -94,7 +94,8 @@
       "rawlands:dead_forest_fallen_oak_log",
       "rawlands:dead_forest_fallen_dark_oak_log",
       "rawlands:dead_forest_stump"
-    ]
+    ],
+    []
   ],
   "spawn_costs": {},
   "spawners": {

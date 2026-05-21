@@ -29,8 +29,7 @@
       "minecraft:lake_lava_underground"
     ],
     [
-      "minecraft:amethyst_geode",
-      "rawlands:mosswood_forest_puddle"
+      "minecraft:amethyst_geode"
     ],
     [
       "minecraft:monster_room",
@@ -74,6 +73,7 @@
     ],
     [
       "minecraft:glow_lichen",
+      "rawlands:mosswood_forest_puddle",
       "rawlands:mosswood_forest_oak_tree",
       "rawlands:mosswood_forest_azalea_tree",
       "rawlands:mosswood_forest_fallen_log",

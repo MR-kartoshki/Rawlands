@@ -84,7 +84,8 @@
       "minecraft:red_mushroom_normal",
       "minecraft:vines",
       "minecraft:patch_melon"
-    ]
+    ],
+    []
   ],
   "spawn_costs": {},
   "spawners": {

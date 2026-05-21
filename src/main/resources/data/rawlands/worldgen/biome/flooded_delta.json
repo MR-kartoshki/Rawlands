@@ -28,8 +28,7 @@
   "features": [
     [],
     [
-      "minecraft:lake_lava_underground",
-      "rawlands:flooded_delta_water_puddle"
+      "minecraft:lake_lava_underground"
     ],
     [
       "minecraft:amethyst_geode"
@@ -84,8 +83,10 @@
       "rawlands:flooded_delta_seagrass",
       "rawlands:flooded_delta_surface_clay",
       "rawlands:flooded_delta_delta_lily",
-      "rawlands:flooded_delta_sand_patch"
-    ]
+      "rawlands:flooded_delta_sand_patch",
+      "rawlands:flooded_delta_water_puddle"
+    ],
+    []
   ],
   "spawn_costs": {},
   "spawners": {
