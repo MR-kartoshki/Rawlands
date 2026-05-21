@@ -64,13 +64,22 @@ This mod adds several new biomes to the game along with new blocks and features.
 ## Other Stuff
 
 
-<details>
-<summary><b>Compatibility</b></summary>
+<details> <summary><b>Compatibility</b></summary>
 
-This mod *should* work with any other mods that add biomes.  
+It works with most biome and worldgen mods.
 
-One known issue, which I have no control over, is that mods that don't use Terrablender, for example Terralith, are unable to generate in the Rawlands region. This causes their biomes to become significantly rarer. Sadly, I do not have any way of fixing this.
+If a “Feature order cycle found” error includes this mod, the cause comes from feature ordering conflicts between multiple mods or datapacks. 
+This is a Minecraft worldgen limitation and not caused by this mod alone.
+This mod strictly follows vanilla Minecraft feature ordering rules.
 
+Please attach latest.log, a crash report and full mod list when reporting issues.
+
+---
+
+Known issues:
+
+[**CliffTree**](https://modrinth.com/datapack/clifftree) (as of version 3.2.1)  
+Feature order cycle errors have been seen when used together with this version of CliffTree. 
 
 </details>
 
