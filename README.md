@@ -66,7 +66,7 @@ This mod adds several new biomes to the game along with new blocks and features.
 
 <details> <summary><b>Compatibility</b></summary>
 
-It works with most biome and worldgen mods.
+This mod works with most biome and worldgen mods.
 
 If a “Feature order cycle found” error includes this mod, the cause comes from feature ordering conflicts between multiple mods or datapacks. 
 This is a Minecraft worldgen limitation and not caused by this mod alone.
