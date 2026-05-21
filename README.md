@@ -62,6 +62,18 @@ This mod adds several new biomes to the game along with new blocks and features.
 
 ---
 ## Other Stuff
+
+
+<details>
+<summary><b>Compatibility</b></summary>
+
+This mod *should* work with any other mods that add biomes.  
+
+One known issue, which I have no control over, is that mods that use Lithostitched instead of Terrablender, for example Terralith, are unable to generate in the Rawlands region. This causes their biomes to become significantly rarer. Sadly, I do not have any way of fixing this.
+
+
+</details>
+
 <details>
 <summary><b>Requirements</b></summary>
 
