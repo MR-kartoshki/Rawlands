@@ -1,3 +1,6 @@
 {
-  "parent": "rawlands:item/nightshade"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rawlands:block/nightshade"
+  }
 }
