@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "rawlands:block/dry_scrub"
+    "model": "rawlands:item/dry_scrub"
   }
 }
