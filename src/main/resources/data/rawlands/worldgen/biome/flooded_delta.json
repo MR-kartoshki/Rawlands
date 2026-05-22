@@ -66,7 +66,9 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
-      "minecraft:disk_clay"
+      "minecraft:disk_clay",
+      "rawlands:flooded_delta_sand_patch",
+      "rawlands:flooded_delta_surface_clay"
     ],
     [],
     [
@@ -75,15 +77,13 @@
     ],
     [
       "minecraft:glow_lichen",
-      "rawlands:flooded_delta_mangrove",
+      "rawlands:flooded_delta_large_fern",
+      "minecraft:trees_mangrove",
+      "minecraft:patch_waterlily",
+      "rawlands:flooded_delta_delta_lily",
       "rawlands:flooded_delta_short_cattail",
       "rawlands:flooded_delta_tall_cattail",
-      "minecraft:patch_waterlily",
-      "rawlands:flooded_delta_large_fern",
       "rawlands:flooded_delta_seagrass",
-      "rawlands:flooded_delta_surface_clay",
-      "rawlands:flooded_delta_delta_lily",
-      "rawlands:flooded_delta_sand_patch",
       "rawlands:flooded_delta_water_puddle"
     ],
     []
