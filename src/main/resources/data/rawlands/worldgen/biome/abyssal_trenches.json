@@ -16,18 +16,18 @@
       "loop": "minecraft:ambient.underwater.loop",
       "mood": {
         "sound": "minecraft:ambient.cave",
-        "tick_delay": 6000,
+        "tick_delay": 18000,
         "block_search_extent": 8,
         "offset": 2.0
       },
       "additions": [
         {
           "sound": "rawlands:ambient.abyssal_trenches",
-          "tick_chance": 0.01
+          "tick_chance": 0.003
         },
         {
           "sound": "minecraft:ambient.underwater.loop.additions",
-          "tick_chance": 0.0111
+          "tick_chance": 0.003
         }
       ]
     },
