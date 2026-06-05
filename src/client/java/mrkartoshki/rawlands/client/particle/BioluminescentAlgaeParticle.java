@@ -8,7 +8,9 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.util.RandomSource;
 
@@ -46,6 +48,7 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
         public Particle createParticle(SimpleParticleType type, ClientLevel level,
                                         double x, double y, double z,
                                         double vx, double vy, double vz, RandomSource random) {
+            if (!level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
             return new BioluminescentAlgaeParticle(level, x, y, z, sprites.first(), random);
         }
     }
