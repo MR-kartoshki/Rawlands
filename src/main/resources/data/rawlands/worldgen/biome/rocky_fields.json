@@ -1,28 +1,32 @@
 {
-  "attributes": {
-    "minecraft:visual/sky_color": "#78a7ff"
-  },
   "carvers": [
     "minecraft:cave",
     "minecraft:cave_extra_underground",
     "minecraft:canyon"
   ],
   "downfall": 0.4,
-  "effects": {
-    "water_color": "#4e7fd6",
-    "water_fog_color": "#1a3a7a",
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
+  "attributes": {
+    "minecraft:visual/sky_color": "#78a7ff",
+    "minecraft:visual/water_fog_color": "#1a3a7a",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2.0
+      }
     },
-    "music": {
-      "sound": "minecraft:music.overworld.stony_peaks",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "minecraft:music.overworld.stony_peaks",
+        "min_delay": 12000,
+        "max_delay": 24000,
+        "replace_current_music": false
+      }
     }
+  },
+  "effects": {
+    "water_color": "#4e7fd6"
   },
   "features": [
     [],
@@ -221,7 +225,3 @@
   },
   "temperature": 0.8
 }
-
-
-
-

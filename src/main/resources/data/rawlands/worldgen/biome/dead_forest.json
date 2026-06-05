@@ -1,4 +1,7 @@
 {
+  "temperature": 0.5,
+  "downfall": 0.3,
+  "has_precipitation": true,
   "attributes": {
     "minecraft:audio/background_music": {
       "default": {
@@ -6,23 +9,22 @@
         "min_delay": 100,
         "max_delay": 200
       }
+    },
+    "minecraft:visual/sky_color": 2763344,
+    "minecraft:visual/water_fog_color": "#1e1c15",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2.0
+      }
     }
   },
-  "temperature": 0.5,
-  "downfall": 0.3,
-  "has_precipitation": true,
   "effects": {
-    "sky_color": 2763344,
     "foliage_color": "#5a5a3a",
     "grass_color": "#636344",
-    "water_color": "#4a4535",
-    "water_fog_color": "#1e1c15",
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    }
+    "water_color": "#4a4535"
   },
   "carvers": [
     "minecraft:cave",
@@ -100,22 +102,67 @@
   "spawn_costs": {},
   "spawners": {
     "ambient": [
-      { "type": "minecraft:bat", "maxCount": 8, "minCount": 8, "weight": 10 }
+      {
+        "type": "minecraft:bat",
+        "maxCount": 8,
+        "minCount": 8,
+        "weight": 10
+      }
     ],
     "axolotls": [],
     "creature": [],
     "misc": [],
     "monster": [
-      { "type": "minecraft:spider",          "maxCount": 4, "minCount": 4, "weight": 150 },
-      { "type": "minecraft:zombie",          "maxCount": 4, "minCount": 4, "weight": 150 },
-      { "type": "minecraft:zombie_villager", "maxCount": 1, "minCount": 1, "weight": 10  },
-      { "type": "minecraft:skeleton",        "maxCount": 4, "minCount": 4, "weight": 150 },
-      { "type": "minecraft:creeper",         "maxCount": 4, "minCount": 4, "weight": 150 },
-      { "type": "minecraft:enderman",        "maxCount": 4, "minCount": 1, "weight": 25  },
-      { "type": "minecraft:witch",           "maxCount": 1, "minCount": 1, "weight": 15  }
+      {
+        "type": "minecraft:spider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 150
+      },
+      {
+        "type": "minecraft:zombie",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 150
+      },
+      {
+        "type": "minecraft:zombie_villager",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 150
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 150
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 25
+      },
+      {
+        "type": "minecraft:witch",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 15
+      }
     ],
     "underground_water_creature": [
-      { "type": "minecraft:glow_squid", "maxCount": 6, "minCount": 4, "weight": 10 }
+      {
+        "type": "minecraft:glow_squid",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 10
+      }
     ],
     "water_ambient": [],
     "water_creature": []

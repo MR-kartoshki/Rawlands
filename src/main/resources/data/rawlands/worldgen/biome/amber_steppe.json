@@ -2,24 +2,30 @@
   "temperature": 0.9,
   "downfall": 0.1,
   "has_precipitation": true,
+  "attributes": {
+    "minecraft:visual/water_fog_color": "#2a4820",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2.0
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "minecraft:music.overworld.desert",
+        "min_delay": 12000,
+        "max_delay": 24000,
+        "replace_current_music": false
+      }
+    }
+  },
   "effects": {
     "foliage_color": "#9a8838",
     "grass_color": "#a89040",
     "dry_foliage_color": "#8a7030",
-    "water_color": "#6a8a50",
-    "water_fog_color": "#2a4820",
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
-    "music": {
-      "sound": "minecraft:music.overworld.desert",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
-    }
+    "water_color": "#6a8a50"
   },
   "carvers": [
     "minecraft:cave",
@@ -92,29 +98,104 @@
   "spawn_costs": {},
   "spawners": {
     "ambient": [
-      { "type": "minecraft:bat", "maxCount": 8, "minCount": 8, "weight": 10 }
+      {
+        "type": "minecraft:bat",
+        "maxCount": 8,
+        "minCount": 8,
+        "weight": 10
+      }
     ],
     "axolotls": [],
     "creature": [
-      { "type": "minecraft:horse", "maxCount": 6, "minCount": 2, "weight": 10 },
-      { "type": "minecraft:cow",   "maxCount": 4, "minCount": 4, "weight": 8  },
-      { "type": "minecraft:sheep", "maxCount": 4, "minCount": 4, "weight": 10 },
-      { "type": "minecraft:llama", "maxCount": 4, "minCount": 4, "weight": 5  }
+      {
+        "type": "minecraft:horse",
+        "maxCount": 6,
+        "minCount": 2,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:cow",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 8
+      },
+      {
+        "type": "minecraft:sheep",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:llama",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 5
+      }
     ],
     "misc": [],
     "monster": [
-      { "type": "minecraft:spider",          "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:zombie",          "maxCount": 4, "minCount": 4, "weight": 95  },
-      { "type": "minecraft:zombie_villager", "maxCount": 1, "minCount": 1, "weight": 5   },
-      { "type": "minecraft:skeleton",        "maxCount": 4, "minCount": 4, "weight": 70  },
-      { "type": "minecraft:creeper",         "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:slime",           "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:enderman",        "maxCount": 4, "minCount": 1, "weight": 10  },
-      { "type": "minecraft:witch",           "maxCount": 1, "minCount": 1, "weight": 5   },
-      { "type": "minecraft:zombie_horse",    "maxCount": 1, "minCount": 1, "weight": 5   }
+      {
+        "type": "minecraft:spider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:zombie",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 95
+      },
+      {
+        "type": "minecraft:zombie_villager",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 70
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:slime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:witch",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:zombie_horse",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      }
     ],
     "underground_water_creature": [
-      { "type": "minecraft:glow_squid", "maxCount": 6, "minCount": 4, "weight": 10 }
+      {
+        "type": "minecraft:glow_squid",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 10
+      }
     ],
     "water_ambient": [],
     "water_creature": []

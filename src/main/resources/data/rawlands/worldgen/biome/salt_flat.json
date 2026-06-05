@@ -2,24 +2,30 @@
   "temperature": 1.9,
   "downfall": 0.0,
   "has_precipitation": false,
+  "attributes": {
+    "minecraft:visual/water_fog_color": "#507090",
+    "minecraft:audio/ambient_sounds": {
+      "mood": {
+        "sound": "minecraft:ambient.cave",
+        "tick_delay": 6000,
+        "block_search_extent": 8,
+        "offset": 2.0
+      }
+    },
+    "minecraft:audio/background_music": {
+      "default": {
+        "sound": "minecraft:music.overworld.desert",
+        "min_delay": 12000,
+        "max_delay": 24000,
+        "replace_current_music": false
+      }
+    }
+  },
   "effects": {
     "dry_foliage_color": "#d2d2cc",
     "foliage_color": "#ddddd6",
     "grass_color": "#e8e8e1",
-    "water_color": "#b0d0e8",
-    "water_fog_color": "#507090",
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
-      "block_search_extent": 8,
-      "offset": 2.0
-    },
-    "music": {
-      "sound": "minecraft:music.overworld.desert",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
-    }
+    "water_color": "#b0d0e8"
   },
   "carvers": [],
   "features": [
@@ -94,15 +100,60 @@
     "creature": [],
     "misc": [],
     "monster": [
-      { "type": "minecraft:spider",          "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:zombie",          "maxCount": 4, "minCount": 4, "weight": 95  },
-      { "type": "minecraft:zombie_villager", "maxCount": 1, "minCount": 1, "weight": 5   },
-      { "type": "minecraft:husk",            "maxCount": 4, "minCount": 4, "weight": 80  },
-      { "type": "minecraft:skeleton",        "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:creeper",         "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:slime",           "maxCount": 4, "minCount": 4, "weight": 100 },
-      { "type": "minecraft:enderman",        "maxCount": 4, "minCount": 1, "weight": 10  },
-      { "type": "minecraft:witch",           "maxCount": 1, "minCount": 1, "weight": 5   }
+      {
+        "type": "minecraft:spider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:zombie",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 95
+      },
+      {
+        "type": "minecraft:zombie_villager",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:husk",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 80
+      },
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:slime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:witch",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      }
     ],
     "underground_water_creature": [],
     "water_ambient": [],
