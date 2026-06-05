@@ -22,7 +22,7 @@
       },
       "additions": [
         {
-          "sound": "rawlands:ambient.abyssal",
+          "sound": "rawlands:ambient.abyssal_trenches",
           "tick_chance": 0.01
         },
         {

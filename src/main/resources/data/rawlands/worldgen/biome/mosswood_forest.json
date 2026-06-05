@@ -14,7 +14,7 @@
     },
     "minecraft:audio/background_music": {
       "default": {
-        "sound": "minecraft:music.overworld.jungle_and_forest",
+        "sound": "minecraft:music.overworld.forest",
         "min_delay": 12000,
         "max_delay": 24000,
         "replace_current_music": false
