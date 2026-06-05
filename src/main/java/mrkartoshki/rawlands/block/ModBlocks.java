@@ -6,6 +6,7 @@ import java.util.List;
 import mrkartoshki.rawlands.Rawlands;
 import mrkartoshki.rawlands.item.DeltaLilyItem;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -149,6 +150,8 @@ public final class ModBlocks {
 						.useBlockDescriptionPrefix())
 		);
 
+		registerCompostables();
+
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register(output -> {
 			output.accept(OLIVE_SAPLING);
 			output.accept(SALT_BLOCK);
@@ -166,6 +169,18 @@ public final class ModBlocks {
 
 	public static List<Block> allBlocks() {
 		return List.copyOf(REGISTERED_BLOCKS);
+	}
+
+	// Custom flowers compost like vanilla flowers (65% chance per item to raise the composter level).
+	private static void registerCompostables() {
+		CompostableRegistry.INSTANCE.add(BROADLEAF_LUPINE, 0.65F);
+		CompostableRegistry.INSTANCE.add(NIGHTSHADE, 0.65F);
+		CompostableRegistry.INSTANCE.add(DELTA_LILY, 0.65F);
+		CompostableRegistry.INSTANCE.add(SHORT_CATTAIL, 0.65F);
+		CompostableRegistry.INSTANCE.add(TALL_CATTAIL, 0.65F);
+		CompostableRegistry.INSTANCE.add(DRY_SCRUB, 0.65F);
+		CompostableRegistry.INSTANCE.add(OLIVE_SAPLING, 0.30F);
+		CompostableRegistry.INSTANCE.add(OLIVE_LEAVES, 0.30F);
 	}
 
 	private static Block register(String name, Block block) {
