@@ -50,7 +50,9 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
         public Particle createParticle(SimpleParticleType type, ClientLevel level,
                                         double x, double y, double z,
                                         double vx, double vy, double vz, RandomSource random) {
-            if (y >= 50 || !level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
+            if (y >= 60 || !level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
+            // Linear fade: full rate below y=40, zero at y=60.
+            if (y > 40 && random.nextDouble() > (60.0 - y) / 20.0) return null;
 
             // vx/vz carry the shared group direction on recursive (extra) calls; 0,0 means initial ambient call.
             boolean isExtra = vx != 0.0 || vz != 0.0;
