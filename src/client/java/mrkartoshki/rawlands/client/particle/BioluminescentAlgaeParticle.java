@@ -52,18 +52,20 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
                                         double vx, double vy, double vz, RandomSource random) {
             if (y >= 50 || !level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
 
-            // vx/vz carry the shared group direction when spawning extras; pick one on the first call.
-            double driftX = vx != 0.0 || vz != 0.0 ? vx : Math.cos(random.nextDouble() * Math.PI * 2) * 0.012;
-            double driftZ = vx != 0.0 || vz != 0.0 ? vz : Math.sin(random.nextDouble() * Math.PI * 2) * 0.012;
+            // vx/vz carry the shared group direction on recursive (extra) calls; 0,0 means initial ambient call.
+            boolean isExtra = vx != 0.0 || vz != 0.0;
+            double driftX = isExtra ? vx : Math.cos(random.nextDouble() * Math.PI * 2) * 0.012;
+            double driftZ = isExtra ? vz : Math.sin(random.nextDouble() * Math.PI * 2) * 0.012;
 
-            // Spawn 2–4 extra particles nearby that share the same drift direction.
-            // The water+depth check in this factory is applied to each one automatically.
-            int extras = 2 + random.nextInt(3);
-            for (int i = 0; i < extras; i++) {
-                double ox = x + (random.nextDouble() - 0.5) * 3.0;
-                double oy = y + (random.nextDouble() - 0.5) * 1.5;
-                double oz = z + (random.nextDouble() - 0.5) * 3.0;
-                level.addParticle(type, ox, oy, oz, driftX, 0.0, driftZ);
+            // Only the initial call spawns extras — extras never spawn more extras, preventing recursion.
+            if (!isExtra) {
+                int extras = 2 + random.nextInt(3);
+                for (int i = 0; i < extras; i++) {
+                    double ox = x + (random.nextDouble() - 0.5) * 3.0;
+                    double oy = y + (random.nextDouble() - 0.5) * 1.5;
+                    double oz = z + (random.nextDouble() - 0.5) * 3.0;
+                    level.addParticle(type, ox, oy, oz, driftX, 0.0, driftZ);
+                }
             }
 
             return new BioluminescentAlgaeParticle(level, x, y, z, driftX, driftZ, sprites.first(), random);
