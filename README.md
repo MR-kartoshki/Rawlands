@@ -55,7 +55,7 @@ This mod adds several new biomes to the game along with new blocks and features.
 
 - **Coarse salt** falls faster than sand or gravel
 - **Dead Forest** has custom background music
-- **Abyssal Trenches** has custom ambient sounds
+- **Abyssal Trenches** has custom ambient sounds and particles
 - **Azalea Trees** have a 10% chance to get replaced by the mod's new **Large Azalea Tree**
 
 </details>
