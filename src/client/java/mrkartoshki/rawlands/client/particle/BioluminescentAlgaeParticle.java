@@ -48,7 +48,7 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
         public Particle createParticle(SimpleParticleType type, ClientLevel level,
                                         double x, double y, double z,
                                         double vx, double vy, double vz, RandomSource random) {
-            if (!level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
+            if (y >= 50 || !level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
             return new BioluminescentAlgaeParticle(level, x, y, z, sprites.first(), random);
         }
     }
