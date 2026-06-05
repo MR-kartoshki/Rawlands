@@ -17,13 +17,15 @@ import net.minecraft.util.RandomSource;
 @Environment(EnvType.CLIENT)
 public class BioluminescentAlgaeParticle extends SingleQuadParticle {
 
+    // driftX/driftZ: shared group direction; each particle adds small random variation on top.
     protected BioluminescentAlgaeParticle(ClientLevel level, double x, double y, double z,
+                                           double driftX, double driftZ,
                                            TextureAtlasSprite sprite, RandomSource random) {
         super(level, x, y, z, sprite);
         this.lifetime = 60 + random.nextInt(60);
-        this.xd = (random.nextDouble() - 0.5) * 0.008;
-        this.yd = 0.008 + random.nextDouble() * 0.008;
-        this.zd = (random.nextDouble() - 0.5) * 0.008;
+        this.xd = driftX + (random.nextDouble() - 0.5) * 0.004;
+        this.yd = 0.003 + random.nextDouble() * 0.005;
+        this.zd = driftZ + (random.nextDouble() - 0.5) * 0.004;
     }
 
     @Override
@@ -49,7 +51,22 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
                                         double x, double y, double z,
                                         double vx, double vy, double vz, RandomSource random) {
             if (y >= 50 || !level.getFluidState(BlockPos.containing(x, y, z)).is(FluidTags.WATER)) return null;
-            return new BioluminescentAlgaeParticle(level, x, y, z, sprites.first(), random);
+
+            // vx/vz carry the shared group direction when spawning extras; pick one on the first call.
+            double driftX = vx != 0.0 || vz != 0.0 ? vx : Math.cos(random.nextDouble() * Math.PI * 2) * 0.012;
+            double driftZ = vx != 0.0 || vz != 0.0 ? vz : Math.sin(random.nextDouble() * Math.PI * 2) * 0.012;
+
+            // Spawn 2–4 extra particles nearby that share the same drift direction.
+            // The water+depth check in this factory is applied to each one automatically.
+            int extras = 2 + random.nextInt(3);
+            for (int i = 0; i < extras; i++) {
+                double ox = x + (random.nextDouble() - 0.5) * 3.0;
+                double oy = y + (random.nextDouble() - 0.5) * 1.5;
+                double oz = z + (random.nextDouble() - 0.5) * 3.0;
+                level.addParticle(type, ox, oy, oz, driftX, 0.0, driftZ);
+            }
+
+            return new BioluminescentAlgaeParticle(level, x, y, z, driftX, driftZ, sprites.first(), random);
         }
     }
 }
