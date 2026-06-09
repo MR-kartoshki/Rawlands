@@ -1,5 +1,5 @@
 # This isnt the main branch!
-This is a backport of the mod done by thecreeper3326 (JohnSeagull). Still a work in progress so some features may be missing / working differently 
+This is a backport of the mod done by thecreeper3326. Still a work in progress so some features may be missing / working differently 
 
 
 [![Rawlands](https://raw.githubusercontent.com/MR-kartoshki/Rawlands/refs/heads/main/banner.png)](https://modrinth.com/mod/rawlands)
@@ -91,10 +91,10 @@ Feature order cycle errors have been seen when used together with this version o
 
 | Dependency    | Version  |
 |---------------|----------|
-| Minecraft     | 26.1.x   |
-| Java          | 25+      |
-| Fabric Loader | 0.19.2+  |
-| Fabric API    | 0.149.0+ |
+| Minecraft     | 1.21.11  |
+| Java          | 21+      |
+| Fabric Loader | 0.19.3+  |
+| Fabric API    | 0.141.0+ |
 | TerraBlender  | any      |
 
 </details>
