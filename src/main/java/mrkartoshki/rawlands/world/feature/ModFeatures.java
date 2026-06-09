@@ -7,7 +7,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockBlobConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class ModFeatures {
@@ -15,8 +15,8 @@ public class ModFeatures {
     public static final Feature<NoneFeatureConfiguration> DEAD_CORAL_TREE =
         new DeadCoralTreeFeature(NoneFeatureConfiguration.CODEC);
 
-    public static final Feature<BlockBlobConfiguration> LARGER_BLOCK_BLOB =
-        new LargerBlockBlobFeature(BlockBlobConfiguration.CODEC);
+    public static final Feature<BlockStateConfiguration> LARGER_BLOCK_BLOB =
+        new LargerBlockBlobFeature(BlockStateConfiguration.CODEC);
 
     public static final Feature<NoneFeatureConfiguration> DEAD_OAK_TREE =
         new DeadOakFeature(NoneFeatureConfiguration.CODEC);

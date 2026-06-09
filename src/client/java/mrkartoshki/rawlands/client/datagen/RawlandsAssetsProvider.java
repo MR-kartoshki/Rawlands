@@ -18,7 +18,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -31,7 +31,7 @@ public final class RawlandsAssetsProvider implements DataProvider {
 	private final PackOutput.PathProvider itemDefinitionOutput;
 	private final Path langPath;
 
-	public RawlandsAssetsProvider(FabricPackOutput output) {
+	public RawlandsAssetsProvider(FabricDataOutput output) {
 		this.blockStateOutput = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "blockstates");
 		this.modelOutput = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "models");
 		this.itemDefinitionOutput = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "items");

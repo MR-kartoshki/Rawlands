@@ -19,6 +19,7 @@ public class Rawlands implements ModInitializer {
 	public void onInitialize() {
 		ModBlocks.initialize();
 		ModItems.initialize();
+		ModItemGroups.initialize();
 		ModSounds.init();
 		ModParticles.register();
 		ModFeatures.register();

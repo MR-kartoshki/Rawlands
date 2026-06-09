@@ -5,8 +5,8 @@ import java.util.List;
 
 import mrkartoshki.rawlands.Rawlands;
 import mrkartoshki.rawlands.item.DeltaLilyItem;
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
-import net.fabricmc.fabric.api.registry.CompostableRegistry;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -16,13 +16,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.util.ColorRGBA;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ColoredFallingBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.TallFlowerBlock;
-import net.minecraft.world.level.block.TintedParticleLeavesBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.material.MapColor;
@@ -152,19 +146,6 @@ public final class ModBlocks {
 
 		registerCompostables();
 
-		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register(output -> {
-			output.accept(OLIVE_SAPLING);
-			output.accept(SALT_BLOCK);
-			output.accept(COARSE_SALT);
-			output.accept(FINE_SALT);
-			output.accept(DRY_SCRUB);
-			output.accept(OLIVE_LEAVES);
-			output.accept(BROADLEAF_LUPINE);
-			output.accept(SHORT_CATTAIL);
-			output.accept(TALL_CATTAIL);
-			output.accept(NIGHTSHADE);
-			output.accept(DELTA_LILY);
-		});
 	}
 
 	public static List<Block> allBlocks() {
@@ -173,14 +154,15 @@ public final class ModBlocks {
 
 	// Custom flowers compost like vanilla flowers (65% chance per item to raise the composter level).
 	private static void registerCompostables() {
-		CompostableRegistry.INSTANCE.add(BROADLEAF_LUPINE, 0.65F);
-		CompostableRegistry.INSTANCE.add(NIGHTSHADE, 0.65F);
-		CompostableRegistry.INSTANCE.add(DELTA_LILY, 0.65F);
-		CompostableRegistry.INSTANCE.add(SHORT_CATTAIL, 0.65F);
-		CompostableRegistry.INSTANCE.add(TALL_CATTAIL, 0.65F);
-		CompostableRegistry.INSTANCE.add(DRY_SCRUB, 0.65F);
-		CompostableRegistry.INSTANCE.add(OLIVE_SAPLING, 0.30F);
-		CompostableRegistry.INSTANCE.add(OLIVE_LEAVES, 0.30F);
+		ComposterBlock.COMPOSTABLES.put(BROADLEAF_LUPINE,0.65f);
+		ComposterBlock.COMPOSTABLES.put(SHORT_CATTAIL,0.65f);
+		ComposterBlock.COMPOSTABLES.put(TALL_CATTAIL,0.65f);
+		ComposterBlock.COMPOSTABLES.put(NIGHTSHADE,0.65f);
+		ComposterBlock.COMPOSTABLES.put(DELTA_LILY,0.65f);
+		ComposterBlock.COMPOSTABLES.put(OLIVE_SAPLING,0.3f);
+		ComposterBlock.COMPOSTABLES.put(OLIVE_LEAVES,0.3f);
+		ComposterBlock.COMPOSTABLES.put(DRY_SCRUB,0.65f);
+
 	}
 
 	private static Block register(String name, Block block) {

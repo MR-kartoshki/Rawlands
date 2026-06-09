@@ -82,10 +82,5 @@ public class MistCoastFogMixin {
         fog.environmentalEnd    = Mth.lerp(strength, fog.environmentalEnd,    FOG_END);
         fog.renderDistanceStart = Mth.lerp(strength, fog.renderDistanceStart, FOG_START);
         fog.renderDistanceEnd   = Mth.lerp(strength, fog.renderDistanceEnd,   FOG_END);
-
-        Vector4f color = fog.color;
-        color.x = Mth.lerp(strength, color.x, FOG_R);
-        color.y = Mth.lerp(strength, color.y, FOG_G);
-        color.z = Mth.lerp(strength, color.z, FOG_B);
     }
 }

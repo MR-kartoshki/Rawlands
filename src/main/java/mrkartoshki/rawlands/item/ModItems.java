@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mrkartoshki.rawlands.Rawlands;
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -39,9 +39,7 @@ public final class ModItems {
 	}
 
 	public static void initialize() {
-		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS).register(output -> {
-			output.accept(OLIVE);
-		});
+
 	}
 
 	public static List<Item> allItems() {

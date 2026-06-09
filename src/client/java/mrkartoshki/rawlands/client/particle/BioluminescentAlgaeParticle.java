@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.util.RandomSource;
 
 @Environment(EnvType.CLIENT)
@@ -33,10 +32,8 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
         return SingleQuadParticle.Layer.TRANSLUCENT;
     }
 
-    @Override
-    public int getLightCoords(float partialTick) {
-        return LightCoordsUtil.withBlock(super.getLightCoords(partialTick), 15);
-    }
+    //getLightCoords doesnt really appear to exist in 1.21.11
+    //correct if necessary
 
     @Environment(EnvType.CLIENT)
     public static class Factory implements ParticleProvider<SimpleParticleType> {
