@@ -26,7 +26,4 @@ version.json
 pack.png
 flightrecorder-config.jfc
 
-# Misc Files that developers made for themselves
-/NO_MODRINTH
-/build-no-modrinth.gradle
 
