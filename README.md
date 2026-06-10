@@ -1,5 +1,5 @@
 # This isnt the main branch!
-This is a backport of the mod done by thecreeper3326. Still a work in progress so some features may be missing / working differently 
+Thecreeper3326 is working on a port to 1.21.11 that will be found here. Currently does not run but will try to grt that fixed soon.
 
 ---
 [![Rawlands](https://raw.githubusercontent.com/MR-kartoshki/Rawlands/refs/heads/main/banner.png)](https://modrinth.com/mod/rawlands)
