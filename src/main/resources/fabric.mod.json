@@ -38,9 +38,9 @@
 		"clifftree": "<=3.2.1"
 	},
 	"depends": {
-		"fabricloader": ">=0.19.1",
-		"minecraft": "~26.1",
-		"java": ">=25",
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
 		"fabric-api": "*",
 		"terrablender": "*"
 	},
