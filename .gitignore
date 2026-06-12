@@ -1,40 +1,32 @@
-# gradle
-
+# Gradle
 .gradle/
 build/
 out/
-classes/
 
-# eclipse
-
-*.launch
-
-# idea
-
+# IDE
 .idea/
 *.iml
 *.ipr
 *.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
+*.launch
 .classpath
 .project
 
-# macos
-
-*.DS_Store
-
-# fabric
-
-run/
-
-# java
-
+# JVM
 hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+# Runtime
+run/
+
+# Extracted/Generated files
+version.json
+pack.png
+flightrecorder-config.jfc
+
+# Misc Files that developers made for themselves
+/NO_MODRINTH
+/build-no-modrinth.gradle
+
