@@ -1,15 +1,12 @@
 {
 	"required": true,
 	"package": "mrkartoshki.rawlands.mixin",
-	"compatibilityLevel": "JAVA_25",
+	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"BoatEntityMixin",
 		"FastFallingBlockEntityMixin",
 		"OreFeatureAxisMixin",
 		"RootSystemAzaleaTreeMixin"
-	],
-	"client": [
-		"client.MistCoastFogMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -1,29 +1,40 @@
-# Gradle
+# gradle
+
 .gradle/
 build/
 out/
+classes/
 
-# IDE
+# eclipse
+
+*.launch
+
+# idea
+
 .idea/
 *.iml
 *.ipr
 *.iws
-*.launch
+
+# vscode
+
+.settings/
+.vscode/
+bin/
 .classpath
 .project
 
-# JVM
+# macos
+
+*.DS_Store
+
+# fabric
+
+run/
+
+# java
+
 hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
-
-# Runtime
-run/
-
-# Extracted/Generated files
-version.json
-pack.png
-flightrecorder-config.jfc
-
-

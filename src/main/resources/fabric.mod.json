@@ -21,9 +21,7 @@
 		"main": [
 			"mrkartoshki.rawlands.Rawlands"
 		],
-		"client": [
-			"mrkartoshki.rawlands.client.RawlandsClient"
-		],
+		"client": ["mrkartoshki.rawlands.client.RawlandsClient"],
 		"fabric-datagen": [
 			"mrkartoshki.rawlands.client.RawlandsDataGenerator"
 		],

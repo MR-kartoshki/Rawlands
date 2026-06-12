@@ -23,7 +23,7 @@ import net.minecraft.world.level.material.MapColor;
 
 public final class ModBlocks {
 	private static final List<Block> REGISTERED_BLOCKS = new ArrayList<>();
-
+	private static final List<Block> TRANSLUCENT_BLOCKS = new ArrayList<>();
 	public static final Block SALT_BLOCK = register(
 			"salt_block",
 			new RotatedPillarBlock(properties("salt_block").mapColor(MapColor.QUARTZ).strength(0.5F).sound(SoundType.CALCITE))
@@ -52,6 +52,7 @@ public final class ModBlocks {
 							.mapColor(MapColor.WOOD)
 							.noCollision()
 							.instabreak()
+							.dynamicShape()
 							.sound(SoundType.GRASS)
 							.offsetType(OffsetType.XYZ)
 			)
@@ -89,6 +90,7 @@ public final class ModBlocks {
 					properties("short_cattail")
 							.mapColor(MapColor.PLANT)
 							.noCollision()
+							.noOcclusion()
 							.instabreak()
 							.sound(SoundType.WET_GRASS)
 							.offsetType(OffsetType.XZ)
@@ -143,13 +145,25 @@ public final class ModBlocks {
 						.setId(ResourceKey.create(Registries.ITEM, deltaLilyId))
 						.useBlockDescriptionPrefix())
 		);
-
 		registerCompostables();
-
+		TRANSLUCENT_BLOCKS.addAll(List.of(
+				DRY_SCRUB,
+				OLIVE_LEAVES,
+				OLIVE_SAPLING,
+				BROADLEAF_LUPINE,
+				SHORT_CATTAIL,
+				TALL_CATTAIL,
+				NIGHTSHADE,
+				DELTA_LILY
+			)
+		);
 	}
 
 	public static List<Block> allBlocks() {
 		return List.copyOf(REGISTERED_BLOCKS);
+	}
+	public static List<Block> translucentBlocks() {
+		return List.copyOf(TRANSLUCENT_BLOCKS);
 	}
 
 	// Custom flowers compost like vanilla flowers (65% chance per item to raise the composter level).
@@ -165,6 +179,7 @@ public final class ModBlocks {
 
 	}
 
+
 	private static Block register(String name, Block block) {
 		Identifier id = id(name);
 		Block registeredBlock = Registry.register(BuiltInRegistries.BLOCK, id, block);
@@ -176,6 +191,7 @@ public final class ModBlocks {
 		REGISTERED_BLOCKS.add(registeredBlock);
 		return registeredBlock;
 	}
+
 
 	private static Block registerBlockOnly(String name, Block block) {
 		Identifier id = id(name);

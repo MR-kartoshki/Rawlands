@@ -98,8 +98,7 @@
     [
       "minecraft:glow_lichen",
       "rawlands:gravel_flats_dead_bush",
-      "rawlands:gravel_flats_dry_scrub",
-      "rawlands:gravel_flats_short_dry_grass"
+      "rawlands:gravel_flats_dry_scrub"
     ],
     [
       "minecraft:freeze_top_layer"

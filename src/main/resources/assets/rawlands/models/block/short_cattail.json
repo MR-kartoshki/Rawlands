@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/cross",
+  "ambientocclusion": false,
   "textures": {
     "cross": "rawlands:block/short_cattail"
   }
