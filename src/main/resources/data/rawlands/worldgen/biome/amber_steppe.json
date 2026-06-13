@@ -88,6 +88,8 @@
       "minecraft:trees_savanna",
       "rawlands:amber_steppe_dead_bush",
       "rawlands:amber_steppe_dry_scrub",
+      "rawlands:amber_steppe_short_dry_grass",
+      "rawlands:amber_steppe_tall_dry_grass",
       "rawlands:amber_steppe_coarse_dirt_patch",
       "rawlands:amber_steppe_dirt_mound"
     ],
