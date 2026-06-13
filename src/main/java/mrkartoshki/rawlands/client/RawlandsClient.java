@@ -6,13 +6,17 @@ import mrkartoshki.rawlands.particle.ModParticles;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.color.block.BlockTintCache;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayerGroup;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -23,6 +27,11 @@ import java.util.List;
 public class RawlandsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		ColorProviderRegistry.BLOCK.register((s, v, p, i) -> FoliageColor.FOLIAGE_DEFAULT, ModBlocks.OLIVE_LEAVES);
+		ParticleFactoryRegistry.getInstance().register(
+				ModParticles.BIOLUMINESCENT_ALGAE,
+				BioluminescentAlgaeParticle.Factory::new
+		);
 		ModBlocks.translucentBlocks().forEach(e -> {
 			BlockRenderLayerMap.putBlock(e, ChunkSectionLayer.CUTOUT);});
 	}
