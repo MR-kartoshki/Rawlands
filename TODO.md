@@ -10,9 +10,7 @@ To Do:
 - [x] Biomes
 - [x] Blocks
 - [x] Items
-- [ ] Features
-  - [ ] Grasses
-  - [ ] Sugar Canes
+- [X] Features
 - [ ] Particles
 
 
@@ -20,4 +18,4 @@ To Do:
 
 ### General
 
-- [ ] Tall Cattail creates water when placed in 1-block-deep water
+- [X] Tall Cattail creates water when placed in 1-block-deep water
