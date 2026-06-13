@@ -30,3 +30,5 @@ flightrecorder-config.jfc
 /NO_MODRINTH
 /build-no-modrinth.gradle
 
+/build-no-modrinth-26.1.gradle
+/NO_MODRINTH_26_1
