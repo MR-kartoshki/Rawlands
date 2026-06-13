@@ -1,0 +1,11 @@
+{
+  "feature": "rawlands:short_grass_patch",
+  "placement": [
+    { "type": "minecraft:count", "count": 10 },
+    { "type": "minecraft:in_square" },
+    { "type": "minecraft:surface_water_depth_filter", "max_water_depth": 0 },
+    { "type": "minecraft:heightmap", "heightmap": "WORLD_SURFACE_WG" },
+    { "type": "minecraft:block_predicate_filter", "predicate": { "type": "minecraft:replaceable" } },
+    { "type": "minecraft:biome" }
+  ]
+}
