@@ -28,5 +28,6 @@ flightrecorder-config.jfc
 
 # Misc Files that developers made for themselves
 /NO_MODRINTH
+/NO_MODRINTH_26_1
 /build-no-modrinth.gradle
-
+/build-no-modrinth-26.1.gradle
