@@ -3,9 +3,6 @@
   "downfall": 0.3,
   "has_precipitation": true,
   "attributes": {
-      "minecraft:visual/fog_start_distance": -10,
-      "minecraft:visual/fog_end_distance": 10,
-
     "minecraft:audio/background_music": {
       "default": {
         "sound": "rawlands:music.dead_forest",
