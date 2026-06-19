@@ -8,6 +8,9 @@
 		"OreFeatureAxisMixin",
 		"RootSystemAzaleaTreeMixin"
 	],
+	"client": [
+		"client.MistCoastFogMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},
