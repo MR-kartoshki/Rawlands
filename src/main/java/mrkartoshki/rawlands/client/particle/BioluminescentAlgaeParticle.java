@@ -29,8 +29,8 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
     }
 
     @Override
-    protected SingleQuadParticle.Layer getLayer() {
-        return SingleQuadParticle.Layer.TRANSLUCENT;
+    protected Layer getLayer() {
+        return Layer.TRANSLUCENT;
     }
 
     @Override
