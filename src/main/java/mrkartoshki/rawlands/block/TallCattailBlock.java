@@ -73,8 +73,7 @@ public class TallCattailBlock extends DoublePlantBlock implements SimpleWaterlog
             BlockPos upperPos = pos.above();
             BlockState upperState = level.getBlockState(upperPos);
             if (!upperState.is(this) && (upperState.isAir() || upperState.is(Blocks.WATER))) {
-                boolean upperWaterlogged = level.getFluidState(upperPos).is(FluidTags.WATER);
-                BlockState newUpper = this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER).setValue(WATERLOGGED, upperWaterlogged);
+                BlockState newUpper = this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER).setValue(WATERLOGGED, true);
                 level.setBlock(upperPos, newUpper, 3);
             }
         }
