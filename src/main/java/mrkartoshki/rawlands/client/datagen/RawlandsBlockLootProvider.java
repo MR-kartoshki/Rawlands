@@ -1,7 +1,5 @@
 package mrkartoshki.rawlands.client.datagen;
 
-import java.util.concurrent.CompletableFuture;
-
 import mrkartoshki.rawlands.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
@@ -12,6 +10,8 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+
+import java.util.concurrent.CompletableFuture;
 
 public final class RawlandsBlockLootProvider extends FabricBlockLootSubProvider {
 	public RawlandsBlockLootProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {

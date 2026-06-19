@@ -1,11 +1,11 @@
 package mrkartoshki.rawlands.client.datagen;
 
-import java.util.concurrent.CompletableFuture;
-
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
+
+import java.util.concurrent.CompletableFuture;
 
 public final class RawlandsWorldgenProvider extends FabricDynamicRegistryProvider {
 	public RawlandsWorldgenProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {

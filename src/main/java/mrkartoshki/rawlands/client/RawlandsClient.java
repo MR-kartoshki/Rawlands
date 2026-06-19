@@ -1,6 +1,5 @@
 package mrkartoshki.rawlands.client;
 
-import java.util.List;
 import mrkartoshki.rawlands.block.ModBlocks;
 import mrkartoshki.rawlands.client.particle.BioluminescentAlgaeParticle;
 import mrkartoshki.rawlands.particle.ModParticles;
@@ -8,6 +7,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
 import net.minecraft.client.color.block.BlockTintSources;
+
+import java.util.List;
 
 public class RawlandsClient implements ClientModInitializer {
 	@Override

@@ -1,15 +1,14 @@
 package mrkartoshki.rawlands.client.datagen;
 
-import java.nio.file.Path;
-import java.util.concurrent.CompletableFuture;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+
+import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
 
 public final class RawlandsBiomeTagsProvider implements DataProvider {
 	private final Path isOverworldPath;

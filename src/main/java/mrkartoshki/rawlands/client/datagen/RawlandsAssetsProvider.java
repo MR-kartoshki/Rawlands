@@ -1,6 +1,18 @@
 package mrkartoshki.rawlands.client.datagen;
 
-import java.awt.Color;
+import com.google.common.hash.Hashing;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.Identifier;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,20 +21,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-
-import javax.imageio.ImageIO;
-
-import com.google.common.hash.Hashing;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
-import net.minecraft.resources.Identifier;
 
 public final class RawlandsAssetsProvider implements DataProvider {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();

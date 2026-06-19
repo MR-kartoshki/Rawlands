@@ -9,7 +9,7 @@
 		"RootSystemAzaleaTreeMixin"
 	],
 	"client": [
-		"client.MistCoastFogMixin"
+		"client.AtmosphericFogEnvironmentMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
