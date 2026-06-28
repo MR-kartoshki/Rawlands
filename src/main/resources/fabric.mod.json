@@ -34,12 +34,13 @@
 	"mixins": [
 		"rawlands.mixins.json"
 	],
+	"accessWidener": "rawlands.accesswidener",
 	"breaks": {
 		"clifftree": "<=3.2.1"
 	},
 	"depends": {
 		"fabricloader": ">=0.19.1",
-		"minecraft": "~26.1",
+		"minecraft": "~26.2",
 		"java": ">=25",
 		"fabric-api": "*",
 		"terrablender": "*"

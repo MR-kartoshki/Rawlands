@@ -5,6 +5,7 @@ import mrkartoshki.rawlands.item.ModItems;
 import mrkartoshki.rawlands.sound.ModSounds;
 import mrkartoshki.rawlands.particle.ModParticles;
 import mrkartoshki.rawlands.world.feature.ModFeatures;
+import mrkartoshki.rawlands.world.surface.BiomeKeyRuleSource;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ public class Rawlands implements ModInitializer {
 		ModSounds.init();
 		ModParticles.register();
 		ModFeatures.register();
+		BiomeKeyRuleSource.register();
 		LOGGER.info("Rawlands initializing.");
 	}
 }

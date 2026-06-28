@@ -21,6 +21,8 @@ repositories {
 }
 
 loom {
+	accessWidenerPath = file("src/main/resources/rawlands.accesswidener")
+
 	mods {
 		"rawlands" {
 			sourceSet sourceSets.main
@@ -44,9 +46,9 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	// Also expose Fabric API to the client source set compile classpath (splitEnvironmentSourceSets).
 
-	// TerraBlender — replace the version suffix once the correct artifact for MC 26.1.2 is confirmed
+	// TerraBlender — artifact for MC 26.2
 	// Check: https://maven.minecraftforge.net/com/github/glitchfiend/TerraBlender-fabric/
-	implementation 'com.github.glitchfiend:TerraBlender-fabric:26.1.2-26.1.2.0.1'
+	implementation 'com.github.glitchfiend:TerraBlender-fabric:26.2-26.2.0.0.0'
 }
 
 processResources {
