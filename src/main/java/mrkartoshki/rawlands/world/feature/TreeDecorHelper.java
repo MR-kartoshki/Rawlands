@@ -10,14 +10,19 @@ public class TreeDecorHelper {
     /**
      * Estimates the endpoint of a branch given its origin, unnormalised direction,
      * and step count. Used to position foliage clusters at branch tips.
+     * Adds a small offset to push foliage away from the split point.
      */
     public static BlockPos estimateTip(BlockPos origin, double dx, double dy, double dz, int length) {
         double len = Math.sqrt(dx * dx + dy * dy + dz * dz);
         if (len == 0) return origin;
+        double nx = dx / len;
+        double ny = dy / len;
+        double nz = dz / len;
+        double tipDist = length + 0.5; // Push slightly past the estimated end
         return BlockPos.containing(
-            origin.getX() + 0.5 + (dx / len) * length,
-            origin.getY() + 0.5 + (dy / len) * length,
-            origin.getZ() + 0.5 + (dz / len) * length
+            origin.getX() + 0.5 + nx * tipDist,
+            origin.getY() + 0.5 + ny * tipDist,
+            origin.getZ() + 0.5 + nz * tipDist
         );
     }
 

@@ -37,38 +37,32 @@ public class ModFeatures {
         new ProceduralTreeFeature(
             NoneFeatureConfiguration.CODEC,
             Blocks.OAK_LOG.defaultBlockState(), Blocks.OAK_LEAVES.defaultBlockState(),
-            5, 3, 0.32, 2, 3, 0.0, 0.0
+            5, 3, 0.32, 3, 3, 0.0, 0.0
         );
 
     public static final Feature<NoneFeatureConfiguration> MOSSWOOD_FOREST_OAK_TREE =
         new ProceduralTreeFeature(
             NoneFeatureConfiguration.CODEC,
             Blocks.OAK_LOG.defaultBlockState(), Blocks.OAK_LEAVES.defaultBlockState(),
-            5, 4, 0.32, 3, 3, 0.0, 0.05
+            5, 4, 0.32, 4, 3, 0.0, 0.05
         );
 
     public static final Feature<NoneFeatureConfiguration> OLIVE_TREE =
         new ProceduralTreeFeature(
             NoneFeatureConfiguration.CODEC,
             Blocks.OAK_LOG.defaultBlockState(), ModBlocks.OLIVE_LEAVES.defaultBlockState(),
-            3, 2, 0.5, 3, 2, 0.35, 0.0
+            3, 2, 0.5, 4, 2, 0.35, 0.0
         );
 
     public static final Feature<NoneFeatureConfiguration> OLIVE_TREE_ALT =
         new ProceduralTreeFeature(
             NoneFeatureConfiguration.CODEC,
             Blocks.OAK_LOG.defaultBlockState(), ModBlocks.OLIVE_LEAVES.defaultBlockState(),
-            4, 3, 0.5, 4, 3, 0.4, 0.0
+            4, 3, 0.5, 5, 3, 0.4, 0.0
         );
 
     public static final Feature<NoneFeatureConfiguration> AZALEA_TREE =
-        new ProceduralTreeFeature(
-            NoneFeatureConfiguration.CODEC,
-            Blocks.OAK_LOG.defaultBlockState(),
-            Blocks.AZALEA_LEAVES.defaultBlockState(),
-            Blocks.FLOWERING_AZALEA_LEAVES.defaultBlockState(), 0.3,
-            4, 2, 0.3, 3, 3, 0.1, 0.0
-        );
+        new SmallAzaleaTreeFeature(NoneFeatureConfiguration.CODEC);
 
     public static final Feature<NoneFeatureConfiguration> TALL_AZALEA_TREE =
         new TallAzaleaTreeFeature(NoneFeatureConfiguration.CODEC);
