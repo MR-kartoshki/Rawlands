@@ -30,6 +30,13 @@ public class RawlandsRegion extends Region {
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.MANGROVE_SWAMP,ModBiomes.FLOODED_DELTA);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.WARM_OCEAN,    ModBiomes.CORAL_FOREST);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.STONY_SHORE,   ModBiomes.MIST_COAST);
+            // ALPS takes over vanilla's cold extreme-peak slots. It inherits vanilla's exact
+            // parameter points, which sidesteps the two failure modes a custom addBiome box hit:
+            // losing distance ties against vanilla points (biome never generates), and biome
+            // boundaries decoupled from terrain height (biome flipping partway up a mountain,
+            // or matching mid-air when given a negative depth span).
+            builder.replaceBiome(net.minecraft.world.level.biome.Biomes.JAGGED_PEAKS,  ModBiomes.ALPS);
+            builder.replaceBiome(net.minecraft.world.level.biome.Biomes.FROZEN_PEAKS,  ModBiomes.ALPS);
         });
 
         // Continentalness
@@ -144,12 +151,15 @@ public class RawlandsRegion extends Region {
             coolTemp, wetHumid, highBand, hillErosion, surface, fullWeird, 0.0f
         ), ModBiomes.SUBALPINE_MEADOW);
 
-        // ALPINE_FOREST — cold elevated terrain, any humidity, peaks + hills, upper-temperate to high continentalness
+        // ALPINE_FOREST — cold elevated terrain, any humidity, hills and moderate peaks,
+        // upper-temperate to high continentalness. The deepest erosion band (-1.0 to -0.6)
+        // is left to ALPS so the two boxes stay disjoint (ties in the nearest-point climate
+        // search are unpredictable).
         addBiome(mapper, Climate.parameters(
             Climate.Parameter.span(-1.0f, -0.45f),  // cold (slightly looser than coldTemp)
             Climate.Parameter.span(-0.5f,  0.55f),  // dry-to-wet (was moderateHumid only)
             Climate.Parameter.span( 0.4f,  1.0f),   // upper temperate + high (was highBand only)
-            Climate.Parameter.span(-1.0f, -0.1f),   // peaks + hills (was peakErosion only)
+            Climate.Parameter.span(-0.6f, -0.1f),   // hills + moderate peaks (deepest band ceded to ALPS)
             surface, fullWeird, 0.0f
         ), ModBiomes.ALPINE_FOREST);
 
@@ -189,5 +199,10 @@ public class RawlandsRegion extends Region {
         addBiome(mapper, Climate.parameters(
             mildTemp, dryHumid, lowlandBand, plainsErosion, surface, fullWeird, 0.0f
         ), ModBiomes.PRAIRIE);
+
+        // ALPS is placed via replaceBiome(JAGGED_PEAKS / FROZEN_PEAKS) above, not a custom
+        // climate box — see the comment there. Its asymmetric cliff/moss terrain shape is
+        // applied by rawlands:alps/gated_shape (data/rawlands/worldgen/density_function/alps/),
+        // whose climate gate covers the vanilla peak-biome climate (deep erosion, inland).
     }
 }

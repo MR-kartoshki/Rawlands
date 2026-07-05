@@ -7,6 +7,7 @@ import mrkartoshki.rawlands.world.surface.BiomeKeyRuleSource;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 import terrablender.api.TerraBlenderApi;
@@ -117,6 +118,28 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.SNOW_BLOCK.defaultBlockState())),
                                         SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.PACKED_ICE.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState()))
+                                )
+                        ),
+                        // ALPS — bare stone on the sheer cliff faces (steep check), permanent
+                        // snow/packed-ice cap above the snowline, moss-covered gentle slopes below
+                        new BiomeKeyRuleSource(ModBiomes.ALPS,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.steep(),
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(190), 1),
+                                                SurfaceRules.sequence(
+                                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                                SurfaceRules.state(Blocks.SNOW_BLOCK.defaultBlockState())),
+                                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                                SurfaceRules.state(Blocks.PACKED_ICE.defaultBlockState()))
+                                                )
+                                        ),
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.MOSS_BLOCK.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.DIRT.defaultBlockState())),
                                         SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )

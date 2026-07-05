@@ -1,0 +1,10 @@
+{
+  "type": "rawlands:directional_ridge",
+  "ridge_noise": "rawlands:alps_ridge",
+  "xz_scale": 1.0,
+  "steep_width": 0.12,
+  "gentle_width": 0.7,
+  "amplitude": 0.55,
+  "basin_width": 0.25,
+  "basin_depth": 0.1
+}

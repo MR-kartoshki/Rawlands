@@ -4,6 +4,7 @@ import mrkartoshki.rawlands.block.ModBlocks;
 import mrkartoshki.rawlands.item.ModItems;
 import mrkartoshki.rawlands.sound.ModSounds;
 import mrkartoshki.rawlands.particle.ModParticles;
+import mrkartoshki.rawlands.world.densityfunction.RawlandsDensityFunctionTypes;
 import mrkartoshki.rawlands.world.feature.ModFeatures;
 import mrkartoshki.rawlands.world.surface.BiomeKeyRuleSource;
 import net.fabricmc.api.ModInitializer;
@@ -24,6 +25,7 @@ public class Rawlands implements ModInitializer {
 		ModParticles.register();
 		ModFeatures.register();
 		BiomeKeyRuleSource.register();
+		RawlandsDensityFunctionTypes.register();
 		LOGGER.info("Rawlands initializing.");
 	}
 }
