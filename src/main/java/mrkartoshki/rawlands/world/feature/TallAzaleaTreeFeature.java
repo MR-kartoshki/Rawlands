@@ -79,9 +79,9 @@ public class TallAzaleaTreeFeature extends Feature<NoneFeatureConfiguration> {
                     double bz = Math.sin(angle) * (0.5 + random.nextDouble() * 0.5);
                     int branchLen = 2 + random.nextInt(3);
                     TreeBranchHelper.generateBranch(level, random, OAK_LOG, pos, bx, by, bz, branchLen, 1);
-                    placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, estimateTip(pos, bx, by, bz, branchLen), 2);
+                    placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, estimateTip(pos, bx, by, bz, branchLen), 3);
                 }
-                placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, pos.above(), 2);
+                placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, pos.above(), 3);
             }
         });
 
@@ -141,9 +141,9 @@ public class TallAzaleaTreeFeature extends Feature<NoneFeatureConfiguration> {
                     double bz2 = (random.nextDouble() - 0.5) * 1.5;
                     int branchLen = 1 + random.nextInt(3);
                     TreeBranchHelper.generateBranch(level, random, OAK_LOG, pos, bx, by, bz2, branchLen, 2);
-                    placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, estimateTip(pos, bx, by, bz2, branchLen), 1);
+                    placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, estimateTip(pos, bx, by, bz2, branchLen), 2);
                 }
-                placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, pos.above(), 1);
+                placeFoliageCluster(level, random, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 0.35f, pos.above(), 2);
             }
 
             px += dx;
