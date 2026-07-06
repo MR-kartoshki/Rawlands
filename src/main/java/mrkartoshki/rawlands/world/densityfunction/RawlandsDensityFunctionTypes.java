@@ -19,6 +19,7 @@ public final class RawlandsDensityFunctionTypes {
 
     public static void register() {
         register("climate_gate", ClimateGateDensityFunction.DATA_CODEC);
+        register("biome_gate", BiomeGateDensityFunction.DATA_CODEC);
         register("directional_ridge", DirectionalRidgeDensityFunction.DATA_CODEC);
     }
 

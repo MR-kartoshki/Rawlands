@@ -1,18 +1,8 @@
 {
-  "type": "rawlands:climate_gate",
+  "type": "rawlands:biome_gate",
   "input": "rawlands:alps/asymmetric_ridge",
-  "gates": [
-    {
-      "argument": "minecraft:overworld/continents",
-      "min": 0.0,
-      "max": 2.0,
-      "margin": 0.1
-    },
-    {
-      "argument": "minecraft:overworld/erosion",
-      "min": -2.0,
-      "max": -0.35,
-      "margin": 0.1
-    }
-  ]
+  "biomes": [
+    "rawlands:alps"
+  ],
+  "blur_radius": 2
 }

@@ -4,10 +4,15 @@ import mrkartoshki.rawlands.block.ModBlocks;
 import mrkartoshki.rawlands.item.ModItems;
 import mrkartoshki.rawlands.sound.ModSounds;
 import mrkartoshki.rawlands.particle.ModParticles;
+import mrkartoshki.rawlands.world.densityfunction.BiomeGateDensityFunction;
 import mrkartoshki.rawlands.world.densityfunction.RawlandsDensityFunctionTypes;
 import mrkartoshki.rawlands.world.feature.ModFeatures;
 import mrkartoshki.rawlands.world.surface.BiomeKeyRuleSource;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.levelgen.DensityFunctions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +31,30 @@ public class Rawlands implements ModInitializer {
 		ModFeatures.register();
 		BiomeKeyRuleSource.register();
 		RawlandsDensityFunctionTypes.register();
+
+		// Capture the overworld's biome source + a depth-zeroed climate sampler so
+		// rawlands:biome_gate density functions can resolve the surface biome per column.
+		// Depth must be zeroed because the real sampler's depth includes the offset graph,
+		// which contains the biome gate itself (see BiomeGateDensityFunction).
+		ServerLevelEvents.LOAD.register((server, world) -> {
+			if (world.dimension() == Level.OVERWORLD) {
+				Climate.Sampler real = world.getChunkSource().randomState().sampler();
+				BiomeGateDensityFunction.setContext(
+					world.getChunkSource().getGenerator().getBiomeSource(),
+					new Climate.Sampler(
+						real.temperature(), real.humidity(), real.continentalness(),
+						real.erosion(), DensityFunctions.zero(), real.weirdness(),
+						real.spawnTarget()
+					)
+				);
+			}
+		});
+		ServerLevelEvents.UNLOAD.register((server, world) -> {
+			if (world.dimension() == Level.OVERWORLD) {
+				BiomeGateDensityFunction.clearContext();
+			}
+		});
+
 		LOGGER.info("Rawlands initializing.");
 	}
 }
