@@ -1,0 +1,12 @@
+{
+  "type": "rawlands:biome_gate",
+  "input": {
+    "type": "minecraft:add",
+    "argument1": -0.15,
+    "argument2": "rawlands:fjords/asymmetric_ridge"
+  },
+  "biomes": [
+    "rawlands:fjords"
+  ],
+  "blur_radius": 3
+}

@@ -32,10 +32,14 @@ public class Rawlands implements ModInitializer {
 		BiomeKeyRuleSource.register();
 		RawlandsDensityFunctionTypes.register();
 
-		// Capture the overworld's biome source + a depth-zeroed climate sampler so
+		// Capture the overworld's biome source + a constant-depth climate sampler so
 		// rawlands:biome_gate density functions can resolve the surface biome per column.
-		// Depth must be zeroed because the real sampler's depth includes the offset graph,
-		// which contains the biome gate itself (see BiomeGateDensityFunction).
+		// Depth must be a constant because the real sampler's depth includes the offset graph,
+		// which contains the biome gate itself (see BiomeGateDensityFunction). The value is
+		// pinned INSIDE the strict-win depth span used by gated biomes (see strictWinDepth in
+		// RawlandsRegion) so every gate query is a strict — deterministic — win over vanilla's
+		// depth-0 parameter points. If that span or this constant ever change, they must move
+		// together: the constant has to stay inside the span.
 		ServerLevelEvents.LOAD.register((server, world) -> {
 			if (world.dimension() == Level.OVERWORLD) {
 				Climate.Sampler real = world.getChunkSource().randomState().sampler();
@@ -43,7 +47,7 @@ public class Rawlands implements ModInitializer {
 					world.getChunkSource().getGenerator().getBiomeSource(),
 					new Climate.Sampler(
 						real.temperature(), real.humidity(), real.continentalness(),
-						real.erosion(), DensityFunctions.zero(), real.weirdness(),
+						real.erosion(), DensityFunctions.constant(0.03), real.weirdness(),
 						real.spawnTarget()
 					)
 				);

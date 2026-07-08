@@ -1,0 +1,10 @@
+{
+  "type": "rawlands:directional_ridge",
+  "ridge_noise": "rawlands:fjord_ridge",
+  "xz_scale": 1.0,
+  "steep_width": 0.15,
+  "gentle_width": 0.7,
+  "amplitude": 0.4,
+  "basin_width": 0.0,
+  "basin_depth": 0.0
+}

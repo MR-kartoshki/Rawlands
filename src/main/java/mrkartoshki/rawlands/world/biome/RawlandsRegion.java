@@ -177,9 +177,10 @@ public class RawlandsRegion extends Region {
             surface, fullWeird, 0.0f
         ), ModBiomes.GLACIAL_FLATS);
 
-        // AMBER_STEPPE — hot dry inland steppe, flat-to-rolling, wider temp and humidity ranges
+        // AMBER_STEPPE — hot dry inland steppe, flat-to-rolling, wider temp and humidity ranges.
+        // Temp capped at 0.8: the scalding band above is ceded to DUNE_SEA.
         addBiome(mapper, Climate.parameters(
-            Climate.Parameter.span( 0.4f,  0.9f),   // warm-to-very-hot (was hotTemp 0.55-0.8 only)
+            Climate.Parameter.span( 0.4f,  0.8f),   // warm-to-hot (scalding ceded to DUNE_SEA)
             Climate.Parameter.span(-1.0f, -0.05f),  // bone-dry to nearly moderate (was aridHumid -1.0 to -0.35 only)
             Climate.Parameter.span(-0.15f,  0.7f),  // lowland to upper temperate (was temperateBand 0.25-0.65 only)
             Climate.Parameter.span( 0.1f,  0.65f),  // gentle slopes to flat plains (was rollErosion 0.2-0.5 only)
@@ -199,6 +200,69 @@ public class RawlandsRegion extends Region {
         addBiome(mapper, Climate.parameters(
             mildTemp, dryHumid, lowlandBand, plainsErosion, surface, fullWeird, 0.0f
         ), ModBiomes.PRAIRIE);
+
+        // Depth span used by the custom-shaped/gated biomes below instead of the usual
+        // surface point(0). Two constraints have to be satisfied simultaneously:
+        //
+        //  1. STRICT WIN at surface: everywhere inside an addBiome box the climate search
+        //     would otherwise tie at distance 0 with one of the copied vanilla points
+        //     (they tile the whole space, all pinned at depth point 0). Vanilla's
+        //     Climate.RTree breaks exact ties via a ThreadLocal "last result" — i.e. by
+        //     worker-thread history — which is non-deterministic across chunk generations.
+        //     The biome_gate density function re-queries biomes while shaping terrain, so
+        //     tie flicker showed up as broken, corruption-looking chunks at chunk borders.
+        //  2. NO BIOME IN AIR: the biome must NOT win in air columns above its own
+        //     terrain. Climate depth goes negative for Y above the terrain baseline, so a
+        //     span that extends into negative depth (e.g. our earlier span(-0.3, 0.1))
+        //     matches sky columns and paints the biome into empty air.
+        //
+        // A strictly-positive narrow span solves both: near surface (real depth ~ +0.02)
+        // it strict-wins against vanilla's depth-0 points; above the baseline (real depth
+        // negative) it is FARTHER from the query than vanilla's depth 0, so vanilla wins;
+        // and it is narrow enough not to trespass on vanilla's cave-biome depth region
+        // (~0.2-0.9), which retains cave biomes underground.
+        //
+        // The gate sampler's constant depth in Rawlands.java is set inside this span for
+        // the same strict-win reason. ALPS doesn't need any of this: replaceBiome inherits
+        // vanilla's own parameter points, which are unique and tie-free.
+        final Climate.Parameter strictWinDepth = Climate.Parameter.span(0.005f, 0.05f);
+
+        // FUNGI_FOREST — mild + soaking humid lowland with gentle terrain. Deliberately disjoint
+        // from its wet neighbours: TEMPERATE_RAINFOREST/MOSSWOOD sit in the temperate cont band
+        // with slope erosion, MONSOON_FOREST starts at temp 0.4, FLOODED_DELTA is coastal.
+        addBiome(mapper, Climate.parameters(
+            Climate.Parameter.span( 0.0f,  0.35f),  // mild to mildly-warm
+            Climate.Parameter.span( 0.55f, 1.0f),   // soaking
+            Climate.Parameter.span(-0.15f, 0.3f),   // lowland
+            Climate.Parameter.span( 0.2f,  0.75f),  // rolling to flat plains
+            strictWinDepth, fullWeird, 0.0f
+        ), ModBiomes.FUNGI_FOREST);
+
+        // DUNE_SEA — scalding arid inland erg. Interior-disjoint from its hot neighbours:
+        // SALT_FLAT sits in the coastal-lowland cont band (-0.15..0.25), AMBER_STEPPE caps at
+        // temp 0.8 (band ceded above), MEDITERRANEAN_SCRUBLAND is moderate-humidity. The
+        // asymmetric dune shape (gentle windward slope, steep slip face) is applied by
+        // rawlands:dune_sea/gated_shape via the biome_gate density function.
+        addBiome(mapper, Climate.parameters(
+            Climate.Parameter.span( 0.8f,  1.0f),   // scalding
+            Climate.Parameter.span(-1.0f, -0.35f),  // arid
+            Climate.Parameter.span( 0.25f,  0.7f),  // inland (SALT_FLAT owns the lowland band)
+            Climate.Parameter.span( 0.2f,  0.75f),  // rolling to flat — dunes supply the relief
+            strictWinDepth, fullWeird, 0.0f
+        ), ModBiomes.DUNE_SEA);
+
+        // FJORDS — cold rainy coast. The drowned-channel + steep-wall terrain is applied by
+        // rawlands:fjords/gated_shape via biome_gate (a -0.15 base offset carves navigable
+        // channels below sea level; the asymmetric ridge raises the walls through it).
+        // Disjoint from GLACIAL_FLATS by erosion (it starts at 0.35) and from FLOODED_DELTA /
+        // CORAL_FOREST by temperature.
+        addBiome(mapper, Climate.parameters(
+            Climate.Parameter.span(-1.0f, -0.4f),   // cold
+            Climate.Parameter.span( 0.0f,  1.0f),   // moderate-to-soaking (rainy coast)
+            Climate.Parameter.span(-0.55f, -0.1f),  // coastal
+            Climate.Parameter.span(-0.5f,  0.3f),   // hills to gentle — walls come from our shape
+            strictWinDepth, fullWeird, 0.0f
+        ), ModBiomes.FJORDS);
 
         // ALPS is placed via replaceBiome(JAGGED_PEAKS / FROZEN_PEAKS) above, not a custom
         // climate box — see the comment there. Its asymmetric cliff/moss terrain shape is

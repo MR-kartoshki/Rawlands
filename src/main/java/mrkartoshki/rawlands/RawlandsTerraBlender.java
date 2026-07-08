@@ -122,6 +122,28 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )
                         ),
+                        // FJORDS — bare stone walls (steep check), gravel channel floors under
+                        // water; land tops fall through to vanilla grass
+                        new BiomeKeyRuleSource(ModBiomes.FJORDS,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.steep(),
+                                                SurfaceRules.state(Blocks.STONE.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0),
+                                                        SurfaceRules.state(Blocks.GRAVEL.defaultBlockState())))
+                                )
+                        ),
+                        // DUNE_SEA — deep sand over sandstone
+                        new BiomeKeyRuleSource(ModBiomes.DUNE_SEA,
+                                SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                SurfaceRules.state(Blocks.SAND.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.SAND.defaultBlockState())),
+                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
+                                                SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState()))
+                                )
+                        ),
                         // ALPS — bare stone on the sheer cliff faces (steep check), permanent
                         // snow/packed-ice cap above the snowline, moss-covered gentle slopes below
                         new BiomeKeyRuleSource(ModBiomes.ALPS,

@@ -1,0 +1,8 @@
+{
+  "type": "rawlands:biome_gate",
+  "input": "rawlands:dune_sea/asymmetric_dune",
+  "biomes": [
+    "rawlands:dune_sea"
+  ],
+  "blur_radius": 2
+}

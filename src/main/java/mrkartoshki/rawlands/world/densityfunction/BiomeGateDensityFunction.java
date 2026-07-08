@@ -24,11 +24,18 @@ import java.util.List;
  * {@code blurRadius * 8} blocks).
  *
  * <p>Terrain density functions cannot see biome identity (their context is only x/y/z), so this
- * works by querying the overworld's biome source directly with a <em>depth-zeroed</em> climate
- * sampler — the column's surface biome. Zeroing depth is what breaks the circular dependency:
+ * works by querying the overworld's biome source directly with a <em>constant-depth</em> climate
+ * sampler — the column's surface biome. A constant depth is what breaks the circular dependency:
  * the real sampler's depth includes {@code offset}, which contains this very function. All other
  * climate parameters (temperature, humidity, continentalness, erosion, weirdness) are 2D and
  * never reference {@code offset}, so they are used as-is from the real wired router.
+ *
+ * <p><b>Determinism requirement:</b> gated biomes placed via {@code addBiome} must use a depth
+ * <em>span</em> straddling the sampler's constant (see {@code strictWinDepth} in
+ * {@code RawlandsRegion}) so every lookup is a strict nearest-point win. Exact distance ties are
+ * broken by a ThreadLocal in {@code Climate.RTree} — i.e. by worker-thread history — and a gate
+ * built on tied lookups returns different masks for the same column on different threads, which
+ * manifests as corrupted-looking chunk seams in the shaped terrain.
  * TerraBlender's region dispatch is positional (its uniqueness comes from block coordinates via
  * its {@code Climate.ParameterList} mixin, not from the sampler), so region resolution stays
  * correct with the replacement sampler.

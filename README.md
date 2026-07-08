@@ -28,6 +28,10 @@ This mod adds several new biomes to the game along with new blocks and features.
 - Monsoon Forest
 - Amber Steppe
 - Glacial Flats
+- The Alps
+- Fungi Forest
+- Fjords
+- Dune Sea
 
 </details>
 
@@ -88,7 +92,7 @@ Feature order cycle errors have been seen when used together with this version o
 
 | Dependency    | Version  |
 |---------------|----------|
-| Minecraft     | 26.1.x   |
+| Minecraft     | 26.2     |
 | Java          | 25+      |
 | Fabric Loader | 0.19.2+  |
 | Fabric API    | 0.149.0+ |
