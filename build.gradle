@@ -48,7 +48,7 @@ dependencies {
 
 	// TerraBlender — artifact for MC 26.2
 	// Check: https://maven.minecraftforge.net/com/github/glitchfiend/TerraBlender-fabric/
-	implementation 'com.github.glitchfiend:TerraBlender-fabric:26.2-26.2.0.0.0'
+	implementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
 }
 
 processResources {

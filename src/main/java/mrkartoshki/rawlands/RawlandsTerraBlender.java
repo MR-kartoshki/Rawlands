@@ -22,10 +22,14 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                 )
         );
 
+        // 26.2.0.0.2: addSurfaceRules now takes a SurfaceRuleManager.RuleBuilder
+        // (Function<HolderGetter<Biome>, RuleSource>) so it can construct rules that need a
+        // biome registry lookup. Our rules dispatch on ResourceKey via BiomeKeyRuleSource and
+        // never touch the HolderGetter, so the lambda just ignores its argument.
         SurfaceRuleManager.addSurfaceRules(
                 SurfaceRuleManager.RuleCategory.OVERWORLD,
                 Rawlands.MOD_ID,
-                SurfaceRules.sequence(
+                biomes -> SurfaceRules.sequence(
                         // SALT_FLAT — coarse salt surface
                         new BiomeKeyRuleSource(ModBiomes.SALT_FLAT,
                                 SurfaceRules.sequence(
