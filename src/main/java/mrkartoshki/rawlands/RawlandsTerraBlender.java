@@ -30,14 +30,15 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                 SurfaceRuleManager.RuleCategory.OVERWORLD,
                 Rawlands.MOD_ID,
                 biomes -> SurfaceRules.sequence(
-                        // SALT_FLAT — coarse salt surface
+                        // SALT_FLAT — coarse salt on top, thin salt layer below, then vanilla
+                        // stone. DEEP_UNDER_FLOOR is intentionally omitted: cave carvers dig
+                        // through the pre-painted surface layer, so any salt painted deep would
+                        // be exposed on cave walls. Two blocks of salt is enough for the visual.
                         new BiomeKeyRuleSource(ModBiomes.SALT_FLAT,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                                                 SurfaceRules.state(ModBlocks.SALT_BLOCK.defaultBlockState())),
                                         SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
-                                                SurfaceRules.state(ModBlocks.SALT_BLOCK.defaultBlockState())),
-                                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                                                 SurfaceRules.state(ModBlocks.SALT_BLOCK.defaultBlockState()))
                                 )
                         ),

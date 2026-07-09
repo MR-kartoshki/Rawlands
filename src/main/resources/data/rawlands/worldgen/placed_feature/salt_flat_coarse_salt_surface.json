@@ -1,5 +1,5 @@
 {
-  "feature": "rawlands:salt_block_surface_patch",
+  "feature": "rawlands:coarse_salt_surface_patch",
   "placement": [
     {
       "type": "minecraft:count",

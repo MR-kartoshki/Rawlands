@@ -227,6 +227,15 @@ public class RawlandsRegion extends Region {
         // vanilla's own parameter points, which are unique and tie-free.
         final Climate.Parameter strictWinDepth = Climate.Parameter.span(0.005f, 0.05f);
 
+        // Tighter strict-win depth for surface-only biomes (Dune Sea, Fungi Forest). With the
+        // shared span (0.005, 0.05) they stayed the nearest match against vanilla cave biomes
+        // (DRIPSTONE_CAVES depth ~ (0.2, 0.9)) down to depth ≈ 0.125, i.e. ~10 blocks below the
+        // surface, so the biome name (and its features) reached into caves. Capping the max at
+        // 0.02 moves the crossover with the cave biomes up close to the true surface, handing
+        // shallow caves back to the vanilla cave biomes. Fjords keeps the wider span because
+        // it needs to cover the water column down into deep channels its own shape carves.
+        final Climate.Parameter surfaceOnlyDepth = Climate.Parameter.span(0.005f, 0.02f);
+
         // FUNGI_FOREST — mild + soaking humid lowland with gentle terrain. Deliberately disjoint
         // from its wet neighbours: TEMPERATE_RAINFOREST/MOSSWOOD sit in the temperate cont band
         // with slope erosion, MONSOON_FOREST starts at temp 0.4, FLOODED_DELTA is coastal.
@@ -235,7 +244,7 @@ public class RawlandsRegion extends Region {
             Climate.Parameter.span( 0.55f, 1.0f),   // soaking
             Climate.Parameter.span(-0.15f, 0.3f),   // lowland
             Climate.Parameter.span( 0.2f,  0.75f),  // rolling to flat plains
-            strictWinDepth, fullWeird, 0.0f
+            surfaceOnlyDepth, fullWeird, 0.0f
         ), ModBiomes.FUNGI_FOREST);
 
         // DUNE_SEA — scalding arid inland erg. Interior-disjoint from its hot neighbours:
@@ -248,7 +257,7 @@ public class RawlandsRegion extends Region {
             Climate.Parameter.span(-1.0f, -0.35f),  // arid
             Climate.Parameter.span( 0.25f,  0.7f),  // inland (SALT_FLAT owns the lowland band)
             Climate.Parameter.span( 0.2f,  0.75f),  // rolling to flat — dunes supply the relief
-            strictWinDepth, fullWeird, 0.0f
+            surfaceOnlyDepth, fullWeird, 0.0f
         ), ModBiomes.DUNE_SEA);
 
         // FJORDS — cold rainy coast. The drowned-channel + steep-wall terrain is applied by

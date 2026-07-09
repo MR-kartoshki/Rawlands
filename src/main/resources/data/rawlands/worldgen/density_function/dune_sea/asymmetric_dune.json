@@ -2,9 +2,9 @@
   "type": "rawlands:directional_ridge",
   "ridge_noise": "rawlands:dune_ridge",
   "xz_scale": 1.0,
-  "steep_width": 0.4,
-  "gentle_width": 1.0,
-  "amplitude": 0.1,
-  "basin_width": 0.3,
-  "basin_depth": 0.05
+  "steep_width": 0.3,
+  "gentle_width": 0.8,
+  "amplitude": 0.06,
+  "basin_width": 0.25,
+  "basin_depth": 0.03
 }

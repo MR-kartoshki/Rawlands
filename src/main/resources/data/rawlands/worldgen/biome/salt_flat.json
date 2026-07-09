@@ -38,7 +38,7 @@
       "minecraft:amethyst_geode",
       "rawlands:salt_flat_surface",
       "rawlands:salt_flat_fine_salt_surface",
-      "rawlands:salt_flat_salt_block_surface"
+      "rawlands:salt_flat_coarse_salt_surface"
     ],
     [
       "minecraft:fossil_upper",
@@ -77,7 +77,7 @@
       "minecraft:disk_sand",
       "minecraft:disk_clay",
       "minecraft:disk_gravel",
-      "rawlands:salt_flat_coarse_salt"
+      "rawlands:salt_flat_salt_block_ore"
     ],
     [],
     [
