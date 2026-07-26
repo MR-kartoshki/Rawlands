@@ -11,6 +11,7 @@
       }
     },
     "minecraft:visual/sky_color": 2763344,
+    "minecraft:visual/fog_color": "#101020",
     "minecraft:visual/water_fog_color": "#1e1c15",
     "minecraft:audio/ambient_sounds": {
       "mood": {

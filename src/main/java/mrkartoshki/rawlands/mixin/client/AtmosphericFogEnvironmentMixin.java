@@ -31,7 +31,7 @@ public abstract class AtmosphericFogEnvironmentMixin {
     @Inject(method = "setupFog", at = @At("TAIL"))
     public void setupFog(FogData fd, Camera c, ClientLevel cl, float f, DeltaTracker d, CallbackInfo ci) {
         t++;
-        biomeFog(ModBiomes.DEAD_FOREST, c, fd, cl, 10,10, null, null,null);
+        biomeFog(ModBiomes.DEAD_FOREST, c, fd, cl, 20,30, 60, 100,false);
         biomeFog(ModBiomes.MIST_COAST, c, fd, cl, 10,20, 60, 90, false);
     }
 
