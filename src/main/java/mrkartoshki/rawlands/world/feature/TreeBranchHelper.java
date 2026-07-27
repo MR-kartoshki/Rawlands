@@ -14,12 +14,38 @@ public class TreeBranchHelper {
     private static final int MAX_BRANCH_DEPTH = 4;
 
     public static boolean canReplace(WorldGenLevel level, BlockPos pos) {
+        return isReplaceable(level.getBlockState(pos));
+    }
+
+    /**
+     * Same check as {@link #canReplace}, but also accepts existing logs. Feature clearance
+     * loops need this OR (a candidate trunk column may already overlap another tree's log),
+     * and every call site used to spell it as {@code !canReplace(level, pos) &&
+     * !level.getBlockState(pos).is(BlockTags.LOGS)}, which fetches the block state twice per
+     * position. This single-fetch version halves the block-state reads in that hot path,
+     * which runs on every placement attempt, including the far more common failed ones.
+     */
+    public static boolean canReplaceOrIsLog(WorldGenLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
+        return isReplaceable(state) || state.is(BlockTags.LOGS);
+    }
+
+    private static boolean isReplaceable(BlockState state) {
         return state.isAir()
             || state.is(BlockTags.LEAVES)
             || state.is(BlockTags.REPLACEABLE_BY_TREES)
             || state.is(Blocks.WATER)
             || state.is(Blocks.VINE);
+    }
+
+    /**
+     * True for any dirt-family block a tree can root in. {@code minecraft:dirt} no longer
+     * covers grass/podzol/mycelium on its own — those were split out into
+     * {@code minecraft:grass_blocks} — so callers need both tags to match what used to be a
+     * single check.
+     */
+    public static boolean isDirtLike(BlockState state) {
+        return state.is(BlockTags.DIRT) || state.is(BlockTags.GRASS_BLOCKS);
     }
 
     public static void placeLog(WorldGenLevel level, BlockPos pos, BlockState logState, Direction.Axis axis) {
@@ -138,7 +164,7 @@ public class TreeBranchHelper {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             if (random.nextFloat() < 0.6f) {
                 BlockPos flarePos = origin.relative(dir);
-                if (level.getBlockState(flarePos).is(BlockTags.DIRT) || canReplace(level, flarePos)) {
+                if (isDirtLike(level.getBlockState(flarePos)) || canReplace(level, flarePos)) {
                     placeLog(level, flarePos, logState, Direction.Axis.Y);
                 }
             }
@@ -165,7 +191,7 @@ public class TreeBranchHelper {
         for (int[] off : flareOffsets) {
             if (random.nextFloat() < 0.55f) {
                 BlockPos flarePos = origin.offset(off[0], 0, off[1]);
-                if (level.getBlockState(flarePos).is(BlockTags.DIRT) || canReplace(level, flarePos)) {
+                if (isDirtLike(level.getBlockState(flarePos)) || canReplace(level, flarePos)) {
                     placeLog(level, flarePos, logState, Direction.Axis.Y);
                 }
             }
@@ -272,7 +298,7 @@ public class TreeBranchHelper {
             BlockPos rootStart = base.below().relative(dir);
 
             for (int seg = 0; seg < 1 + random.nextInt(3); seg++) {
-                if (level.getBlockState(rootStart).is(BlockTags.DIRT)) {
+                if (isDirtLike(level.getBlockState(rootStart))) {
                     placeLog(level, rootStart, logState, dir.getAxis());
                     rootStart = rootStart.relative(dir);
                     if (random.nextFloat() < 0.3f) {
@@ -298,7 +324,7 @@ public class TreeBranchHelper {
             );
 
             for (int seg = 0; seg < 2 + random.nextInt(3); seg++) {
-                if (level.getBlockState(rootStart).is(BlockTags.DIRT)) {
+                if (isDirtLike(level.getBlockState(rootStart))) {
                     placeLog(level, rootStart, logState, dir.getAxis());
                     rootStart = rootStart.relative(dir);
                     if (random.nextFloat() < 0.3f) {

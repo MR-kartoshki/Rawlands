@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rawlands:sequoia_log",
+    "rawlands:sequoia_wood",
+    "rawlands:stripped_sequoia_log",
+    "rawlands:stripped_sequoia_wood"
+  ]
+}

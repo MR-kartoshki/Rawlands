@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "block": "rawlands:sequoia_slab",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "type": "double"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "rawlands:sequoia_slab"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "rawlands:blocks/sequoia_slab"
+}

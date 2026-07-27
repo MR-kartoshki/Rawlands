@@ -70,6 +70,9 @@ public class ModFeatures {
     public static final Feature<NoneFeatureConfiguration> GIANT_MUSHROOM =
         new GiantMushroomFeature(NoneFeatureConfiguration.CODEC);
 
+    public static final Feature<NoneFeatureConfiguration> SEQUOIA_TREE =
+        new SequoiaTreeFeature(NoneFeatureConfiguration.CODEC);
+
     public static void register() {
         Registry.register(
             BuiltInRegistries.FEATURE,
@@ -140,6 +143,11 @@ public class ModFeatures {
             BuiltInRegistries.FEATURE,
             Identifier.fromNamespaceAndPath(Rawlands.MOD_ID, "giant_mushroom"),
             GIANT_MUSHROOM
+        );
+        Registry.register(
+            BuiltInRegistries.FEATURE,
+            Identifier.fromNamespaceAndPath(Rawlands.MOD_ID, "sequoia_tree"),
+            SEQUOIA_TREE
         );
     }
 }

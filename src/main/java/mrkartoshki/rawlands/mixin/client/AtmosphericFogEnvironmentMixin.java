@@ -35,6 +35,7 @@ public abstract class AtmosphericFogEnvironmentMixin {
         biomeFog(ModBiomes.MIST_COAST, c, fd, cl, 10,20, 60, 90, false);
         biomeFog(ModBiomes.ALPS, c, fd, cl, 15,50, 140, 200, false);
         biomeFog(ModBiomes.FJORDS, c, fd, cl, 12,30, 55, 95, false);
+        biomeFog(ModBiomes.SEQUOIA_FOREST, c, fd, cl, 12,25, 40, 100, false);
     }
 
     /**

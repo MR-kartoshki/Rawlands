@@ -45,7 +45,7 @@ public class TallAzaleaTreeFeature extends Feature<NoneFeatureConfiguration> {
 
         for (int y = 0; y < mainHeight; y++) {
             BlockPos check = origin.above(y);
-            if (!TreeBranchHelper.canReplace(level, check) && !level.getBlockState(check).is(BlockTags.LOGS)) {
+            if (!TreeBranchHelper.canReplaceOrIsLog(level, check)) {
                 return false;
             }
         }

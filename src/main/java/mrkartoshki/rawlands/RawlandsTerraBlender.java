@@ -182,6 +182,21 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                         SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
+                        ),
+                        // SEQUOIA_FOREST — podzol forest floor (needle litter under the redwood canopy), dirt
+                        // beneath. Gated on abovePreliminarySurface() so this only paints the true generated
+                        // surface, not every exposed cave floor/wall within the biome's underground extent.
+                        // ON_FLOOR/UNDER_FLOOR fire for any solid-to-air transition, including caves; without
+                        // this gate, cave floors under Sequoia Forest get coated in podzol/dirt instead of stone.
+                        new BiomeKeyRuleSource(ModBiomes.SEQUOIA_FOREST,
+                                SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
+                                        SurfaceRules.sequence(
+                                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+                                                        SurfaceRules.state(Blocks.PODZOL.defaultBlockState())),
+                                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,
+                                                        SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
+                                        )
+                                )
                         )
                 )
         );

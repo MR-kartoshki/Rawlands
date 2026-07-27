@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.tags.BlockTags;
 
 public class DeadDarkOakFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -25,7 +24,7 @@ public class DeadDarkOakFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         BlockPos origin = context.origin();
 
-        if (!level.getBlockState(origin.below()).is(BlockTags.DIRT)) {
+        if (!TreeBranchHelper.isDirtLike(level.getBlockState(origin.below()))) {
             return false;
         }
 
@@ -36,7 +35,7 @@ public class DeadDarkOakFeature extends Feature<NoneFeatureConfiguration> {
 
         for (int y = 0; y < mainHeight; y++) {
             BlockPos check = origin.above(y);
-            if (!TreeBranchHelper.canReplace(level, check) && !level.getBlockState(check).is(BlockTags.LOGS)) {
+            if (!TreeBranchHelper.canReplaceOrIsLog(level, check)) {
                 return false;
             }
         }

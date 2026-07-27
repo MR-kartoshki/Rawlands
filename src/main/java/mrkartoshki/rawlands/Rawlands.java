@@ -1,6 +1,7 @@
 package mrkartoshki.rawlands;
 
 import mrkartoshki.rawlands.block.ModBlocks;
+import mrkartoshki.rawlands.entity.ModEntityTypes;
 import mrkartoshki.rawlands.item.ModItems;
 import mrkartoshki.rawlands.sound.ModSounds;
 import mrkartoshki.rawlands.particle.ModParticles;
@@ -24,6 +25,7 @@ public class Rawlands implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModEntityTypes.register();
 		ModBlocks.initialize();
 		ModItems.initialize();
 		ModSounds.init();

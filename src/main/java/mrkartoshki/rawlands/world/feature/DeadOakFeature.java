@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.tags.BlockTags;
 
 public class DeadOakFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -26,7 +25,7 @@ public class DeadOakFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         BlockPos origin = context.origin();
 
-        if (!level.getBlockState(origin.below()).is(BlockTags.DIRT)) {
+        if (!TreeBranchHelper.isDirtLike(level.getBlockState(origin.below()))) {
             return false;
         }
 
@@ -36,7 +35,7 @@ public class DeadOakFeature extends Feature<NoneFeatureConfiguration> {
 
         for (int y = 0; y < effectiveHeight; y++) {
             BlockPos check = origin.above(y);
-            if (!TreeBranchHelper.canReplace(level, check) && !level.getBlockState(check).is(BlockTags.LOGS)) {
+            if (!TreeBranchHelper.canReplaceOrIsLog(level, check)) {
                 return false;
             }
         }
@@ -105,11 +104,11 @@ public class DeadOakFeature extends Feature<NoneFeatureConfiguration> {
         for (int r = 0; r < rootCount; r++) {
             Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
             BlockPos rootPos = base.below().relative(dir);
-            if (level.getBlockState(rootPos).is(BlockTags.DIRT)) {
+            if (TreeBranchHelper.isDirtLike(level.getBlockState(rootPos))) {
                 TreeBranchHelper.placeLog(level, rootPos, OAK_LOG, dir.getAxis());
                 if (random.nextFloat() < 0.4) {
                     BlockPos ext = rootPos.relative(dir);
-                    if (level.getBlockState(ext).is(BlockTags.DIRT)) {
+                    if (TreeBranchHelper.isDirtLike(level.getBlockState(ext))) {
                         TreeBranchHelper.placeLog(level, ext, OAK_LOG, dir.getAxis());
                     }
                 }

@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.tags.BlockTags;
 
 public class DeadStumpFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -24,7 +23,7 @@ public class DeadStumpFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         BlockPos origin = context.origin();
 
-        if (!level.getBlockState(origin.below()).is(BlockTags.DIRT)) {
+        if (!TreeBranchHelper.isDirtLike(level.getBlockState(origin.below()))) {
             return false;
         }
 
@@ -42,7 +41,7 @@ public class DeadStumpFeature extends Feature<NoneFeatureConfiguration> {
         if (useDarkOak && random.nextFloat() < 0.5) {
             Direction flareDir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
             BlockPos flarePos = origin.relative(flareDir);
-            if (level.getBlockState(flarePos).is(BlockTags.DIRT) || TreeBranchHelper.canReplace(level, flarePos)) {
+            if (TreeBranchHelper.isDirtLike(level.getBlockState(flarePos)) || TreeBranchHelper.canReplace(level, flarePos)) {
                 TreeBranchHelper.placeLog(level, flarePos, log, Direction.Axis.Y);
             }
         }
@@ -50,7 +49,7 @@ public class DeadStumpFeature extends Feature<NoneFeatureConfiguration> {
         if (random.nextFloat() < 0.4) {
             Direction rootDir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
             BlockPos rootPos = origin.below().relative(rootDir);
-            if (level.getBlockState(rootPos).is(BlockTags.DIRT)) {
+            if (TreeBranchHelper.isDirtLike(level.getBlockState(rootPos))) {
                 TreeBranchHelper.placeLog(level, rootPos, log, rootDir.getAxis());
             }
         }

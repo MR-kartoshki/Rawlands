@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mrkartoshki.rawlands.Rawlands;
+import mrkartoshki.rawlands.entity.ModEntityTypes;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -11,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.core.component.DataComponents;
@@ -18,6 +20,20 @@ import net.minecraft.world.item.component.Consumable;
 
 public final class ModItems {
 	private static final List<Item> REGISTERED_ITEMS = new ArrayList<>();
+
+	public static final Item SEQUOIA_BOAT = register(
+			"sequoia_boat",
+			new BoatItem(ModEntityTypes.SEQUOIA_BOAT, new Item.Properties()
+					.setId(ResourceKey.create(Registries.ITEM, id("sequoia_boat")))
+					.stacksTo(1))
+	);
+
+	public static final Item SEQUOIA_CHEST_BOAT = register(
+			"sequoia_chest_boat",
+			new BoatItem(ModEntityTypes.SEQUOIA_CHEST_BOAT, new Item.Properties()
+					.setId(ResourceKey.create(Registries.ITEM, id("sequoia_chest_boat")))
+					.stacksTo(1))
+	);
 
 	public static final Item OLIVE = register(
 			"olive",
@@ -41,6 +57,10 @@ public final class ModItems {
 	public static void initialize() {
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS).register(output -> {
 			output.accept(OLIVE);
+		});
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(output -> {
+			output.accept(SEQUOIA_BOAT);
+			output.accept(SEQUOIA_CHEST_BOAT);
 		});
 	}
 

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rawlands:block/sequoia_slab"
+    },
+    "type=double": {
+      "model": "rawlands:block/sequoia_planks"
+    },
+    "type=top": {
+      "model": "rawlands:block/sequoia_slab_top"
+    }
+  }
+}

@@ -67,18 +67,26 @@ public class GiantMushroomFeature extends Feature<NoneFeatureConfiguration> {
         return true;
     }
 
-    /** Hollow hemisphere shell of red mushroom blocks over the stem top. */
+    /**
+     * Hollow hemisphere shell of red mushroom blocks over the stem top. Bounds are compared
+     * as squared distance so the per-block loop (up to a few hundred iterations for a large
+     * cap) never calls {@code Math.sqrt}; the outer/inner/rim radii are fixed per call, so
+     * their squares are computed once outside the loops instead of per block.
+     */
     private static void placeDomeCap(WorldGenLevel level, RandomSource random, BlockPos capBase, int radius) {
+        double outerSq = (radius + 0.4) * (radius + 0.4);
+        double innerSq = (radius - 1.1) * (radius - 1.1);
+        double rimSq = (radius - 0.1) * (radius - 0.1);
         for (int dy = 0; dy <= radius; dy++) {
             for (int dx = -radius; dx <= radius; dx++) {
                 for (int dz = -radius; dz <= radius; dz++) {
-                    double dist = Math.sqrt(dx * dx + dz * dz + (double) dy * dy);
+                    double distSq = dx * dx + dz * dz + (double) dy * dy;
                     // Shell only: skin of the hemisphere, slightly ragged at the rim.
-                    if (dist <= radius + 0.4 && dist >= radius - 1.1) {
+                    if (distSq <= outerSq && distSq >= innerSq) {
                         if (dy == 0 && Mth.abs(dx) < radius - 1 && Mth.abs(dz) < radius - 1) {
                             continue; // keep the underside open around the stem
                         }
-                        if (dist >= radius - 0.1 && random.nextFloat() < 0.12) {
+                        if (distSq >= rimSq && random.nextFloat() < 0.12) {
                             continue;
                         }
                         BlockPos pos = capBase.offset(dx, dy, dz);
@@ -93,13 +101,15 @@ public class GiantMushroomFeature extends Feature<NoneFeatureConfiguration> {
 
     /** Broad one-block-thick brown disk at the stem top, rim drooping one block. */
     private static void placeFlatCap(WorldGenLevel level, RandomSource random, BlockPos top, int radius) {
+        double outerSq = (radius + 0.3) * (radius + 0.3);
+        double rimSq = (radius - 0.9) * (radius - 0.9);
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
-                double dist = Math.sqrt(dx * dx + (double) dz * dz);
-                if (dist > radius + 0.3) {
+                double distSq = dx * dx + (double) dz * dz;
+                if (distSq > outerSq) {
                     continue;
                 }
-                boolean rim = dist >= radius - 0.9;
+                boolean rim = distSq >= rimSq;
                 if (rim && random.nextFloat() < 0.15) {
                     continue;
                 }

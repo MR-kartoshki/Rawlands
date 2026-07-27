@@ -28,6 +28,12 @@ loom {
 			sourceSet sourceSets.main
 		}
 	}
+
+	runs {
+		client {
+			vmArg "-Xmx8G"
+		}
+	}
 }
 
 fabricApi {

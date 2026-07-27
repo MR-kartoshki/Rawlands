@@ -122,5 +122,6 @@ The output JAR will be in `build/libs/`.
 
 - MR-Kartoshki (Lead Developer, Biome Designer)
 - thecreeper3326 (Artist, Music Composer)
+- RadicalRadiation (Artist)
 
 </details>

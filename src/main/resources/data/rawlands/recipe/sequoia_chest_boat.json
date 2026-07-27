@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "chest_boat",
+  "ingredients": [
+    "minecraft:chest",
+    "rawlands:sequoia_boat"
+  ],
+  "result": {
+    "id": "rawlands:sequoia_chest_boat"
+  }
+}

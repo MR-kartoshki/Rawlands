@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rawlands:block/sequoia_log_top",
+    "side": "rawlands:block/sequoia_log"
+  }
+}

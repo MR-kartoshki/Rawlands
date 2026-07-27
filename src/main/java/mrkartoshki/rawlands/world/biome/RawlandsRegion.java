@@ -30,6 +30,7 @@ public class RawlandsRegion extends Region {
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.MANGROVE_SWAMP,ModBiomes.FLOODED_DELTA);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.WARM_OCEAN,    ModBiomes.CORAL_FOREST);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.STONY_SHORE,   ModBiomes.MIST_COAST);
+            builder.replaceBiome(net.minecraft.world.level.biome.Biomes.OLD_GROWTH_PINE_TAIGA, ModBiomes.SEQUOIA_FOREST);
             // ALPS takes over vanilla's cold extreme-peak slots. It inherits vanilla's exact
             // parameter points, which sidesteps the two failure modes a custom addBiome box hit:
             // losing distance ties against vanilla points (biome never generates), and biome
@@ -277,5 +278,9 @@ public class RawlandsRegion extends Region {
         // climate box — see the comment there. Its asymmetric cliff/moss terrain shape is
         // applied by rawlands:alps/gated_shape (data/rawlands/worldgen/density_function/alps/),
         // whose climate gate covers the vanilla peak-biome climate (deep erosion, inland).
+
+        // SEQUOIA_FOREST is placed via replaceBiome(OLD_GROWTH_PINE_TAIGA) above, not a custom
+        // climate box: inheriting vanilla's exact parameter points sidesteps the depth/tie-break
+        // issues a custom addBiome box needs surfaceOnlyDepth/strictWinDepth workarounds for.
     }
 }

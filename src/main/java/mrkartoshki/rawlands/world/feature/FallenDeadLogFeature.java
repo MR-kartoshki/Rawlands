@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.tags.BlockTags;
 
 public class FallenDeadLogFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -24,7 +23,7 @@ public class FallenDeadLogFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         BlockPos origin = context.origin();
 
-        if (!level.getBlockState(origin.below()).is(BlockTags.DIRT)) {
+        if (!TreeBranchHelper.isDirtLike(level.getBlockState(origin.below()))) {
             return false;
         }
 
@@ -47,48 +46,37 @@ public class FallenDeadLogFeature extends Feature<NoneFeatureConfiguration> {
         }
 
         BlockPos logStart = hasStump ? origin.relative(dir) : origin;
+        int groundY = logStart.getY();
 
+        // Single pass: decide each segment's placement position up front (ground level, or
+        // stepped down one block where the terrain drops away) and cache it, instead of
+        // re-deriving the same decision — and re-fetching the same block states — in a
+        // second "now actually place" pass afterward.
+        BlockPos[] placements = new BlockPos[length];
         int validLength = 0;
         for (int i = 0; i < length; i++) {
             BlockPos logPos = logStart.relative(dir, i);
             BlockPos below = logPos.below();
-            if (!level.getBlockState(below).isAir() && TreeBranchHelper.canReplace(level, logPos)) {
-                validLength++;
-            } else if (level.getBlockState(below).isAir()) {
-                BlockPos lower = logPos.below();
-                if (!level.getBlockState(lower.below()).isAir() && TreeBranchHelper.canReplace(level, lower)) {
-                    validLength++;
-                } else {
-                    break;
-                }
+            if (!level.getBlockState(below).isAir()) {
+                if (!TreeBranchHelper.canReplace(level, logPos)) break;
+                placements[i] = logPos;
+            } else if (!level.getBlockState(below.below()).isAir() && TreeBranchHelper.canReplace(level, below)) {
+                placements[i] = below;
             } else {
                 break;
             }
+            validLength++;
         }
         if (validLength < 3) return false;
 
-        for (int i = 0; i < length; i++) {
-            BlockPos logPos = logStart.relative(dir, i);
-            BlockPos below = logPos.below();
+        for (int i = 0; i < validLength; i++) {
+            TreeBranchHelper.placeLog(level, placements[i], log, axis);
 
-            if (!level.getBlockState(below).isAir() && TreeBranchHelper.canReplace(level, logPos)) {
-                TreeBranchHelper.placeLog(level, logPos, log, axis);
-
-                if (random.nextFloat() < 0.06) {
-                    BlockPos mushroom = logPos.above();
-                    if (level.getBlockState(mushroom).isAir()) {
-                        level.setBlock(mushroom, Blocks.BROWN_MUSHROOM.defaultBlockState(), 2);
-                    }
+            if (placements[i].getY() == groundY && random.nextFloat() < 0.06) {
+                BlockPos mushroom = placements[i].above();
+                if (level.getBlockState(mushroom).isAir()) {
+                    level.setBlock(mushroom, Blocks.BROWN_MUSHROOM.defaultBlockState(), 2);
                 }
-            } else if (level.getBlockState(below).isAir()) {
-                BlockPos lower = logPos.below();
-                if (!level.getBlockState(lower.below()).isAir() && TreeBranchHelper.canReplace(level, lower)) {
-                    TreeBranchHelper.placeLog(level, lower, log, axis);
-                } else {
-                    break;
-                }
-            } else {
-                break;
             }
         }
 

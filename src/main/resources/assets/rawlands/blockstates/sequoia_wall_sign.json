@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "rawlands:block/sequoia_wall_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "rawlands:block/sequoia_wall_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "rawlands:block/sequoia_wall_sign"
+    },
+    "facing=west": {
+      "model": "rawlands:block/sequoia_wall_sign",
+      "y": 90
+    }
+  }
+}

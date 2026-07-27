@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "rawlands:block/sequoia_planks",
+    "side": "rawlands:block/sequoia_planks",
+    "top": "rawlands:block/sequoia_planks"
+  }
+}

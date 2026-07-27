@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "shelf",
+  "key": {
+    "#": "rawlands:stripped_sequoia_log"
+  },
+  "pattern": [
+    "###",
+    "   ",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rawlands:sequoia_shelf"
+  }
+}

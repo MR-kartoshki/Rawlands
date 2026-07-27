@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_hanging_sign",
+  "key": {
+    "#": "rawlands:stripped_sequoia_log",
+    "X": "minecraft:iron_chain"
+  },
+  "pattern": [
+    "X X",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rawlands:sequoia_hanging_sign"
+  }
+}
