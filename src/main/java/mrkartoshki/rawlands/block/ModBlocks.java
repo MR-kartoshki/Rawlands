@@ -45,6 +45,7 @@ import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
@@ -335,7 +336,16 @@ public final class ModBlocks {
 							.strength(2.0F, 3.0F).sound(SoundType.SHELF).ignitedByLava()
 			)
 	);
-
+	/**
+	 * List of block entities in the mod. Will make {@link net.minecraft.world.level.block.entity.BlockEntityType#isValid(BlockState) BockEntityType.isValid} allow a custom block entity to contain its respective block
+	 */
+	public static final List<Block> BLOCK_ENTITIES = List.of(
+			SEQUOIA_WALL_HANGING_SIGN,
+			SEQUOIA_HANGING_SIGN,
+			SEQUOIA_WALL_SIGN,
+			SEQUOIA_SIGN,
+			SEQUOIA_SHELF
+	);
 	private ModBlocks() {
 	}
 

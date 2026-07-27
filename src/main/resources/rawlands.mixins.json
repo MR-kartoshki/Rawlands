@@ -1,20 +1,21 @@
 {
-	"required": true,
-	"package": "mrkartoshki.rawlands.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"mixins": [
-		"BoatEntityMixin",
-		"FastFallingBlockEntityMixin",
-		"OreFeatureAxisMixin",
-		"RootSystemAzaleaTreeMixin"
-	],
-	"client": [
-		"client.AtmosphericFogEnvironmentMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "mrkartoshki.rawlands.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "BlockEntityTypeMixin",
+    "BoatEntityMixin",
+    "FastFallingBlockEntityMixin",
+    "OreFeatureAxisMixin",
+    "RootSystemAzaleaTreeMixin"
+  ],
+  "client": [
+    "client.AtmosphericFogEnvironmentMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }
