@@ -41,12 +41,13 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
 
         int buttressHeight = 4 + random.nextInt(3);
         int taperHeight = 2 + random.nextInt(2);
-        int mainHeight = 22 + random.nextInt(15);
+        int mainHeight = 14 + random.nextInt(29);
         if (mainHeight < buttressHeight + taperHeight + 4) {
             mainHeight = buttressHeight + taperHeight + 4;
         }
         int coreHeight = mainHeight - buttressHeight - taperHeight;
-        int crownHeight = 8 + random.nextInt(9);
+        int heightBonus = Math.max(0, mainHeight - 22);
+        int crownHeight = 8 + random.nextInt(9) + heightBonus / 4;
         int totalHeight = mainHeight + crownHeight;
         for (int y = 0; y < totalHeight; y++) {
             int footprint = y < buttressHeight + coreHeight ? coreSize : 1;
@@ -110,7 +111,7 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel level, RandomSource random, BlockPos origin, int centerX, int centerZ,
         int coreSize, int foliageStartY, int mainHeight, int crownHeight
     ) {
-        int maxRadius = coreSize + 2;
+        int maxRadius = coreSize + 2 + Math.min(2, Math.max(0, mainHeight - 22) / 8);
         int topY = mainHeight + crownHeight;
         int span = Math.max(1, topY - foliageStartY);
 
@@ -124,7 +125,7 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
 
             float progress = (y - foliageStartY) / (float) span;
             int radius = Math.round(maxRadius * (1f - progress));
-            if (ringIndex % 3 == 2) {
+            if (ringIndex % 4 == 3) {
                 radius = Math.max(0, radius - 1);
             }
             if (y >= topY - 2) {
@@ -151,7 +152,7 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
                 int distSq = dx * dx + dz * dz;
                 if (distSq > radiusSq) continue;
                 if (distSq == 0) continue;
-                if (random.nextFloat() < 0.04f) continue;
+                if (random.nextFloat() < 0.02f) continue;
                 BlockPos leafPos = center.offset(dx, 0, dz);
                 if (!TreeBranchHelper.canReplace(level, leafPos)) continue;
                 level.setBlock(leafPos, leaf, 3);
