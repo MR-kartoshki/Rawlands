@@ -26,11 +26,7 @@
     "grass_color": "#7cae6b",
     "water_color": "#3f76a8"
   },
-  "carvers": [
-    "minecraft:cave",
-    "minecraft:cave_extra_underground",
-    "minecraft:canyon"
-  ],
+  "carvers": [],
   "features": [
     [],
     [

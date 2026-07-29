@@ -31,13 +31,22 @@ public class RawlandsRegion extends Region {
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.WARM_OCEAN,    ModBiomes.CORAL_FOREST);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.STONY_SHORE,   ModBiomes.MIST_COAST);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.OLD_GROWTH_PINE_TAIGA, ModBiomes.SEQUOIA_FOREST);
-            // ALPS takes over vanilla's cold extreme-peak slots. It inherits vanilla's exact
-            // parameter points, which sidesteps the two failure modes a custom addBiome box hit:
-            // losing distance ties against vanilla points (biome never generates), and biome
-            // boundaries decoupled from terrain height (biome flipping partway up a mountain,
-            // or matching mid-air when given a negative depth span).
+            // ALPS takes over vanilla's whole cold mountain stack: the peaks, plus the snowy
+            // slopes and groves that skirt them. Those four slots are contiguous in climate
+            // space, so a single massif reads as one biome from the treeline to the summit
+            // instead of stopping at the peak. rawlands:alps/gated_shape gates on the biome, so
+            // the asymmetric ridge terrain widens with the footprint rather than staying pinned
+            // to the old summit area.
+            //
+            // Inheriting vanilla's parameter points keeps the biome boundary tied to the terrain
+            // height that produced it. A custom addBiome box does not: it loses distance ties
+            // against the vanilla points tiling the same space, and its edges drift away from
+            // mountain height, which shows up as the biome flipping partway up a slope or
+            // matching in mid-air.
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.JAGGED_PEAKS,  ModBiomes.ALPS);
             builder.replaceBiome(net.minecraft.world.level.biome.Biomes.FROZEN_PEAKS,  ModBiomes.ALPS);
+            builder.replaceBiome(net.minecraft.world.level.biome.Biomes.SNOWY_SLOPES, ModBiomes.ALPS);
+            builder.replaceBiome(net.minecraft.world.level.biome.Biomes.GROVE,        ModBiomes.ALPS);
         });
 
         // Continentalness

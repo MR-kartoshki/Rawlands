@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "rawlands:subalpine_meadow",
-    "rawlands:alpine_forest"
+    "rawlands:alpine_forest",
+    "rawlands:alps"
   ]
 }
