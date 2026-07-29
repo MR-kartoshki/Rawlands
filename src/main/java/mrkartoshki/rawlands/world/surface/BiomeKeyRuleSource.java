@@ -16,13 +16,12 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
  * matching <em>by {@link ResourceKey}</em> rather than by biome {@link net.minecraft.core.Holder}
  * identity.
  *
- * <p>Vanilla's {@link SurfaceRules#isBiome} was changed in 26.2 to hold a
- * {@code HolderSet<Biome>} and compare biomes by holder identity. That cannot work for
- * datapack-registered (JSON) biomes such as Rawlands' own biomes: their holders are created
- * fresh when the worldgen registries load, so they never match the holders any
- * registration-time {@code HolderGetter} could produce. Matching by {@code ResourceKey}
- * (interned, so {@code ==} is reliable) is robust for both vanilla and modded biomes — this
- * mirrors how TerraBlender's own namespaced rules dispatch on the biome key.
+ * <p>Vanilla's {@link SurfaceRules#isBiome} holds a {@code HolderSet<Biome>} and compares biomes
+ * by holder identity. That cannot work for datapack-registered (JSON) biomes such as Rawlands'
+ * own biomes: their holders are created fresh when the worldgen registries load, so they never
+ * match the holders any registration-time {@code HolderGetter} could produce. Matching by
+ * {@code ResourceKey} (interned, so {@code ==} is reliable) is robust for both vanilla and modded
+ * biomes, and mirrors how TerraBlender's own namespaced rules dispatch on the biome key.
  */
 public record BiomeKeyRuleSource(ResourceKey<Biome> biome, SurfaceRules.RuleSource then)
     implements SurfaceRules.RuleSource {

@@ -115,7 +115,7 @@ public class TallAzaleaTreeFeature extends Feature<NoneFeatureConfiguration> {
             || state.is(Blocks.MUD);
     }
 
-    /** Fork arm that adds foliage clusters at branch tips — azalea-specific. */
+    /** Azalea-specific fork arm that adds foliage clusters at branch tips. */
     private void generateFork(WorldGenLevel level, RandomSource random, BlockPos base, double dx, double dz, int height) {
         double px = base.getX() + 0.5;
         double py = base.getY() + 0.5;

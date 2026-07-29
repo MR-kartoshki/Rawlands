@@ -15,11 +15,11 @@ import java.util.List;
  *
  * <p>This is the generic "apply a custom terrain shape only in this climate region" building
  * block: gate on the vanilla climate density functions ({@code minecraft:overworld/continents},
- * {@code .../erosion}, {@code .../ridges} — optionally wrapped in {@code minecraft:abs} for
+ * {@code .../erosion}, {@code .../ridges}, optionally wrapped in {@code minecraft:abs} for
  * symmetric weirdness bands) using the same parameter ranges the biome occupies in
  * {@link mrkartoshki.rawlands.world.biome.RawlandsRegion}. Because density functions cannot see
  * biome identity (only x/y/z), gating by climate parameters is what ties a terrain shape to a
- * biome's territory — and the smoothstep margin guarantees a seam-free blend into neighbouring
+ * biome's territory, and the smoothstep margin guarantees a seam-free blend into neighbouring
  * terrain.
  */
 public record ClimateGateDensityFunction(DensityFunction input, List<Gate> gates) implements DensityFunction {

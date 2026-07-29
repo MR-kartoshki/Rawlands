@@ -152,7 +152,7 @@ public class RawlandsRegion extends Region {
             coolTemp, wetHumid, highBand, hillErosion, surface, fullWeird, 0.0f
         ), ModBiomes.SUBALPINE_MEADOW);
 
-        // ALPINE_FOREST — cold elevated terrain, any humidity, hills and moderate peaks,
+        // ALPINE_FOREST: cold elevated terrain, any humidity, hills and moderate peaks,
         // upper-temperate to high continentalness. The deepest erosion band (-1.0 to -0.6)
         // is left to ALPS so the two boxes stay disjoint (ties in the nearest-point climate
         // search are unpredictable).
@@ -169,7 +169,7 @@ public class RawlandsRegion extends Region {
             hotTemp, wetHumid, temperateBand, hillErosion, underground, fullWeird, 0.0f
         ), net.minecraft.world.level.biome.Biomes.LUSH_CAVES);
 
-        // GLACIAL_FLATS — cold + any flat-to-rolling terrain, anywhere from coastal to temperate, arid-to-moderate humidity
+        // GLACIAL_FLATS: cold + any flat-to-rolling terrain, anywhere from coastal to temperate, arid-to-moderate humidity
         addBiome(mapper, Climate.parameters(
             coldTemp,                                // cold (unchanged)
             Climate.Parameter.span(-1.0f,  0.15f),  // arid to just-moderate (was dryHumid only)
@@ -178,7 +178,7 @@ public class RawlandsRegion extends Region {
             surface, fullWeird, 0.0f
         ), ModBiomes.GLACIAL_FLATS);
 
-        // AMBER_STEPPE — hot dry inland steppe, flat-to-rolling, wider temp and humidity ranges.
+        // AMBER_STEPPE: hot dry inland steppe, flat-to-rolling, wider temp and humidity ranges.
         // Temp capped at 0.8: the scalding band above is ceded to DUNE_SEA.
         addBiome(mapper, Climate.parameters(
             Climate.Parameter.span( 0.4f,  0.8f),   // warm-to-hot (scalding ceded to DUNE_SEA)
@@ -188,7 +188,7 @@ public class RawlandsRegion extends Region {
             surface, fullWeird, 0.0f
         ), ModBiomes.AMBER_STEPPE);
 
-        // MONSOON_FOREST — hot+very humid, now reaches inland lowlands, hilly to gentle slopes
+        // MONSOON_FOREST: hot+very humid, now reaches inland lowlands, hilly to gentle slopes
         addBiome(mapper, Climate.parameters(
             Climate.Parameter.span( 0.4f,  1.0f),   // warm-hot-scorching (was hotTemp 0.55-0.8 only)
             Climate.Parameter.span( 0.45f,  1.0f),  // wet-to-soaking (was soakingHumid 0.6-1.0 only)
@@ -208,8 +208,8 @@ public class RawlandsRegion extends Region {
         //  1. STRICT WIN at surface: everywhere inside an addBiome box the climate search
         //     would otherwise tie at distance 0 with one of the copied vanilla points
         //     (they tile the whole space, all pinned at depth point 0). Vanilla's
-        //     Climate.RTree breaks exact ties via a ThreadLocal "last result" — i.e. by
-        //     worker-thread history — which is non-deterministic across chunk generations.
+        //     Climate.RTree breaks exact ties via a ThreadLocal "last result", i.e. by
+        //     worker-thread history, which is non-deterministic across chunk generations.
         //     The biome_gate density function re-queries biomes while shaping terrain, so
         //     tie flicker showed up as broken, corruption-looking chunks at chunk borders.
         //  2. NO BIOME IN AIR: the biome must NOT win in air columns above its own
@@ -237,7 +237,7 @@ public class RawlandsRegion extends Region {
         // it needs to cover the water column down into deep channels its own shape carves.
         final Climate.Parameter surfaceOnlyDepth = Climate.Parameter.span(0.005f, 0.02f);
 
-        // FUNGI_FOREST — mild + soaking humid lowland with gentle terrain. Deliberately disjoint
+        // FUNGI_FOREST: mild + soaking humid lowland with gentle terrain. Deliberately disjoint
         // from its wet neighbours: TEMPERATE_RAINFOREST/MOSSWOOD sit in the temperate cont band
         // with slope erosion, MONSOON_FOREST starts at temp 0.4, FLOODED_DELTA is coastal.
         addBiome(mapper, Climate.parameters(
@@ -248,7 +248,7 @@ public class RawlandsRegion extends Region {
             surfaceOnlyDepth, fullWeird, 0.0f
         ), ModBiomes.FUNGI_FOREST);
 
-        // DUNE_SEA — scalding arid inland erg. Interior-disjoint from its hot neighbours:
+        // DUNE_SEA: scalding arid inland erg. Interior-disjoint from its hot neighbours:
         // SALT_FLAT sits in the coastal-lowland cont band (-0.15..0.25), AMBER_STEPPE caps at
         // temp 0.8 (band ceded above), MEDITERRANEAN_SCRUBLAND is moderate-humidity. The
         // asymmetric dune shape (gentle windward slope, steep slip face) is applied by
@@ -257,11 +257,11 @@ public class RawlandsRegion extends Region {
             Climate.Parameter.span( 0.8f,  1.0f),   // scalding
             Climate.Parameter.span(-1.0f, -0.35f),  // arid
             Climate.Parameter.span( 0.25f,  0.7f),  // inland (SALT_FLAT owns the lowland band)
-            Climate.Parameter.span( 0.2f,  0.75f),  // rolling to flat — dunes supply the relief
+            Climate.Parameter.span( 0.2f,  0.75f),  // rolling to flat; dunes supply the relief
             surfaceOnlyDepth, fullWeird, 0.0f
         ), ModBiomes.DUNE_SEA);
 
-        // FJORDS — cold rainy coast. The drowned-channel + steep-wall terrain is applied by
+        // FJORDS: cold rainy coast. The drowned-channel + steep-wall terrain is applied by
         // rawlands:fjords/gated_shape via biome_gate (a -0.15 base offset carves navigable
         // channels below sea level; the asymmetric ridge raises the walls through it).
         // Disjoint from GLACIAL_FLATS by erosion (it starts at 0.35) and from FLOODED_DELTA /
@@ -270,12 +270,12 @@ public class RawlandsRegion extends Region {
             Climate.Parameter.span(-1.0f, -0.4f),   // cold
             Climate.Parameter.span( 0.0f,  1.0f),   // moderate-to-soaking (rainy coast)
             Climate.Parameter.span(-0.55f, -0.1f),  // coastal
-            Climate.Parameter.span(-0.5f,  0.3f),   // hills to gentle — walls come from our shape
+            Climate.Parameter.span(-0.5f,  0.3f),   // hills to gentle; walls come from our shape
             strictWinDepth, fullWeird, 0.0f
         ), ModBiomes.FJORDS);
 
         // ALPS is placed via replaceBiome(JAGGED_PEAKS / FROZEN_PEAKS) above, not a custom
-        // climate box — see the comment there. Its asymmetric cliff/moss terrain shape is
+        // climate box (see the comment there). Its asymmetric cliff/moss terrain shape is
         // applied by rawlands:alps/gated_shape (data/rawlands/worldgen/density_function/alps/),
         // whose climate gate covers the vanilla peak-biome climate (deep erosion, inland).
 

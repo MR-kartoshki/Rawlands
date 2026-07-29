@@ -39,7 +39,7 @@ public class Rawlands implements ModInitializer {
 		// Depth must be a constant because the real sampler's depth includes the offset graph,
 		// which contains the biome gate itself (see BiomeGateDensityFunction). The value is
 		// pinned INSIDE the strict-win depth span used by gated biomes (see strictWinDepth in
-		// RawlandsRegion) so every gate query is a strict — deterministic — win over vanilla's
+		// RawlandsRegion) so every gate query is a strict, deterministic win over vanilla's
 		// depth-0 parameter points. If that span or this constant ever change, they must move
 		// together: the constant has to stay inside the span.
 		ServerLevelEvents.LOAD.register((server, world) -> {

@@ -48,10 +48,8 @@ public class FallenDeadLogFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos logStart = hasStump ? origin.relative(dir) : origin;
         int groundY = logStart.getY();
 
-        // Single pass: decide each segment's placement position up front (ground level, or
-        // stepped down one block where the terrain drops away) and cache it, instead of
-        // re-deriving the same decision — and re-fetching the same block states — in a
-        // second "now actually place" pass afterward.
+        // Resolve every segment's position first (ground level, or stepped down one block where
+        // the terrain drops away). Placement below reuses these, so each block state is read once.
         BlockPos[] placements = new BlockPos[length];
         int validLength = 0;
         for (int i = 0; i < length; i++) {

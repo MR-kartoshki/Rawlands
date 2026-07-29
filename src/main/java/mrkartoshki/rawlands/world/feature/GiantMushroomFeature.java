@@ -70,8 +70,8 @@ public class GiantMushroomFeature extends Feature<NoneFeatureConfiguration> {
     /**
      * Hollow hemisphere shell of red mushroom blocks over the stem top. Bounds are compared
      * as squared distance so the per-block loop (up to a few hundred iterations for a large
-     * cap) never calls {@code Math.sqrt}; the outer/inner/rim radii are fixed per call, so
-     * their squares are computed once outside the loops instead of per block.
+     * cap) never calls {@code Math.sqrt}. The outer/inner/rim radii are fixed per call, so their
+     * squares are computed once, above the loops.
      */
     private static void placeDomeCap(WorldGenLevel level, RandomSource random, BlockPos capBase, int radius) {
         double outerSq = (radius + 0.4) * (radius + 0.4);

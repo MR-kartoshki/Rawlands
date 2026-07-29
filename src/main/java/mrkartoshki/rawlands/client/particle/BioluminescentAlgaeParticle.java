@@ -59,7 +59,7 @@ public class BioluminescentAlgaeParticle extends SingleQuadParticle {
             double driftX = isExtra ? vx : Math.cos(random.nextDouble() * Math.PI * 2) * 0.012;
             double driftZ = isExtra ? vz : Math.sin(random.nextDouble() * Math.PI * 2) * 0.012;
 
-            // Only the initial call spawns extras — extras never spawn more extras, preventing recursion.
+            // Only the initial call spawns extras. Extras never spawn more, which prevents recursion.
             if (!isExtra) {
                 int extras = 2 + random.nextInt(3);
                 for (int i = 0; i < extras; i++) {

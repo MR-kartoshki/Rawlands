@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.DensityFunction;
  * zero-crossings of a signed ridge noise field.
  *
  * <p>The ridge crest lies wherever the noise crosses zero. The negative-noise flank rises over
- * {@code steepWidth} (in noise-value space) — small values give a sheer cliff — while the
+ * {@code steepWidth} (in noise-value space), where small values give a sheer cliff, while the
  * positive-noise flank falls away over the much larger {@code gentleWidth}, giving a smooth
  * walkable slope. Because which world direction is "negative side" depends on the local noise
  * gradient, the cliff facing varies organically from ridge to ridge with no explicit orientation

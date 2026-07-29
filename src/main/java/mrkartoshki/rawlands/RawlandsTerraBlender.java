@@ -30,7 +30,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                 SurfaceRuleManager.RuleCategory.OVERWORLD,
                 Rawlands.MOD_ID,
                 biomes -> SurfaceRules.sequence(
-                        // SALT_FLAT — coarse salt on top, thin salt layer below, then vanilla
+                        // SALT_FLAT: coarse salt on top, thin salt layer below, then vanilla
                         // stone. DEEP_UNDER_FLOOR is intentionally omitted: cave carvers dig
                         // through the pre-painted surface layer, so any salt painted deep would
                         // be exposed on cave walls. Two blocks of salt is enough for the visual.
@@ -42,7 +42,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(ModBlocks.SALT_BLOCK.defaultBlockState()))
                                 )
                         ),
-                        // FLOODED_DELTA — mud only where flooded (at/below water level); above water gets vanilla grass
+                        // FLOODED_DELTA: mud only where flooded (at/below water level); above water gets vanilla grass
                         new BiomeKeyRuleSource(ModBiomes.FLOODED_DELTA,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -54,7 +54,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
                         ),
-                        // DEAD_FOREST — coarse dirt surface with dirt beneath
+                        // DEAD_FOREST: coarse dirt surface with dirt beneath
                         new BiomeKeyRuleSource(ModBiomes.DEAD_FOREST,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -63,7 +63,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
                         ),
-                        // GRAVEL_FLATS — gravel surface, coarse dirt subsurface, stone deep under
+                        // GRAVEL_FLATS: gravel surface, coarse dirt subsurface, stone deep under
                         new BiomeKeyRuleSource(ModBiomes.GRAVEL_FLATS,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -74,7 +74,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )
                         ),
-                        // TEMPERATE_RAINFOREST — podzol surface with dirt beneath (natural forest floor)
+                        // TEMPERATE_RAINFOREST: podzol surface with dirt beneath (natural forest floor)
                         new BiomeKeyRuleSource(ModBiomes.TEMPERATE_RAINFOREST,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -83,7 +83,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
                         ),
-                        // CORAL_FOREST — sand seafloor over sandstone (ocean biome replacing Warm Ocean)
+                        // CORAL_FOREST: sand seafloor over sandstone (ocean biome replacing Warm Ocean)
                         new BiomeKeyRuleSource(ModBiomes.CORAL_FOREST,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -94,7 +94,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState()))
                                 )
                         ),
-                        // ABYSSAL_TRENCHES — sand cave floor (seagrass-compatible), deepslate beneath
+                        // ABYSSAL_TRENCHES: sand cave floor (seagrass-compatible), deepslate beneath
                         new BiomeKeyRuleSource(ModBiomes.ABYSSAL_TRENCHES,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -105,7 +105,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState()))
                                 )
                         ),
-                        // MIST_COAST — gravel shore over stone
+                        // MIST_COAST: gravel shore over stone
                         new BiomeKeyRuleSource(ModBiomes.MIST_COAST,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -116,7 +116,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )
                         ),
-                        // GLACIAL_FLATS — snow surface with packed ice beneath, stone deep under
+                        // GLACIAL_FLATS: snow surface with packed ice beneath, stone deep under
                         new BiomeKeyRuleSource(ModBiomes.GLACIAL_FLATS,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -127,7 +127,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )
                         ),
-                        // FJORDS — bare stone walls (steep check), gravel channel floors under
+                        // FJORDS: bare stone walls (steep check), gravel channel floors under
                         // water; land tops fall through to vanilla grass
                         new BiomeKeyRuleSource(ModBiomes.FJORDS,
                                 SurfaceRules.sequence(
@@ -138,7 +138,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                         SurfaceRules.state(Blocks.GRAVEL.defaultBlockState())))
                                 )
                         ),
-                        // DUNE_SEA — deep sand over sandstone
+                        // DUNE_SEA: deep sand over sandstone
                         new BiomeKeyRuleSource(ModBiomes.DUNE_SEA,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -149,7 +149,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState()))
                                 )
                         ),
-                        // ALPS — bare stone on the sheer cliff faces (steep check), permanent
+                        // ALPS: bare stone on the sheer cliff faces (steep check), permanent
                         // snow/packed-ice cap above the snowline, moss-covered gentle slopes below
                         new BiomeKeyRuleSource(ModBiomes.ALPS,
                                 SurfaceRules.sequence(
@@ -171,7 +171,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.STONE.defaultBlockState()))
                                 )
                         ),
-                        // MONSOON_FOREST — mud only where flooded (at/below water level); above water gets vanilla grass
+                        // MONSOON_FOREST: mud only where flooded (at/below water level); above water gets vanilla grass
                         new BiomeKeyRuleSource(ModBiomes.MONSOON_FOREST,
                                 SurfaceRules.sequence(
                                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
@@ -183,7 +183,7 @@ public class RawlandsTerraBlender implements TerraBlenderApi {
                                                 SurfaceRules.state(Blocks.DIRT.defaultBlockState()))
                                 )
                         ),
-                        // SEQUOIA_FOREST — podzol forest floor (needle litter under the redwood canopy), dirt
+                        // SEQUOIA_FOREST: podzol forest floor (needle litter under the redwood canopy), dirt
                         // beneath. Gated on abovePreliminarySurface() so this only paints the true generated
                         // surface, not every exposed cave floor/wall within the biome's underground extent.
                         // ON_FLOOR/UNDER_FLOOR fire for any solid-to-air transition, including caves; without

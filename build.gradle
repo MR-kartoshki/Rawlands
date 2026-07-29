@@ -52,7 +52,7 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 	// Also expose Fabric API to the client source set compile classpath (splitEnvironmentSourceSets).
 
-	// TerraBlender — artifact for MC 26.2
+	// TerraBlender artifact for MC 26.2
 	// Check: https://maven.minecraftforge.net/com/github/glitchfiend/TerraBlender-fabric/
 	implementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
 }

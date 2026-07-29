@@ -85,8 +85,9 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
 
         int height = minHeight + random.nextInt(extraHeight + 1);
 
+        BlockPos.MutableBlockPos check = new BlockPos.MutableBlockPos();
         for (int y = 0; y < height; y++) {
-            BlockPos check = origin.above(y);
+            check.setWithOffset(origin, 0, y, 0);
             if (!TreeBranchHelper.canReplaceOrIsLog(level, check)) {
                 return false;
             }
@@ -122,6 +123,8 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
         record VineSite(BlockPos leaf, Direction dir) {}
         List<VineSite> vineSites = vineChance > 0.0 ? new ArrayList<>() : null;
 
+        BlockPos.MutableBlockPos leafPos = new BlockPos.MutableBlockPos();
+
         for (int dy = -(foliageHeight - 1); dy <= 1; dy++) {
             int layerRadius = foliageRadius;
             if (dy >= 1 || dy <= -(foliageHeight - 1)) {
@@ -134,16 +137,17 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
                     if (dx * dx + dz * dz > maxDistSq) continue;
                     if (gapChance > 0.0 && random.nextDouble() < gapChance) continue;
 
-                    BlockPos leafPos = center.offset(dx, dy, dz);
+                    leafPos.setWithOffset(center, dx, dy, dz);
                     if (!TreeBranchHelper.canReplace(level, leafPos)) continue;
 
                     BlockState chosen = (secondLeafState != null && random.nextDouble() < secondLeafChance)
                         ? secondLeafState : leafState;
-                    level.setBlock(leafPos, chosen, 3);
+                    level.setBlock(leafPos, chosen, TreeBranchHelper.TREE_UPDATE_FLAGS);
 
                     if (vineSites != null && random.nextDouble() < vineChance) {
                         Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
-                        vineSites.add(new VineSite(leafPos, dir));
+                        // immutable(): the site outlives this iteration, and leafPos is reused.
+                        vineSites.add(new VineSite(leafPos.immutable(), dir));
                     }
                 }
             }
@@ -151,8 +155,8 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
 
         if (vineSites != null) {
             for (VineSite site : vineSites) {
-                // Re-check the leaf still exists — another tree's foliage could have
-                // overwritten it with a non-leaf block between collection and placement.
+                // Re-check the leaf still exists: another tree's foliage may have overwritten
+                // it with a non-leaf block between collection and placement.
                 if (!level.getBlockState(site.leaf()).is(BlockTags.LEAVES)) continue;
                 placeHangingVine(level, random, site.leaf().relative(site.dir()), site.dir().getOpposite());
             }
@@ -165,10 +169,11 @@ public class ProceduralTreeFeature extends Feature<NoneFeatureConfiguration> {
         BlockState vine = Blocks.VINE.defaultBlockState().setValue(property, true);
 
         int length = 1 + random.nextInt(3);
+        BlockPos.MutableBlockPos vinePos = new BlockPos.MutableBlockPos();
         for (int i = 0; i < length; i++) {
-            BlockPos vinePos = pos.below(i);
+            vinePos.setWithOffset(pos, 0, -i, 0);
             if (!level.getBlockState(vinePos).isAir()) break;
-            level.setBlock(vinePos, vine, 3);
+            level.setBlock(vinePos, vine, TreeBranchHelper.TREE_UPDATE_FLAGS);
         }
     }
 }

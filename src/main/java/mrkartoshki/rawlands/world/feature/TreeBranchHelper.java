@@ -18,12 +18,10 @@ public class TreeBranchHelper {
     }
 
     /**
-     * Same check as {@link #canReplace}, but also accepts existing logs. Feature clearance
-     * loops need this OR (a candidate trunk column may already overlap another tree's log),
-     * and every call site used to spell it as {@code !canReplace(level, pos) &&
-     * !level.getBlockState(pos).is(BlockTags.LOGS)}, which fetches the block state twice per
-     * position. This single-fetch version halves the block-state reads in that hot path,
-     * which runs on every placement attempt, including the far more common failed ones.
+     * Like {@link #canReplace}, but also accepts existing logs, and reads the block state once.
+     * Clearance loops need the log case because a candidate trunk column may already overlap
+     * another tree, and they run on every placement attempt including the failed ones, which are
+     * the common case.
      */
     public static boolean canReplaceOrIsLog(WorldGenLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
@@ -39,14 +37,19 @@ public class TreeBranchHelper {
     }
 
     /**
-     * True for any dirt-family block a tree can root in. {@code minecraft:dirt} no longer
-     * covers grass/podzol/mycelium on its own — those were split out into
-     * {@code minecraft:grass_blocks} — so callers need both tags to match what used to be a
-     * single check.
+     * True for any dirt-family block a tree can root in. Grass, podzol and mycelium sit in
+     * {@code minecraft:grass_blocks} rather than {@code minecraft:dirt}, so both tags are needed.
      */
     public static boolean isDirtLike(BlockState state) {
         return state.is(BlockTags.DIRT) || state.is(BlockTags.GRASS_BLOCKS);
     }
+
+    /**
+     * Update flags for every log and leaf written during generation, matching vanilla
+     * {@code TreeFeature}. {@code UPDATE_KNOWN_SHAPE} (16) lets {@code WorldGenRegion} skip the
+     * per-write post-process lookup, which returns null for logs and leaves anyway.
+     */
+    public static final int TREE_UPDATE_FLAGS = 19;
 
     public static void placeLog(WorldGenLevel level, BlockPos pos, BlockState logState, Direction.Axis axis) {
         if (!canReplace(level, pos)) return;
@@ -54,7 +57,7 @@ public class TreeBranchHelper {
         if (oriented.hasProperty(RotatedPillarBlock.AXIS)) {
             oriented = oriented.setValue(RotatedPillarBlock.AXIS, axis);
         }
-        level.setBlock(pos, oriented, 3);
+        level.setBlock(pos, oriented, TREE_UPDATE_FLAGS);
     }
 
     public static Direction.Axis dominantAxis(double dx, double dy, double dz) {
@@ -88,7 +91,7 @@ public class TreeBranchHelper {
             BlockPos current = BlockPos.containing(px, py, pz);
 
             if (prev == null || !current.equals(prev)) {
-                if (!canReplace(level, current) && !level.getBlockState(current).is(BlockTags.LOGS)) {
+                if (!canReplaceOrIsLog(level, current)) {
                     break;
                 }
                 placeLog(level, current, logState, dominantAxis(nx, ny, nz));
@@ -290,7 +293,7 @@ public class TreeBranchHelper {
         }
     }
 
-    /** Surface-exposed roots for a 1×1 trunk (2–4 roots, 1–3 segments each). */
+    /** Surface-exposed roots for a 1x1 trunk (2 to 4 roots, 1 to 3 segments each). */
     public static void generateExposedRoots(WorldGenLevel level, RandomSource random, BlockState logState, BlockPos base) {
         int rootCount = 2 + random.nextInt(3);
         for (int r = 0; r < rootCount; r++) {
@@ -311,7 +314,7 @@ public class TreeBranchHelper {
         }
     }
 
-    /** Surface-exposed roots for a 2×2 trunk (3–6 roots, offset from trunk edge). */
+    /** Surface-exposed roots for a 2x2 trunk (3 to 6 roots, offset from trunk edge). */
     public static void generateThickExposedRoots(WorldGenLevel level, RandomSource random, BlockState logState, BlockPos base) {
         int rootCount = 3 + random.nextInt(4);
         for (int r = 0; r < rootCount; r++) {

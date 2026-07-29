@@ -29,11 +29,15 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource random = context.random();
         BlockPos origin = context.origin();
 
+        // Shared by the ground check, the clearance scan and the trunk loops. Safe because none
+        // of them hold onto the position past its iteration.
+        BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
+
         int coreSize = random.nextFloat() < 0.35f ? 3 : 2;
         for (int dx = 0; dx < coreSize; dx++) {
             for (int dz = 0; dz < coreSize; dz++) {
-                BlockPos ground = origin.offset(dx, -1, dz);
-                if (!TreeBranchHelper.isDirtLike(level.getBlockState(ground))) {
+                cursor.setWithOffset(origin, dx, -1, dz);
+                if (!TreeBranchHelper.isDirtLike(level.getBlockState(cursor))) {
                     return false;
                 }
             }
@@ -53,8 +57,8 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
             int footprint = y < buttressHeight + coreHeight ? coreSize : 1;
             for (int dx = 0; dx < footprint; dx++) {
                 for (int dz = 0; dz < footprint; dz++) {
-                    BlockPos check = origin.offset(dx, y, dz);
-                    if (!TreeBranchHelper.canReplaceOrIsLog(level, check)) {
+                    cursor.setWithOffset(origin, dx, y, dz);
+                    if (!TreeBranchHelper.canReplaceOrIsLog(level, cursor)) {
                         return false;
                     }
                 }
@@ -69,7 +73,7 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
         for (int y = buttressHeight; y < buttressHeight + coreHeight; y++) {
             for (int dx = 0; dx < coreSize; dx++) {
                 for (int dz = 0; dz < coreSize; dz++) {
-                    TreeBranchHelper.placeLog(level, origin.offset(dx, y, dz), LOG, Direction.Axis.Y);
+                    TreeBranchHelper.placeLog(level, cursor.setWithOffset(origin, dx, y, dz), LOG, Direction.Axis.Y);
                 }
             }
         }
@@ -85,7 +89,7 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
                 for (int dz = 0; dz < coreSize; dz++) {
                     boolean isCenter = dx == centerX && dz == centerZ;
                     if (!isCenter && random.nextFloat() >= keepChance) continue;
-                    TreeBranchHelper.placeLog(level, origin.offset(dx, y, dz), LOG, Direction.Axis.Y);
+                    TreeBranchHelper.placeLog(level, cursor.setWithOffset(origin, dx, y, dz), LOG, Direction.Axis.Y);
                 }
             }
         }
@@ -115,13 +119,17 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
         int topY = mainHeight + crownHeight;
         int span = Math.max(1, topY - foliageStartY);
 
+        // Must not be the same object as the mutable inside placeFoliageRing, which reads this
+        // one as its ring centre.
+        BlockPos.MutableBlockPos axisPos = new BlockPos.MutableBlockPos();
+
         for (int y = mainHeight; y < topY; y++) {
-            TreeBranchHelper.placeLog(level, origin.offset(centerX, y, centerZ), LOG, Direction.Axis.Y);
+            TreeBranchHelper.placeLog(level, axisPos.setWithOffset(origin, centerX, y, centerZ), LOG, Direction.Axis.Y);
         }
 
         int ringIndex = 0;
         for (int y = foliageStartY; y < topY; y++, ringIndex++) {
-            BlockPos pos = origin.offset(centerX, y, centerZ);
+            BlockPos pos = axisPos.setWithOffset(origin, centerX, y, centerZ);
 
             float progress = (y - foliageStartY) / (float) span;
             int radius = Math.round(maxRadius * (1f - progress));
@@ -137,9 +145,9 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        BlockPos tip = origin.offset(centerX, topY, centerZ);
+        BlockPos tip = axisPos.setWithOffset(origin, centerX, topY, centerZ);
         if (TreeBranchHelper.canReplace(level, tip)) {
-            level.setBlock(tip, LEAVES, 3);
+            level.setBlock(tip, LEAVES, TreeBranchHelper.TREE_UPDATE_FLAGS);
         }
     }
 
@@ -147,15 +155,16 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel level, RandomSource random, BlockState leaf, BlockPos center, int radius
     ) {
         int radiusSq = radius * radius + 1;
+        BlockPos.MutableBlockPos leafPos = new BlockPos.MutableBlockPos();
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
                 int distSq = dx * dx + dz * dz;
                 if (distSq > radiusSq) continue;
                 if (distSq == 0) continue;
                 if (random.nextFloat() < 0.02f) continue;
-                BlockPos leafPos = center.offset(dx, 0, dz);
+                leafPos.setWithOffset(center, dx, 0, dz);
                 if (!TreeBranchHelper.canReplace(level, leafPos)) continue;
-                level.setBlock(leafPos, leaf, 3);
+                level.setBlock(leafPos, leaf, TreeBranchHelper.TREE_UPDATE_FLAGS);
             }
         }
     }
@@ -164,11 +173,12 @@ public class SequoiaTreeFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel level, RandomSource random, BlockState logState,
         BlockPos origin, int y, int originOffset, int footprintSize, int coreSize, float keepChance
     ) {
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
         for (int dx = originOffset; dx < originOffset + footprintSize; dx++) {
             for (int dz = originOffset; dz < originOffset + footprintSize; dz++) {
                 boolean isCore = dx >= 0 && dx < coreSize && dz >= 0 && dz < coreSize;
                 if (!isCore && random.nextFloat() >= keepChance) continue;
-                TreeBranchHelper.placeLog(level, origin.offset(dx, y, dz), logState, Direction.Axis.Y);
+                TreeBranchHelper.placeLog(level, pos.setWithOffset(origin, dx, y, dz), logState, Direction.Axis.Y);
             }
         }
     }

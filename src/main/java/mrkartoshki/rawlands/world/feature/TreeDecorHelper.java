@@ -41,16 +41,18 @@ public class TreeDecorHelper {
         BlockPos center, int radius
     ) {
         int radiusSq = radius * radius + 1;
+        // Safe to reuse: nothing below holds onto the position past its iteration.
+        BlockPos.MutableBlockPos leafPos = new BlockPos.MutableBlockPos();
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dy = -radius; dy <= radius; dy++) {
                 for (int dz = -radius; dz <= radius; dz++) {
                     if (dx * dx + dy * dy + dz * dz > radiusSq) continue;
                     if (random.nextFloat() < 0.15f) continue;
-                    BlockPos leafPos = center.offset(dx, dy, dz);
+                    leafPos.setWithOffset(center, dx, dy, dz);
                     if (!TreeBranchHelper.canReplace(level, leafPos)) continue;
                     BlockState leaf = (secondaryLeaf != null && random.nextFloat() < secondaryChance)
                         ? secondaryLeaf : primaryLeaf;
-                    level.setBlock(leafPos, leaf, 3);
+                    level.setBlock(leafPos, leaf, TreeBranchHelper.TREE_UPDATE_FLAGS);
                 }
             }
         }

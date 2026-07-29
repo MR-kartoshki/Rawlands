@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0] - in development
+
+### Added
+
+- **New Biome**:
+
+    - **Sequoia Forest**: Massive Sequoia trees with a complete wood set
+
+### Fixed
+
+- **Performance**: Fixed a bug which caused CPU usage to spike a LOT while generating new chunks
+
 ## [1.4.0] - 07-14-2026
 
 ### Added
