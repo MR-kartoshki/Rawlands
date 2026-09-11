@@ -6,6 +6,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 
+import java.util.List;
+
 public final class ModBiomes {
 
     public static final ResourceKey<Biome> SALT_FLAT               = key("salt_flat");
@@ -33,6 +35,34 @@ public final class ModBiomes {
     public static final ResourceKey<Biome> DUNE_SEA                = key("dune_sea");
     public static final ResourceKey<Biome> FJORDS                  = key("fjords");
     public static final ResourceKey<Biome> SEQUOIA_FOREST          = key("sequoia_forest");
+
+    public static final List<ResourceKey<Biome>> ALL = List.of(
+        SALT_FLAT,
+        SHRUBLAND,
+        SUBALPINE_MEADOW,
+        MEDITERRANEAN_SCRUBLAND,
+        FLOODED_DELTA,
+        DEAD_FOREST,
+        TEMPERATE_RAINFOREST,
+        ALPINE_FOREST,
+        GRAVEL_FLATS,
+        ROCKY_FIELDS,
+        CORAL_FOREST,
+        ABYSSAL_TRENCHES,
+        MOSSWOOD_FOREST,
+        ROCKY_SHRUBLAND,
+        MIST_COAST,
+        AZALEA_FOREST,
+        GLACIAL_FLATS,
+        AMBER_STEPPE,
+        MONSOON_FOREST,
+        PRAIRIE,
+        ALPS,
+        FUNGI_FOREST,
+        DUNE_SEA,
+        FJORDS,
+        SEQUOIA_FOREST
+    );
 
     private ModBiomes() {}
 

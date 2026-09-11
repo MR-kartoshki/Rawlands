@@ -1,5 +1,6 @@
 package mrkartoshki.rawlands.client.datagen;
 
+import mrkartoshki.rawlands.Rawlands;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
@@ -14,9 +15,12 @@ public final class RawlandsWorldgenProvider extends FabricDynamicRegistryProvide
 
 	@Override
 	protected void configure(HolderLookup.Provider registries, Entries entries) {
-		entries.addAll(registries.lookupOrThrow(Registries.CONFIGURED_FEATURE));
-		entries.addAll(registries.lookupOrThrow(Registries.PLACED_FEATURE));
-		// Biomes are registered via TerraBlender, not datagen
+		registries.lookupOrThrow(Registries.CONFIGURED_FEATURE).listElements()
+				.filter(holder -> holder.key().identifier().getNamespace().equals(Rawlands.MOD_ID))
+				.forEach(entries::add);
+		registries.lookupOrThrow(Registries.PLACED_FEATURE).listElements()
+				.filter(holder -> holder.key().identifier().getNamespace().equals(Rawlands.MOD_ID))
+				.forEach(entries::add);
 	}
 
 	@Override

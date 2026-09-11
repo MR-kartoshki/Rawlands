@@ -1,5 +1,6 @@
 # Gradle
 .gradle/
+.fabric/
 build/
 out/
 
@@ -20,6 +21,7 @@ replay_*.log
 
 # Runtime
 run/
+logs/
 
 # Extracted/Generated files
 version.json

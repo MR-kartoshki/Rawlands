@@ -2,6 +2,7 @@ package mrkartoshki.rawlands.client.datagen;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import mrkartoshki.rawlands.world.biome.ModBiomes;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -23,7 +24,9 @@ public final class RawlandsBiomeTagsProvider implements DataProvider {
 	@Override
 	public CompletableFuture<?> run(CachedOutput output) {
 		return CompletableFuture.allOf(
-				DataProvider.saveStable(output, tagFile("rawlands:salt_flat", "rawlands:shrubland", "rawlands:subalpine_meadow", "rawlands:mediterranean_scrubland", "rawlands:flooded_delta", "rawlands:dead_forest", "rawlands:coral_forest", "rawlands:alps", "rawlands:fungi_forest", "rawlands:dune_sea", "rawlands:fjords", "rawlands:sequoia_forest"), isOverworldPath),
+				DataProvider.saveStable(output, tagFile(ModBiomes.ALL.stream()
+						.map(key -> key.identifier().toString())
+						.toArray(String[]::new)), isOverworldPath),
 				DataProvider.saveStable(output, tagFile("rawlands:subalpine_meadow", "rawlands:alps"), isMountainPath)
 		);
 	}

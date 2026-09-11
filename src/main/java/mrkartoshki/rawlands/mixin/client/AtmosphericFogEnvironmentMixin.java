@@ -1,5 +1,6 @@
 package mrkartoshki.rawlands.mixin.client;
 
+import mrkartoshki.rawlands.client.fog.BiomeFogState;
 import mrkartoshki.rawlands.world.biome.ModBiomes;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
@@ -10,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
-import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,126 +20,100 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mixin (AtmosphericFogEnvironment.class)
+@Mixin(AtmosphericFogEnvironment.class)
 public abstract class AtmosphericFogEnvironmentMixin {
     @Unique
-    private static final Map<ResourceKey<Biome>, Float> sd =new HashMap<>();
+    private final Map<ResourceKey<Biome>, BiomeFogState> rawlands$fogStates = new HashMap<>();
+
     @Unique
-    private static final Map<ResourceKey<Biome>,Float>cd = new HashMap<>();
-    @Unique
-    private int t = 0;
+    private int rawlands$sampleTicks;
+
     @Inject(method = "setupFog", at = @At("TAIL"))
-    public void setupFog(FogData fd, Camera c, ClientLevel cl, float f, DeltaTracker d, CallbackInfo ci) {
-        t++;
-        biomeFog(ModBiomes.DEAD_FOREST, c, fd, cl, 20,30, 60, 100,false);
-        biomeFog(ModBiomes.MIST_COAST, c, fd, cl, 10,20, 60, 90, false);
-        biomeFog(ModBiomes.ALPS, c, fd, cl, 15,50, 140, 200, false);
-        biomeFog(ModBiomes.FJORDS, c, fd, cl, 12,30, 55, 95, false);
-        biomeFog(ModBiomes.SEQUOIA_FOREST, c, fd, cl, 12,25, 40, 100, false);
+    private void rawlands$setupFog(
+        FogData fogData,
+        Camera camera,
+        ClientLevel level,
+        float renderDistance,
+        DeltaTracker deltaTracker,
+        CallbackInfo callbackInfo
+    ) {
+        boolean sample = ++rawlands$sampleTicks >= 10;
+        if (sample) {
+            rawlands$sampleTicks = 0;
+        }
+
+        rawlands$applyBiomeFog(ModBiomes.DEAD_FOREST, camera, fogData, level, 20, 30, 60, 100, sample);
+        rawlands$applyBiomeFog(ModBiomes.MIST_COAST, camera, fogData, level, 10, 20, 60, 90, sample);
+        rawlands$applyBiomeFog(ModBiomes.ALPS, camera, fogData, level, 15, 50, 140, 200, sample);
+        rawlands$applyBiomeFog(ModBiomes.FJORDS, camera, fogData, level, 12, 30, 55, 95, sample);
+        rawlands$applyBiomeFog(ModBiomes.SEQUOIA_FOREST, camera, fogData, level, 12, 25, 40, 100, sample);
     }
 
-    /**
-     * Configures rich fog environments for a given biome
-     * @param biome a ResourceKey for the biome
-     * @param c camera to be used as the point of reference
-     * @param fd fog data to be modified
-     * @param cl client level for accessing nearby blocks
-     * @param r layers of scanning
-     * @param e minimum view distance in blocks
-     *
-     * <br> Optional for vertical dynamics
-     * @param yb bottom fog boundary
-     * @param yt top fog boundary
-     * @param i invert scanning; <br>false = thicker near the bottom<br>true = thicker near the top
-     */
     @Unique
-    private void biomeFog(ResourceKey<Biome> biome, Camera c, FogData fd, ClientLevel cl, int r, int e, @Nullable Integer yb, @Nullable Integer yt, @Nullable Boolean i) {
+    private void rawlands$applyBiomeFog(
+        ResourceKey<Biome> biome,
+        Camera camera,
+        FogData fogData,
+        ClientLevel level,
+        int radius,
+        int fogEnd,
+        int lowerBoundary,
+        int upperBoundary,
+        boolean sample
+    ) {
+        BiomeFogState state = rawlands$fogStates.computeIfAbsent(biome, ignored -> new BiomeFogState(0.05f));
+        boolean insideBiome = level.getBiome(camera.blockPosition()).is(biome);
 
-        if (cl.getBiome(c.blockPosition()).is(biome)) {
-            if (t >= 10) { t = 0;
-                cd.put(biome, 0f);
-                if (c.entity().level().getBiome(c.blockPosition()).is(biome)) {
-                    float xz = (float) checkXZ(biome, cl, c, r) / (r * 8 + 1);
-                    float y = 1;
-                    if (yb != null && yt != null) {
-                        y = Math.min(checkY(c, yb, yt, i), 1);
-                    }
-                    cd.put(biome, xz * y);
-                }
-
-
-            }
-        } else {
-            sd.put(biome, Mth.lerp(0.05f, sd.getOrDefault(biome, 0f), 0f));
-
+        if (!insideBiome) {
+            state.setTarget(0.0f);
+        } else if (sample) {
+            float horizontalDepth = (float) rawlands$countBiomeSamples(biome, level, camera, radius) / (radius * 8 + 1);
+            state.setTarget(horizontalDepth * rawlands$verticalDepth(camera, lowerBoundary, upperBoundary));
         }
-        sd.put(biome, Mth.lerp(0.05f, sd.getOrDefault(biome, 0f), cd.getOrDefault(biome, 0f)));
-        float s = sd.getOrDefault(biome, 0f);
-        if (s > 0.001f) {
-            fd.environmentalStart = Mth.lerp(s, fd.environmentalStart, 0f);
-            fd.environmentalEnd = Mth.lerp(s, fd.environmentalEnd, e);
+
+        float strength = state.tick();
+        if (strength > 0.001f) {
+            fogData.environmentalStart = Mth.lerp(strength, fogData.environmentalStart, 0.0f);
+            fogData.environmentalEnd = Mth.lerp(strength, fogData.environmentalEnd, fogEnd);
         }
     }
 
-    /**
-     * Checks lateral area for biome depth.<br>It scans in 8 lines from the camera (N,E,S,W,NE,SE,NW,SW), each of which is {@code layers} blocks long.
-     * @param biome biome to look for
-     * @param clientLevel client level for block scanning
-     * @param camera camera for point of reference
-     * @param layers how many passes to do
-     * @return Amount of blocks found to be within the specified biome. Divide by {@code (layers*8) + 1} to get a ratio.
-     */
     @Unique
-    private int checkXZ(ResourceKey<Biome> biome, ClientLevel clientLevel, Camera camera, int layers) {
+    private int rawlands$countBiomeSamples(
+        ResourceKey<Biome> biome,
+        ClientLevel level,
+        Camera camera,
+        int radius
+    ) {
         int count = 0;
+        BlockPos cameraPos = camera.blockPosition();
 
-        BlockPos camPos = camera.blockPosition();
-        if (clientLevel.getBiome(camPos).is(biome)) count++;
-        for (int i = 1; i <= layers; i++) {
-            if (clientLevel.getBiome(camPos.north(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.east(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.south(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.west(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.north(i).east(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.south(i).east(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.south(i).west(i)).is(biome)) count++;
-            if (clientLevel.getBiome(camPos.north(i).west(i)).is(biome)) count++;
+        if (level.getBiome(cameraPos).is(biome)) {
+            count++;
+        }
+        for (int distance = 1; distance <= radius; distance++) {
+            if (level.getBiome(cameraPos.north(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.east(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.south(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.west(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.north(distance).east(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.south(distance).east(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.south(distance).west(distance)).is(biome)) count++;
+            if (level.getBiome(cameraPos.north(distance).west(distance)).is(biome)) count++;
         }
         return count;
     }
 
-    /**
-     * Checks vertical depth
-     * @param camera camera for point of reference
-     * @param yb bottom boundary
-     * @param yt upper boundary
-     * @param i invert (true=thicker near top, false=thicker near bottom)
-     * @return ratio for multiplying fog or similar effects, 1f = full potency, 0f = disabled
-     */
     @Unique
-    private float checkY(Camera camera, int yb, int yt, boolean i) {
+    private float rawlands$verticalDepth(Camera camera, int lowerBoundary, int upperBoundary) {
         float y = (float) camera.position().y;
-        float r = 0;
-        if (i) {
-            if (y > yb && y < yt) {
-                float t = (float) (y - yb) / (yt - yb);
-                r = (float) Math.pow(t, 3);
-            }
-            if (y >= yt) {
-                r = 1;
-            }
-        } else {
-            if (y > yb && y < yt) {
-                float t = (float) (y - yb) / (yt - yb);
-                r =1- (float) Math.pow(t, 3);
-            }
-            if (y <= yb) {
-                r = 1;
-            }
+        if (y <= lowerBoundary) {
+            return 1.0f;
         }
-
-        return r;
+        if (y >= upperBoundary) {
+            return 0.0f;
+        }
+        float progress = (y - lowerBoundary) / (upperBoundary - lowerBoundary);
+        return 1.0f - progress * progress * progress;
     }
-
-
 }

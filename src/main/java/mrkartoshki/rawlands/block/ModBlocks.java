@@ -45,7 +45,6 @@ import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
@@ -161,7 +160,6 @@ public final class ModBlocks {
 	public static final Block OLIVE_SAPLING = register("olive_sapling",new OliveSaplingBlock(OliveSaplingBlock.OLIVE_TREE,
 			properties("olive_sapling").mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.GRASS)));
 
-	// --- Sequoia wood set ---
 
 	public static final Block SEQUOIA_LOG = register(
 			"sequoia_log",
@@ -336,16 +334,6 @@ public final class ModBlocks {
 							.strength(2.0F, 3.0F).sound(SoundType.SHELF).ignitedByLava()
 			)
 	);
-	/**
-	 * List of block entities in the mod. Will make {@link net.minecraft.world.level.block.entity.BlockEntityType#isValid(BlockState) BockEntityType.isValid} allow a custom block entity to contain its respective block
-	 */
-	public static final List<Block> BLOCK_ENTITIES = List.of(
-			SEQUOIA_WALL_HANGING_SIGN,
-			SEQUOIA_HANGING_SIGN,
-			SEQUOIA_WALL_SIGN,
-			SEQUOIA_SIGN,
-			SEQUOIA_SHELF
-	);
 	private ModBlocks() {
 	}
 
@@ -434,7 +422,6 @@ public final class ModBlocks {
 		return List.copyOf(REGISTERED_BLOCKS);
 	}
 
-	// Custom flowers compost like vanilla flowers (65% chance per item to raise the composter level).
 	private static void registerCompostables() {
 		CompostableRegistry.INSTANCE.add(BROADLEAF_LUPINE, 0.65F);
 		CompostableRegistry.INSTANCE.add(NIGHTSHADE, 0.65F);
@@ -448,13 +435,11 @@ public final class ModBlocks {
 		CompostableRegistry.INSTANCE.add(SEQUOIA_LEAVES, 0.30F);
 	}
 
-	// Axe-stripping: log <-> stripped log, wood <-> stripped wood.
 	private static void registerStrippables() {
 		StrippableBlockRegistry.register(SEQUOIA_LOG, STRIPPED_SEQUOIA_LOG);
 		StrippableBlockRegistry.register(SEQUOIA_WOOD, STRIPPED_SEQUOIA_WOOD);
 	}
 
-	// Vanilla-oak-equivalent catch/spread chances for every combustible Sequoia block.
 	private static void registerFlammables() {
 		FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
 		registry.add(SEQUOIA_LOG, 5, 5);

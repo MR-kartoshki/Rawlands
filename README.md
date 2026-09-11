@@ -32,6 +32,7 @@ This mod adds several new biomes to the game along with new blocks and features.
 - Fungi Forest
 - Fjords
 - Dune Sea
+- Sequoia Forest
 
 </details>
 
@@ -94,8 +95,8 @@ Feature order cycle errors have been seen when used together with this version o
 |---------------|----------|
 | Minecraft     | 26.2     |
 | Java          | 25+      |
-| Fabric Loader | 0.19.2+  |
-| Fabric API    | 0.149.0+ |
+| Fabric Loader | 0.19.3+  |
+| Fabric API    | 0.158.0+ |
 | TerraBlender  | any      |
 
 </details>
@@ -106,7 +107,13 @@ Feature order cycle errors have been seen when used together with this version o
 ```bash
 ./gradlew.bat build
 ```
-The output JAR will be in `build/libs/`.
+Pushes and pull requests build the mod automatically.
+
+```bash
+./gradlew.bat runDatagen
+```
+
+Generated data is written to `build/generated/rawlands/`. The output JAR is in `build/libs/`.
 
 </details>
 

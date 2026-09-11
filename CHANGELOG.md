@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.5.0] - in development
+## [1.5.1] - 09-11-2026
+
+### Fixed
+
+- Salt Block, Coarse Salt, and Fine Salt now drop their respective items when broken.
+
+## [1.5.0]
 
 ### Added
 
