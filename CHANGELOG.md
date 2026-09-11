@@ -1,12 +1,6 @@
 # Changelog
 
-## [1.5.1] - 09-11-2026
-
-### Fixed
-
-- Salt Block, Coarse Salt, and Fine Salt now drop their respective items when broken.
-
-## [1.5.0]
+## [1.5.0] - 09-11-2026
 
 ### Added
 
@@ -15,6 +9,8 @@
     - **Sequoia Forest**: Massive Sequoia trees with a complete wood set
 
 ### Fixed
+
+- Salt Block, Coarse Salt, and Fine Salt now drop their respective items when broken.
 
 - **Performance**: Fixed a bug which caused CPU usage to spike a LOT while generating new chunks
 
